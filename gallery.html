@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="nav_gallery">Gallery - Shri Shwetamber Jain Temple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'jain-orange': '#FF9933', 'peace-white': '#F9FAFB', 'stone-gray': '#4D4D4D' },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html[lang="hi"] body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-peace-white text-stone-gray">
+
+    <div id="navbar-container"></div>
+
+    <main class="max-w-7xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-jain-orange mb-12 text-center" data-key="section_gallery_title">Photo Gallery
+        </h1>
+
+        <!-- Gallery Grid: Content will be injected by JS based on JSON -->
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Loading Placeholder -->
+            <div class="animate-pulse bg-gray-200 h-64 rounded-xl"></div>
+            <div class="animate-pulse bg-gray-200 h-64 rounded-xl"></div>
+            <div class="animate-pulse bg-gray-200 h-64 rounded-xl"></div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>

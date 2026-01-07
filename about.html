@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="nav_about">About - Shri Shwetamber Jain Temple</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { 'jain-orange': '#FF9933', 'peace-white': '#F9FAFB', 'stone-gray': '#4D4D4D' },
+                    fontFamily: { 'sans': ['Inter', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        html[lang="hi"] body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-peace-white text-stone-gray">
+
+    <div id="navbar-container"></div>
+
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-jain-orange mb-8 text-center" data-key="section_about_title">Our Heritage
+        </h1>
+
+        <div class="bg-white p-8 rounded-2xl shadow-sm mb-8">
+            <img src="./assets/images/about/SathisDeori-Temple.jpg" alt="Jain Temple Details"
+                class="w-full h-75 object-cover rounded-xl mb-6">
+            <p class="text-lg leading-relaxed mb-4" data-key="section_about_desc">
+                Founded on the principles of Ahimsa...
+            </p>
+            <!-- More static text or dynamic blocks can go here -->
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="src/js/main.js"></script>
+</body>
+
+</html>

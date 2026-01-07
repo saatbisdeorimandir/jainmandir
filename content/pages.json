@@ -1,0 +1,29 @@
+{
+    "navigation": [
+        {
+            "id": "home",
+            "path": "index.html",
+            "key": "nav_home"
+        },
+        {
+            "id": "about",
+            "path": "about.html",
+            "key": "nav_about"
+        },
+        {
+            "id": "events",
+            "path": "events.html",
+            "key": "nav_events"
+        },
+        {
+            "id": "gallery",
+            "path": "gallery.html",
+            "key": "nav_gallery"
+        },
+        {
+            "id": "contact",
+            "path": "contact.html",
+            "key": "nav_contact"
+        }
+    ]
+}
