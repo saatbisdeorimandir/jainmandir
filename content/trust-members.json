@@ -1,0 +1,167 @@
+[
+    {
+        "no": 1,
+        "name": {
+            "en": "Shri Nareshbhai Amritlalji Shah",
+            "hi": "श्री नरेशभाई अमृतलालजी शाह"
+        },
+        "place": {
+            "en": "Mumbai",
+            "hi": "मुम्बई"
+        }
+    },
+    {
+        "no": 2,
+        "name": {
+            "en": "Shri Kalpeshbhai Vanmalidasji Shah",
+            "hi": "श्री कल्पेश भाई वनमालीदासजी शाह"
+        },
+        "place": {
+            "en": "Ahmedabad",
+            "hi": "अहमदाबाद"
+        }
+    },
+    {
+        "no": 3,
+        "name": {
+            "en": "Shri Sushilbhai Narendrabhai Shah",
+            "hi": "श्री सुशील भाई नरेन्द्र भाई शाह"
+        },
+        "place": {
+            "en": "Ahmedabad",
+            "hi": "अहमदाबाद"
+        }
+    },
+    {
+        "no": 4,
+        "name": {
+            "en": "Shri Mayankbhai Pravinchandraji Shah",
+            "hi": "श्री मयंक भाई प्रवीणचन्द जी शाह"
+        },
+        "place": {
+            "en": "Mumbai",
+            "hi": "मुम्बई"
+        }
+    },
+    {
+        "no": 5,
+        "name": {
+            "en": "Shri Sanjaybhai Amritlalji Shah",
+            "hi": "श्री संजय भाई अमृतलाल जी शाह"
+        },
+        "place": {
+            "en": "Mumbai",
+            "hi": "मुम्बई"
+        }
+    },
+    {
+        "no": 6,
+        "name": {
+            "en": "Shri Anandilalji Nagori",
+            "hi": "श्री आन्नदीलाल जी नागौरी"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 7,
+        "name": {
+            "en": "Shri Rakesh Kumarji Ghiya",
+            "hi": "श्री राकेश कुमार जी घीया"
+        },
+        "place": {
+            "en": "Ahmedabad",
+            "hi": "अहमदाबाद"
+        }
+    },
+    {
+        "no": 8,
+        "name": {
+            "en": "Shri Shantilalji Rathod",
+            "hi": "श्री शांतीलालजी राठौड़"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 9,
+        "name": {
+            "en": "Shri Jivrajji Khatod",
+            "hi": "श्री जीवराज जी खटोड़"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 10,
+        "name": {
+            "en": "Shri Manoharlalji Mehta",
+            "hi": "श्री मनोहरलालजी मेहता"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 11,
+        "name": {
+            "en": "Shri K.M. Jain",
+            "hi": "श्री के. एम. जैन"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 12,
+        "name": {
+            "en": "Shri Omkar Singh Babel",
+            "hi": "श्री औंकार सिंह बाबेल"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 13,
+        "name": {
+            "en": "Shri Mukesh Kumar Mahatma",
+            "hi": "श्री मुकेश कुमार महात्मा"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 14,
+        "name": {
+            "en": "Shri Pravin Jain",
+            "hi": "श्री प्रवीण जैन"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    },
+    {
+        "no": 15,
+        "name": {
+            "en": "Shri Sunil Kumar Gandhi",
+            "hi": "श्री सुनील कुमार गांधी"
+        },
+        "place": {
+            "en": "Chittorgarh",
+            "hi": "चित्तौड़गढ़"
+        }
+    }
+]

@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     let siteConfig = {};
     let pagesConfig = {};
 
+    let trustMembers = [];
+
     // --- References ---
     const navbarContainer = document.getElementById('navbar-container');
     const footerContainer = document.getElementById('footer-container');
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderLayout();
         updateLanguage(currentLang);
         renderDynamicComponents();
+        renderTrust();
     } catch (error) {
         console.error("Failed to initialize site:", error);
     }
@@ -22,17 +25,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     // --- Core Functions ---
 
     async function loadData() {
-        const [configRes, pagesRes, enRes, hiRes] = await Promise.all([
+        const [configRes, pagesRes, enRes, hiRes, trustRes] = await Promise.all([
             fetch('content/site-config.json'),
             fetch('content/pages.json'),
             fetch('content/en.json'),
-            fetch('content/hi.json')
+            fetch('content/hi.json'),
+            fetch('content/trust-members.json')
         ]);
 
         siteConfig = await configRes.json();
         pagesConfig = await pagesRes.json();
         content['en'] = await enRes.json();
         content['hi'] = await hiRes.json();
+        trustMembers = await trustRes.json();
     }
 
     function renderLayout() {
@@ -63,7 +68,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="hidden md:flex items-center space-x-8">
                         ${navItems}
                         <button id="lang-toggle" class="bg-orange-100 text-jain-orange px-4 py-2 rounded-full text-sm font-semibold hover:bg-orange-200 transition">
-                            🌐 <span data-key="btn_lang">Lang</span>
+                            🌐 <span data-key="buttons.lang">Lang</span>
                         </button>
                     </div>
                      <!-- Mobile menu button placeholder (simplified) -->
@@ -79,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 flex flex-col">
                     ${navItems.replace(/class="nav-link/g, 'class="mobile-nav-link block px-3 py-2 rounded-md text-base font-medium')}
                      <button id="mobile-lang-toggle" class="block w-full text-left px-3 py-2 text-jain-orange font-bold">
-                        🌐 <span data-key="btn_lang">Lang</span>
+                        🌐 <span data-key="buttons.lang">Lang</span>
                     </button>
                 </div>
             </div>
@@ -104,10 +109,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 <div>
                      <h3 class="text-xl font-bold mb-4" data-key="site_name">${siteConfig.general.siteName}</h3>
-                     <p class="text-gray-300 text-sm" data-key="footer_text">Loading...</p>
+                     <p class="text-gray-300 text-sm" data-key="footer.text">Loading...</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4" data-key="footer_social">Social</h3>
+                    <h3 class="text-xl font-bold mb-4" data-key="footer.social">Social</h3>
                     <div class="flex justify-center md:justify-start space-x-4">
                         ${Object.entries(siteConfig.social).map(([key, url]) => {
             const icons = {
@@ -123,9 +128,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
                  <div>
-                    <h3 class="text-xl font-bold mb-4" data-key="footer_contact">Contact</h3>
-                     <p class="text-gray-300 text-sm mb-2">${siteConfig.contact.email}</p>
-                     <p class="text-gray-300 text-sm">${siteConfig.contact.address}</p>
+                    <h3 class="text-xl font-bold mb-4" data-key="footer.contact">Contact</h3>
+                    <p class="text-gray-300 text-sm mb-2">${siteConfig.contact.mainContacts[0].phone}</p>
+                    <p class="text-gray-300 text-sm" data-key="${siteConfig.contact.mainContacts[0].addressKey}">Loading...</p>
                 </div>
             </div>
         </footer>
@@ -134,16 +139,122 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     function renderContactInfo() {
-        const addrEl = document.getElementById('contact-address');
-        const emailEl = document.getElementById('contact-email');
+        const mainContainer = document.getElementById('main-contact-container');
+        const otherContainer = document.getElementById('other-contacts-container');
         const mapFrame = document.getElementById('map-frame');
 
-        if (addrEl) addrEl.textContent = siteConfig.contact.address;
-        if (emailEl) {
-            emailEl.textContent = siteConfig.contact.email;
-            emailEl.href = `mailto:${siteConfig.contact.email}`;
+        // <div>
+        //     <p class="font-bold text-sm text-gray-500 uppercase" data-key="contact.labels.email">Email</p>
+        //     <a href="mailto:${contact.email}" class="text-jain-orange hover:underline">${contact.email}</a>
+        // </div>
+        if (mainContainer && siteConfig.contact.mainContacts) {
+            mainContainer.innerHTML = siteConfig.contact.mainContacts.map(contact => `
+                <div class="bg-white p-6 rounded-xl shadow-sm space-y-4 mb-6">
+                     <div>
+                        <p class="font-bold text-sm text-gray-500 uppercase" data-key="contact.labels.name">Name</p>
+                        <p class="text-lg font-semibold" data-key="${contact.nameKey}">Loading...</p>
+                     </div>
+                     <div>
+                        <p class="font-bold text-sm text-gray-500 uppercase" data-key="contact.labels.address">Address</p>
+                        <p class="text-gray-700" data-key="${contact.addressKey}">Loading...</p>
+                     </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-bold text-sm text-gray-500 uppercase" data-key="contact.labels.phone">Phone</p>
+                            <p class="text-gray-700">${contact.phone}</p>
+                        </div>
+                     </div>
+                </div>
+            `).join('');
         }
+
+        // <div>
+        //      <p class="text-xs font-bold text-gray-400 uppercase" data-key="contact.labels.email">Email</p>
+        //      <a href="mailto:${contact.email}" class="text-xs text-jain-orange hover:underline">${contact.email || '-'}</a>
+        // </div>
+        if (otherContainer && siteConfig.contact.otherContacts) {
+            const othersHtml = siteConfig.contact.otherContacts.map(contact => `
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="col-span-1 md:col-span-2">
+                             <h3 class="font-bold text-lg text-gray-800" data-key="${contact.nameKey}">Loading...</h3>
+                             <p class="text-sm text-gray-500" data-key="${contact.addressKey}">Loading...</p>
+                        </div>
+                        <div>
+                             <p class="text-xs font-bold text-gray-400 uppercase" data-key="contact.labels.phone">Phone</p>
+                             <p class="text-xs">${contact.phone}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            otherContainer.innerHTML = othersHtml;
+        }
+
+        const infoContainer = document.getElementById('information-container');
+        if (infoContainer && siteConfig.contact.information) {
+            const items = siteConfig.contact.information.items.filter(i => i.isActive);
+            if (items.length > 0) {
+                infoContainer.innerHTML = `
+                    <h3 class="text-lg font-bold text-jain-orange mb-3" data-key="${siteConfig.contact.information.titleKey}">Information</h3>
+                    <ul class="space-y-2">
+                        ${items.map(item => `
+                            <li class="flex items-start">
+                                <span class="text-jain-orange mr-2">•</span>
+                                <span class="text-gray-700" data-key="${item.textKey}"></span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                 `;
+                infoContainer.classList.remove('hidden');
+            }
+        }
+
+        const disclaimerContainer = document.getElementById('disclaimer-container');
+        if (disclaimerContainer && siteConfig.contact.disclaimer) {
+            disclaimerContainer.innerHTML = `
+                <h4 class="font-bold text-xs uppercase text-gray-400 mb-1" data-key="${siteConfig.contact.disclaimer.titleKey}">Disclaimer</h4>
+                <p data-key="${siteConfig.contact.disclaimer.textKey}">Loading...</p>
+            `;
+        }
+
         if (mapFrame) mapFrame.src = siteConfig.contact.mapUrl;
+    }
+
+    function renderTrust() {
+        // Render Committee Headers (Cards)
+        const committeeContainer = document.getElementById('trust-container');
+        if (committeeContainer && siteConfig.trust && siteConfig.trust.committee) {
+            committeeContainer.innerHTML = siteConfig.trust.committee.map(member => `
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow p-8 flex flex-col justify-center items-center h-full">
+                    <div class="text-center">
+                        <h3 class="text-3xl font-bold text-gray-800 mb-2" data-key="${member.nameKey}">Loading...</h3>
+                        <p class="text-xl text-jain-orange font-semibold" data-key="${member.roleKey}">Loading...</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render All Members (Table)
+        const membersTable = document.getElementById('trust-members-table');
+        if (membersTable && trustMembers) {
+            membersTable.innerHTML = trustMembers.map(member => {
+                // Handle bilingual objects or fallback to string
+                const getName = (obj) => {
+                    if (typeof obj === 'string') return obj;
+                    return obj[currentLang] || obj['en'] || Object.values(obj)[0] || '';
+                };
+
+                return `
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="p-4 font-medium">${member.no}</td>
+                    <td class="p-4 font-semibold">${getName(member.name)}</td>
+                    <td class="p-4">${getName(member.place)}</td>
+                </tr>
+            `}).join('');
+        }
+
+        // Re-run text update for new elements
+        updateText(currentLang);
     }
 
     // --- Dynamic Content Rendering (Pages) ---
@@ -153,13 +264,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const galleryGrid = document.getElementById('gallery-grid');
         if (galleryGrid) {
             galleryGrid.innerHTML = siteConfig.gallery.map(img => `
-                <div class="group relative overflow-hidden rounded-xl shadow-md h-64">
+                <div class="group relative overflow-hidden rounded-xl shadow-md cursor-pointer aspect-square" onclick="openLightbox('${img.src}')">
                     <img src="${img.src}" alt="Gallery Image" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all flex items-end p-4">
                         <p class="text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity" data-key="${img.altKey}">Image</p>
                     </div>
                 </div>
             `).join('');
+
+            // Initialize Lightbox Events
+            initLightbox();
         }
 
         // Events
@@ -172,7 +286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                     <div class="p-6 md:w-2/3 flex flex-col justify-center">
                         <div class="text-sm text-jain-orange font-bold uppercase tracking-wide mb-1">
-                            <span data-key="event_date_label">Date:</span> ${evt.date}
+                            <span data-key="events.date_label">Date:</span> ${evt.date}
                         </div>
                         <h2 class="text-2xl font-bold mb-2 text-gray-800" data-key="${evt.titleKey}">Event Title</h2>
                         <p class="text-gray-600" data-key="${evt.descKey}">Description...</p>
@@ -198,6 +312,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateText(lang);
         // Update html lang attribute
         document.documentElement.lang = lang;
+        // Re-render trust table to reflect new language
+        renderTrust();
     }
 
     function updateText(lang) {
@@ -206,23 +322,87 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!dict) return;
 
+        // Helper for dot notation
+        const getNestedValue = (obj, path) => {
+            return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+        };
+
         elements.forEach(el => {
             const key = el.getAttribute('data-key');
-            if (dict[key]) {
+            const value = getNestedValue(dict, key);
+
+            if (value) {
                 if (el.tagName === 'META') {
-                    el.setAttribute('content', dict[key]);
+                    el.setAttribute('content', value);
                 } else if (el.tagName === 'IMG') {
-                    el.alt = dict[key];
+                    el.alt = value;
                 } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                    el.placeholder = dict[key];
+                    el.placeholder = value;
                 } else {
-                    if (Array.isArray(dict[key])) {
-                        el.innerHTML = dict[key].map(text => `<p class="mb-4">${text}</p>`).join('');
+                    if (Array.isArray(value)) {
+                        el.innerHTML = value.map(text => `<p class="mb-4">${text}</p>`).join('');
                     } else {
-                        el.innerHTML = dict[key];
+                        el.innerHTML = value;
                     }
                 }
             }
         });
+    }
+
+    // --- Lightbox Functions ---
+
+    window.openLightbox = function (src) {
+        const modal = document.getElementById('lightbox-modal');
+        const img = document.getElementById('lightbox-image');
+        if (modal && img) {
+            img.src = src;
+            modal.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                modal.classList.add('opacity-100', 'pointer-events-auto');
+                img.classList.remove('scale-95');
+                img.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById('lightbox-modal');
+        const img = document.getElementById('lightbox-image');
+        if (modal && img) {
+            modal.classList.remove('opacity-100', 'pointer-events-auto');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            img.classList.remove('scale-100');
+            img.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                img.src = '';
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300);
+        }
+    }
+
+    function initLightbox() {
+        const modal = document.getElementById('lightbox-modal');
+        const closeBtn = document.getElementById('lightbox-close');
+
+        if (modal) {
+            // Close on button click
+            if (closeBtn) closeBtn.onclick = closeLightbox;
+
+            // Close on background click
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    closeLightbox();
+                }
+            };
+
+            // Close on Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                    closeLightbox();
+                }
+            });
+        }
     }
 });
