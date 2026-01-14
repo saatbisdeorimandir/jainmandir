@@ -127,7 +127,7 @@
     "cards": {
         "darshan": {
             "title": "Darshan Timing",
-            "desc": "Morning: 6:00 AM - 1:00 PM<br>Evening: 4:00 PM - 9:00 PM"
+            "desc": "Morning: 6:00 AM - 1:00 PM <br/> Evening: 4:00 PM - 9:00 PM"
         },
         "events": {
             "title": "Events",

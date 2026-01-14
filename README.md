@@ -1,84 +1,110 @@
-# Shri Jain Temple - Static Website
+# Shri Saat Bees Deori Jain Temple Website
 
-A peaceful, multilingual (English + Hindi), and fully static website for your Jain Temple.
+A modern, fast, and SEO-optimized multilingual website for the **Shri Saat Bees Deori Jain Temple** in Chittorgarh Fort. Built with **Next.js 14**, **TypeScript**, and **Tailwind CSS**.
 
 ## 🌟 Features
-- **Multilingual**: Configurable English and Hindi content.
-- **Dynamic Content**: Update Events, Gallery, and Text just by editing JSON files.
-- **Responsive Design**: Looks beautiful on Mobile, Tablet, and Desktop.
-- **SEO Ready**: Configurable metadata.
-- **Fast & Free**: Ready for GitHub Pages (no database or backend required).
 
-## 📁 Project Structure
+- **🚀 Performance**: Static Site Generation (SSG) for instant page loads and zero layout shifts.
+- **🌐 Multilingual Support**: Seamlessly switch between **English** and **Hindi**.
+- **🔍 SEO Optimized**: Server-side rendered content ensuring all text is indexable by search engines.
+- **📱 Responsive Design**: Fully optimized for mobile, tablet, and desktop screens.
+- **🎨 Premium Aesthetics**: Custom typography (Rozha One & Poppins), smooth gradients, and elegant transitions.
+- **📄 Content-Driven**: All site data (text, events, members) is managed via simple JSON files.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 14 (App Router)](https://nextjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Styling**: [Tailwind CSS v3.4](https://tailwindcss.com/)
+- **Fonts**: [Google Fonts](https://fonts.google.com/) (Rozha One, Poppins, Inter)
+- **Deployment**: [GitHub Pages](https://pages.github.com/) (Static Export)
+
+---
+
+## 📥 Setup & Installation
+
+### Prerequisites
+- [Node.js](https://nodejs.org/) (v18.17 or later)
+- npm (comes with Node.js)
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/jainmandir.git
+cd jainmandir
 ```
-/
-├── index.html          # Home Page
-├── about.html          # About Page
-├── events.html         # Events Listing
-├── gallery.html        # Photo Gallery
-├── contact.html        # Contact Info
-├── content/            # -> EDIT THESE FILES TO UPDATE SITE
-│   ├── site-config.json  # Global settings (Socials, Contact, Gallery Images, Event List)
-│   ├── pages.json        # Menu items
-│   ├── en.json           # English text content
-│   └── hi.json           # Hindi text content
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run locally
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## � Project Structure
+
+```text
+jainmandir/
+├── public/                 # Static assets
+│   ├── assets/             # Images, logos, and icons
+│   └── robots.txt          # SEO configuration
 ├── src/
-│   └── js/main.js      # Core Logic (Do not edit unless you know coding)
-└── assets/images/      # Place your local images here
+│   ├── app/                # Next.js App Router (Pages & Layouts)
+│   │   ├── [lang]/         # Dynamic language routes (en/hi)
+│   │   ├── globals.css     # Global styles & Tailwind directives
+│   │   └── layout.tsx      # Root HTML wrapper (Fonts initialization)
+│   ├── components/         # Reusable UI components (Navbar, Hero, etc.)
+│   ├── content/            # Site data in JSON format (The "Database")
+│   │   ├── en.json         # English translations
+│   │   ├── hi.json         # Hindi translations
+│   │   ├── site-config.json # Global site settings (Contacts, Socials)
+│   │   └── trust-members.json # List of all trust members
+│   ├── lib/                # Utility functions and type definitions
+│   └── middleware.ts       # Language detection and redirection
+├── tailwind.config.ts      # Tailwind CSS theme configuration
+└── next.config.mjs         # Next.js export configuration
 ```
 
-## 🚀 How to Deploy on GitHub Pages (Free)
+---
 
-1. **Upload Code to GitHub**:
-   - Create a new Repository on GitHub (e.g., `jaintemple-website`).
-   - Upload all these files to the repository.
+## ✍️ Content Management
 
-2. **Enable GitHub Pages**:
-   - Go to your Repository **Settings** > **Pages**.
-   - Under "Build and deployment", select **Source** as `Deploy from a branch`.
-   - Select Branch: `main` (or `master`) and Folder: `/ (root)`.
-   - Click **Save**.
+To update the website content, you don't need to touch the code. Just edit the JSON files in `src/content/`:
 
-3. **Visit Your Site**:
-   - In a few minutes, your site will be live at `https://yourusername.github.io/jaintemple-website/`.
+1. **Text & Translations**: Update `en.json` (English) and `hi.json` (Hindi).
+2. **Contact Info & Socials**: Update `site-config.json`.
+3. **Trust Members**: Add or remove members in `trust-members.json`.
+4. **Gallery Images**: Add your images to `public/assets/images/gallery/` and then reference their names in `site-config.json`.
 
-## 📝 How to Update Content
+---
 
-### Adding an Event
-1. Open `content/site-config.json`.
-2. Find the `"events"` list.
-3. Add a new block:
-   ```json
-   {
-     "id": 3,
-     "image": "url_to_image.jpg",
-     "titleKey": "event_3_title",
-     "descKey": "event_3_desc",
-     "date": "2024-10-01"
-   }
-   ```
-4. Open `content/en.json` and add:
-   ```json
-   "event_3_title": "New Event Name",
-   "event_3_desc": "Description of the event..."
-   ```
-5. Do the same for `content/hi.json`.
+## 🚀 Deployment (GitHub Pages)
 
-### Adding Photos to Gallery
-1. Open `content/site-config.json`.
-2. Add to `"gallery"` list:
-   ```json
-   { "src": "image_url.jpg", "altKey": "gallery_new_alt" }
-   ```
+The project is configured for **Static Site Generation (SSG)**.
 
-### Changing Contact Info
-- Edit `content/site-config.json` under the `"contact"` section.
+### 1. Build the project
+```bash
+npm run build
+```
+This command creates an `out/` folder containing the entire static website.
 
-## 🛠️ Customization
- - **Theme Colors**: Edit `tailwind.config` inside the `<script>` tag in every HTML file's `<head>`.
- - **Fonts**: Change the Google Fonts link in HTML files.
+### 2. Manual Deployment
+- Upload the contents of the `out/` folder to your hosting provider.
+- For **GitHub Pages**, you can push the `out` directory to a `gh-pages` branch or configure a GitHub Action.
 
-## 📱 Tech Stack
-- **HTML5**
-- **Tailwind CSS (CDN)**
-- **Vanilla JavaScript**
+### 3. Automated Deployment (Recommended)
+You can use a GitHub Action to automatically build and deploy the site whenever you push changes to the `main` branch. 
+> [!TIP]
+> Ensure your GitHub Pages settings are set to **"GitHub Actions"** as the source.
+
+---
+
+## ⚖️ License
+This project is for the **Shri Saat Bees Deori Jain Temple Trust**. All rights reserved.

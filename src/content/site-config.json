@@ -2,7 +2,7 @@
     "general": {
         "siteName": "Shri Shwetamber Jain Temple",
         "logoText": "Jain Mandir",
-        "logo": "assets/images/about/Jain_logo.jpg",
+        "logo": "/assets/images/about/Jain_logo.jpg",
         "themeColor": "#FF9933"
     },
     "contact": {
@@ -86,27 +86,27 @@
     ],
     "gallery": [
         {
-            "src": "./assets/images/gallery/1.jpg",
+            "src": "/assets/images/gallery/1.jpg",
             "altKey": "gallery.items.0"
         },
         {
-            "src": "./assets/images/gallery/2.jpg",
+            "src": "/assets/images/gallery/2.jpg",
             "altKey": "gallery.items.1"
         },
         {
-            "src": "./assets/images/gallery/3.jpg",
+            "src": "/assets/images/gallery/3.jpg",
             "altKey": "gallery.items.2"
         },
         {
-            "src": "./assets/images/gallery/4.jpg",
+            "src": "/assets/images/gallery/4.jpg",
             "altKey": "gallery.items.3"
         },
         {
-            "src": "./assets/images/gallery/5.jpg",
+            "src": "/assets/images/gallery/5.jpg",
             "altKey": "gallery.items.4"
         },
         {
-            "src": "./assets/images/gallery/6.jpg",
+            "src": "/assets/images/gallery/6.jpg",
             "altKey": "gallery.items.5"
         }
     ]
