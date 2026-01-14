@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { GalleryItem } from '@/lib/types';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 
 interface GalleryGridProps {
     items: GalleryItem[];
@@ -22,7 +22,7 @@ export default function GalleryGrid({ items, dict }: GalleryGridProps) {
                         onClick={() => setSelectedImg(img.src)}
                     >
                         <img
-                            src={img.src}
+                            src={assetPath(img.src)}
                             alt={getTrans(dict, img.altKey)}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                         />
@@ -43,7 +43,7 @@ export default function GalleryGrid({ items, dict }: GalleryGridProps) {
                 >
                     <button className="absolute top-4 right-4 text-white text-4xl">&times;</button>
                     <img
-                        src={selectedImg}
+                        src={assetPath(selectedImg)}
                         alt="Lightbox"
                         className="max-w-[90vw] max-h-[90vh] rounded shadow-lg transform scale-100 transition-transform"
                         onClick={(e) => e.stopPropagation()} // Click image shouldn't close it? typically yes or no.

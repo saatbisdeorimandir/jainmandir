@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 
 interface HeroProps {
     lang: string;
@@ -11,7 +11,7 @@ export default function Hero({ lang, dict }: HeroProps) {
         <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-24">
             <div className="absolute inset-0 z-0">
                 <img
-                    src="/assets/images/about/SathisDeori-Temple.jpg"
+                    src={assetPath("/assets/images/about/SathisDeori-Temple.jpg")}
                     className="w-full h-full object-cover opacity-30"
                     alt="Jain Temple Background"
                 />

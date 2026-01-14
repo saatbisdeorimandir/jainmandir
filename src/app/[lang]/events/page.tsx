@@ -1,5 +1,5 @@
 import { getDictionary, getSiteConfig } from '@/lib/api';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 import { Lang } from '@/lib/types';
 
 export default async function EventsPage({ params }: { params: Promise<{ lang: string }> }) {
@@ -15,7 +15,7 @@ export default async function EventsPage({ params }: { params: Promise<{ lang: s
                 {siteConfig.events.map((evt) => (
                     <div key={evt.id} className="bg-white rounded-xl shadow-sm overflow-hidden flex flex-col md:flex-row hover:shadow-md transition-shadow">
                         <div className="md:w-1/3 h-48 md:h-auto">
-                            <img src={evt.image} className="w-full h-full object-cover" alt="Event" />
+                            <img src={assetPath(evt.image)} className="w-full h-full object-cover" alt="Event" />
                         </div>
                         <div className="p-6 md:w-2/3 flex flex-col justify-center">
                             <div className="text-sm text-jain-orange font-bold uppercase tracking-wide mb-1">

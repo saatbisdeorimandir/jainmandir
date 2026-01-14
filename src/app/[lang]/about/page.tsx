@@ -1,5 +1,5 @@
 import { getDictionary } from '@/lib/api';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 import { Lang } from '@/lib/types';
 
 export default async function AboutPage({ params }: { params: Promise<{ lang: string }> }) {
@@ -22,7 +22,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             <h1 className="text-4xl font-heading font-bold text-jain-orange mb-8 text-center">{title}</h1>
             <div className="bg-white p-8 rounded-2xl shadow-sm mb-8">
                 <img
-                    src="/assets/images/about/SathisDeori-Temple.jpg"
+                    src={assetPath("/assets/images/about/SathisDeori-Temple.jpg")}
                     alt="Jain Temple Details"
                     className="w-full h-80 object-cover rounded-xl mb-6"
                 />

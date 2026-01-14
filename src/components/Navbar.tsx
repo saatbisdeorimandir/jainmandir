@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { PageConfig, SiteConfig } from '@/lib/types';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 
 interface NavbarProps {
     lang: string;
@@ -41,7 +41,7 @@ export default function Navbar({ lang, dict, pagesConfig, siteConfig }: NavbarPr
                     <div className="flex items-center">
                         <Link href={`/${lang}`} className="text-2xl font-bold text-jain-orange flex items-center gap-2">
                             {/* Note: In real app, optimize image with Next/Image */}
-                            <img src={`${siteConfig.general.logo}`} alt="Logo" className="h-10 w-auto" />
+                            <img src={assetPath(siteConfig.general.logo)} alt="Logo" className="h-10 w-auto" />
                             <span>{getTrans(dict, 'site_name')}</span>
                         </Link>
                     </div>
