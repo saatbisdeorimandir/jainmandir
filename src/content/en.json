@@ -122,7 +122,6 @@
     "disclaimer": {
         "title": "Disclaimer",
         "text": "The phone number of the Jain Dharamshala operated by Shri Jain Shwetambar Satbees Deori Fort Teerth Trust, Chittorgarh, appears differently every day on Google search. This number has been wrongly changed by a scammers. People who call the number provided by the scammers for room booking are being cheated. Therefore, all people are requested not to make any payment for bookings to any phone number."
-
     },
     "cards": {
         "darshan": {
@@ -137,5 +136,15 @@
             "title": "Donation",
             "desc": "Support the temple maintenance and charitable activities."
         }
+    },
+    "about_page": {
+        "established_label": "Established",
+        "century_label": "11th Century CE",
+        "heritage_label": "Our Heritage",
+        "quote": "Entering this sacred land of Chittorgarh marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
+        "location_label": "Location",
+        "location_value": "Chittorgarh Fort, Rajasthan",
+        "heritage_tag": "Heritage",
+        "heritage_value": "Sat Bees Deori Temple"
     }
 }
