@@ -14,6 +14,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ lang, dict, pagesConfig, siteConfig }: NavbarProps) {
+    const pathname = usePathname();
     const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -21,7 +22,8 @@ export default function Navbar({ lang, dict, pagesConfig, siteConfig }: NavbarPr
         const newLang = lang === 'en' ? 'hi' : 'en';
         localStorage.setItem('site_lang', newLang);
         // Get current path without lang prefix
-        const pathParts = window.location.pathname.split('/');
+        // usePathname() returns path relative to basePath
+        const pathParts = pathname.split('/');
         // pathParts[0] is empty, [1] is 'en' or 'hi', [2...] is rest
         const restPath = pathParts.slice(2).join('/');
         router.push(`/${newLang}/${restPath}`);

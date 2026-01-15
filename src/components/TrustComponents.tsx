@@ -15,8 +15,8 @@ export function TrustCommittee({ siteConfig, dict }: TrustCommitteeProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {siteConfig.trust.committee.map((member, idx) => (
                 <div key={idx} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-8 flex flex-col justify-center items-center text-center">
-                    <img src={assetPath(member.image)} alt="Committee" className="w-24 h-24 rounded-full mb-4 object-cover" />
-                    <h3 className="text-3xl font-bold text-gray-800 mb-2">
+                    {/* <img src={assetPath(member.image)} alt="Committee" className="w-24 h-24 rounded-full mb-4 object-cover" /> */}
+                    <h3 className="text-3xl font-bold text-gray-800 my-2">
                         {getTrans(dict, member.nameKey)}
                     </h3>
                     <p className="text-xl text-jain-orange font-semibold">

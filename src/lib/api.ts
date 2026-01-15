@@ -23,6 +23,9 @@ export async function getTrustMembers(): Promise<TrustMember[]> {
 }
 
 export async function getDictionary(lang: Lang) {
+    if (lang !== 'en' && lang !== 'hi') {
+        throw new Error(`Invalid language: ${lang}`);
+    }
     const filePath = path.join(contentDir, `${lang}.json`);
     const file = await fs.promises.readFile(filePath, 'utf8');
     return JSON.parse(file);
