@@ -30,9 +30,7 @@ export default function Navbar({ lang, dict, pagesConfig, siteConfig }: NavbarPr
     };
 
     const navItems = pagesConfig.navigation.map((item) => {
-        // Convert 'index.html' -> '', 'about.html' -> 'about'
-        const route = item.path === 'index.html' ? '' : item.path.replace('.html', '');
-        const href = `/${lang}/${route}`;
+        const href = `/${lang}${item.path ? `/${item.path}` : ''}`;
         return { ...item, href };
     });
 

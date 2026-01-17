@@ -2,32 +2,32 @@
     "navigation": [
         {
             "id": "home",
-            "path": "index.html",
+            "path": "",
             "key": "nav.home"
         },
         {
             "id": "about",
-            "path": "about.html",
+            "path": "about",
             "key": "nav.about"
         },
         {
             "id": "history",
-            "path": "history.html",
+            "path": "history",
             "key": "nav.history"
         },
         {
             "id": "gallery",
-            "path": "gallery.html",
+            "path": "gallery",
             "key": "nav.gallery"
         },
         {
             "id": "trust",
-            "path": "trust.html",
+            "path": "trust",
             "key": "nav.trust"
         },
         {
             "id": "contact",
-            "path": "contact.html",
+            "path": "contact",
             "key": "nav.contact"
         }
     ]
