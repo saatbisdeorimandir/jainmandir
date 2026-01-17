@@ -21,7 +21,7 @@ export default function HomeFeatures({ dict }: HomeFeaturesProps) {
                     <h3 className="text-xl font-heading font-bold mb-3 text-stone-800 group-hover:text-jain-yellow transition-colors">
                         {getTrans(dict, 'cards.darshan.title')}
                     </h3>
-                    <p className="text-stone-600 font-light leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.darshan.desc') }} />
+                    <p className="text-stone-600 font-light leading-relaxed text-base text-justify" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.darshan.desc') }} />
                 </div>
 
                 {/* Events Card */}
@@ -37,7 +37,7 @@ export default function HomeFeatures({ dict }: HomeFeaturesProps) {
                     <h3 className="text-xl font-heading font-bold mb-3 text-stone-800 group-hover:text-jain-orange transition-colors">
                         {getTrans(dict, 'cards.events.title')}
                     </h3>
-                    <p className="text-stone-600 font-light leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.events.desc') }} />
+                    <p className="text-stone-600 font-light leading-relaxed text-base text-justify" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.events.desc') }} />
                 </div>
 
                 {/* Donation Card */}
@@ -53,7 +53,7 @@ export default function HomeFeatures({ dict }: HomeFeaturesProps) {
                     <h3 className="text-xl font-heading font-bold mb-3 text-stone-800 group-hover:text-jain-red transition-colors">
                         {getTrans(dict, 'cards.donation.title')}
                     </h3>
-                    <p className="text-stone-600 font-light leading-relaxed text-base" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.donation.desc') }} />
+                    <p className="text-stone-600 font-light leading-relaxed text-base text-justify" dangerouslySetInnerHTML={{ __html: getTrans(dict, 'cards.donation.desc') }} />
                 </div>
             </div>
         </section>

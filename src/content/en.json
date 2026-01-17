@@ -3,6 +3,7 @@
     "nav": {
         "home": "Home",
         "about": "About",
+        "history": "History",
         "events": "Events",
         "gallery": "Gallery",
         "trust": "Trust",
@@ -13,7 +14,7 @@
         "read_more": "Read More"
     },
     "hero": {
-        "title": "Welcome to Shri Saat Bees Deori Jain Temple",
+        "title": "Welcome to Shri Shwetamber Jain Sat Bees Deori Temple Chittorgarh",
         "subtitle": "A sanctuary of Peace, Non-Violence, and Spiritual Growth.",
         "btn": "Explore"
     },
@@ -145,6 +146,48 @@
         "location_label": "Location",
         "location_value": "Chittorgarh Fort, Rajasthan",
         "heritage_tag": "Heritage",
-        "heritage_value": "Sat Bees Deori Temple"
+        "heritage_value": "Sat Bees Deori Temple",
+        "history_section": {
+            "title": "Temple History & Heritage",
+            "subtitle": "A Journey Through Time",
+            "cards": [
+                {
+                    "image": "/assets/images/about/history-ancient.jpg",
+                    "title": "Ancient Origins",
+                    "period": "11th Century CE",
+                    "description": "The Sat Bees Deori Temple was established in the 11th century CE as a magnificent complex of twenty-seven Jain temples. Built during the reign of the Rajput rulers, this sacred site represents the pinnacle of medieval Jain architecture and devotion."
+                },
+                {
+                    "image": "/assets/images/about/history-architecture.jpg",
+                    "title": "Architectural Marvel",
+                    "period": "Maru-Gurjara Style",
+                    "description": "The temple showcases an exquisite blend of Jain and Maru-Gurjara architectural styles. Every surface is adorned with intricate carvings featuring geometric patterns, floral motifs, and divine imagery, demonstrating the exceptional craftsmanship of ancient artisans."
+                },
+                {
+                    "image": "/assets/images/about/history-sculptures.jpg",
+                    "title": "Sacred Sculptures",
+                    "period": "Tirthankara Idols",
+                    "description": "The temple houses magnificent sculptures of the twenty-four Tirthankaras, each carved with meticulous detail. The central sanctum features Lord Adinath in serene meditation, inspiring devotees with the profound principles of Ahimsa, Satya, and Vairagya."
+                },
+                {
+                    "image": "/assets/images/about/history-pillars.jpg",
+                    "title": "Ornate Pillars",
+                    "period": "Detailed Craftsmanship",
+                    "description": "The temple corridors are lined with impressive pillars, each a masterpiece of stone carving. These pillars depict Jain deities, celestial beings, and intricate narratives from Jain scriptures, creating an atmosphere of divine reverence."
+                },
+                {
+                    "image": "/assets/images/about/history-ceiling.jpg",
+                    "title": "Celestial Ceilings",
+                    "period": "Geometric Perfection",
+                    "description": "The temple ceilings feature breathtaking mandala designs and geometric patterns that represent the cosmic order. These intricate dome carvings showcase mathematical precision and spiritual symbolism, inviting visitors to contemplate the infinite."
+                },
+                {
+                    "image": "/assets/images/about/history-sanctum.jpg",
+                    "title": "Divine Sanctum",
+                    "period": "Spiritual Center",
+                    "description": "The main sanctum serves as the spiritual heart of the temple complex. Here, devotees offer prayers and flowers to the Tirthankaras, experiencing a profound connection with Jain philosophy and the path to spiritual liberation."
+                }
+            ]
+        }
     }
 }

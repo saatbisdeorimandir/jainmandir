@@ -12,7 +12,7 @@ export default async function TrustPage({ params }: { params: Promise<{ lang: st
     return (
         <div className="bg-gradient-to-b from-stone-50 via-white to-stone-50">
             {/* Hero Header */}
-            <div className="bg-gradient-to-br from-stone-100 via-white to-stone-50 border-b border-stone-100">
+            <div className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white">
                 <div className="max-w-7xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-14 text-center">
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-jain-orange"></div>

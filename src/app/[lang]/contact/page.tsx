@@ -12,7 +12,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
     return (
         <div className="bg-gradient-to-b from-stone-50 via-white to-stone-50">
             {/* Hero Header */}
-            <div className="bg-gradient-to-br from-stone-100 via-white to-stone-50 border-b border-stone-100">
+            <div className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white">
                 <div className="max-w-7xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-14 text-center">
                     <div className="flex justify-center mb-4">
                         <div className="flex items-center gap-3">
@@ -57,7 +57,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                             </div>
                                             <div className="flex-1">
                                                 <p className="text-stone-400 text-xs uppercase tracking-[0.2em] mb-1.5 font-bold">{getTrans(dict, 'contact.labels.address')}</p>
-                                                <p className="text-stone-700 text-base font-light leading-relaxed">{getTrans(dict, mainContact.addressKey)}</p>
+                                                <p className="text-stone-700 text-base font-light leading-relaxed text-justify">{getTrans(dict, mainContact.addressKey)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                                     <h4 className="text-base font-bold text-stone-800 mb-1 group-hover:text-jain-orange transition-colors">
                                                         {getTrans(dict, contact.nameKey)}
                                                     </h4>
-                                                    <p className="text-sm text-stone-500 font-light leading-relaxed">
+                                                    <p className="text-sm text-stone-500 font-light leading-relaxed text-justify">
                                                         {getTrans(dict, contact.addressKey)}
                                                     </p>
                                                 </div>
@@ -148,7 +148,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                             {siteConfig.contact.information.items.filter(i => i.isActive).map((item, id) => (
                                                 <li key={id} className="flex items-start gap-2 text-sm leading-relaxed text-stone-600 hover:text-stone-800 transition-colors">
                                                     <span className="text-jain-orange mt-0.5 flex-shrink-0">✦</span>
-                                                    <span className="font-light">{getTrans(dict, item.textKey)}</span>
+                                                    <span className="font-light text-justify">{getTrans(dict, item.textKey)}</span>
                                                 </li>
                                             ))}
                                         </ul>
@@ -177,7 +177,7 @@ export default async function ContactPage({ params }: { params: Promise<{ lang: 
                                             {getTrans(dict, siteConfig.contact.disclaimer.titleKey)}
                                         </h2>
                                     </div>
-                                    <p className="text-stone-700 leading-relaxed text-base font-light pl-13">
+                                    <p className="text-stone-700 leading-relaxed text-base font-light pl-13 text-justify">
                                         "{getTrans(dict, siteConfig.contact.disclaimer.textKey)}"
                                     </p>
                                 </div>

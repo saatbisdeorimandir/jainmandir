@@ -1,6 +1,7 @@
 import { getDictionary } from '@/lib/api';
 import { getTrans, assetPath } from '@/lib/utils';
 import { Lang } from '@/lib/types';
+import PhotoCard from '@/components/PhotoCard';
 
 export default async function AboutPage({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
@@ -12,9 +13,9 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
     // Handle array or string description
     const renderDesc = () => {
         if (Array.isArray(desc)) {
-            return desc.map((p: string, i: number) => <p key={i} className="mb-4">{p}</p>);
+            return desc.map((p: string, i: number) => <p key={i} className="mb-4 text-justify">{p}</p>);
         }
-        return <p className="mb-4">{desc}</p>;
+        return <p className="mb-4 text-justify">{desc}</p>;
     };
 
     const heritageLabel = getTrans(dict, 'about_page.heritage_label');
@@ -25,6 +26,12 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
     const locValue = getTrans(dict, 'about_page.location_value');
     const herTag = getTrans(dict, 'about_page.heritage_tag');
     const herValue = getTrans(dict, 'about_page.heritage_value');
+
+    // History section data
+    const historySection = dict?.about_page?.history_section as any;
+    const historyTitle = historySection?.title || '';
+    const historySubtitle = historySection?.subtitle || '';
+    const historyCards = historySection?.cards || [];
 
     return (
         <div className="bg-white">
@@ -61,7 +68,7 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                             <div className="w-14 h-1.5 bg-jain-orange mb-6" />
                         </header>
 
-                        <div className="space-y-6 text-base md:text-lg leading-relaxed text-stone-600 font-light italic border-l-4 border-stone-100 pl-5 mb-8">
+                        <div className="space-y-6 text-base md:text-lg leading-relaxed text-stone-600 font-light italic border-l-4 border-stone-100 pl-5 mb-8 text-justify">
                             "{quote}"
                         </div>
 
@@ -82,6 +89,38 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                     </div>
                 </div>
             </div>
+
+            {/* History Section with Photo Cards */}
+            {historyCards.length > 0 && (
+                <section className="bg-gradient-to-b from-white via-stone-50 to-white py-16 md:py-20 lg:py-24">
+                    <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-14">
+                        {/* Section Header */}
+                        <div className="text-center mb-12 md:mb-16">
+                            <p className="text-jain-orange text-sm font-semibold tracking-[0.2em] uppercase mb-3">
+                                {historySubtitle}
+                            </p>
+                            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-stone-gray mb-4">
+                                {historyTitle}
+                            </h2>
+                            <div className="w-20 h-1.5 bg-jain-orange mx-auto" />
+                        </div>
+
+                        {/* Photo Cards Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                            {historyCards.map((card: any, index: number) => (
+                                <PhotoCard
+                                    key={index}
+                                    image={card.image}
+                                    title={card.title}
+                                    period={card.period}
+                                    description={card.description}
+                                    index={index}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
         </div>
     );
 }

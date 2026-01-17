@@ -11,6 +11,11 @@
             "key": "nav.about"
         },
         {
+            "id": "history",
+            "path": "history.html",
+            "key": "nav.history"
+        },
+        {
             "id": "gallery",
             "path": "gallery.html",
             "key": "nav.gallery"
