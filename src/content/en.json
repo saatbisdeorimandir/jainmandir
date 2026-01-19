@@ -75,12 +75,12 @@
                 "role": "Chairman"
             },
             {
-                "name": "Mr. Kanhaiyalal Chhajed",
-                "role": "Treasurer"
-            },
-            {
                 "name": "Mr. Rakesh Kumar Jain",
                 "role": "Secretary"
+            },
+            {
+                "name": "Mr. Kanhaiyalal Chhajed",
+                "role": "Treasurer"
             }
         ]
     },
