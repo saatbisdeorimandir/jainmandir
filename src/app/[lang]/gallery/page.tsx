@@ -1,4 +1,4 @@
-import { getDictionary, getSiteConfig } from '@/lib/api';
+import { getDictionary, getSiteConfig, getGalleryEvents } from '@/lib/api';
 import { Lang } from '@/lib/types';
 import GallerySection from '@/components/GallerySection';
 
@@ -10,6 +10,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
     const { lang } = await params;
     const dict = await getDictionary(lang as Lang);
     const siteConfig = await getSiteConfig();
+    const galleryEvents = await getGalleryEvents();
 
-    return <GallerySection dict={dict} siteConfig={siteConfig} />;
+    return <GallerySection dict={dict} siteConfig={siteConfig} galleryEvents={galleryEvents} />;
 }
