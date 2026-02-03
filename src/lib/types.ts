@@ -29,17 +29,10 @@ export interface GalleryEvent {
     nameKey: string;
     date?: string;
     descriptionKey: string;
-    driveFolderId: string;
     coverImage: string;
     isPermanent?: boolean;
 }
 
-export interface DriveImage {
-    id: string;
-    name: string;
-    thumbnailLink: string;
-    webContentLink: string;
-}
 
 
 export interface ContactInfo {
