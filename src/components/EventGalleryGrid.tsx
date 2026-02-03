@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GalleryEvent } from '@/lib/types';
 import { getTrans } from '@/lib/utils';
-import { getDriveImageUrl } from './GoogleDriveLoader';
+import CloudinaryLoader from './CloudinaryLoader';
 
 interface EventGalleryGridProps {
     event: GalleryEvent;
@@ -11,12 +11,19 @@ interface EventGalleryGridProps {
     images: string[];
 }
 
-export default function EventGalleryGrid({ event, dict, images }: EventGalleryGridProps) {
+export default function EventGalleryGrid({ event, dict, images: initialImages }: EventGalleryGridProps) {
     const [selectedImg, setSelectedImg] = useState<string | null>(null);
     const [isExpanded, setIsExpanded] = useState(event.isPermanent || false);
+    const [images, setImages] = useState<string[]>(initialImages);
+    const [isLoading, setIsLoading] = useState(initialImages.length === 0);
 
-    // If no images and no drive folder, show placeholder
-    if (images.length === 0 && !event.driveFolderId) {
+    // If initial images are empty, we might want to fetch from Cloudinary
+    const shouldFetchDynamic = initialImages.length === 0;
+
+    // Use event.id as the Cloudinary tag
+    const cloudinaryTag = event.id;
+
+    if (images.length === 0 && !shouldFetchDynamic) {
         return (
             <div className="text-center py-8 text-stone-500">
                 <p>{getTrans(dict, 'gallery.no_images') || 'No images available yet'}</p>
@@ -60,28 +67,53 @@ export default function EventGalleryGrid({ event, dict, images }: EventGalleryGr
                 </button>
             </div>
 
+            {/* Dynamic Loader */}
+            {shouldFetchDynamic && (
+                <CloudinaryLoader
+                    tag={cloudinaryTag}
+                    onImagesLoaded={(newImages) => {
+                        setImages(newImages);
+                        setIsLoading(false);
+                    }}
+                    onError={() => setIsLoading(false)}
+                />
+            )}
+
             {/* Image Grid */}
             {isExpanded && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 animate-fadeIn">
-                    {images.map((imgSrc, idx) => (
-                        <div
-                            key={idx}
-                            className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer aspect-square"
-                            onClick={() => setSelectedImg(imgSrc)}
-                        >
-                            <img
-                                src={imgSrc}
-                                alt={`${getTrans(dict, event.nameKey)} - Image ${idx + 1}`}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                                <p className="text-white font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                    {getTrans(dict, event.nameKey)}
-                                </p>
-                            </div>
+                <>
+                    {isLoading ? (
+                        <div className="flex justify-center py-12">
+                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-jain-orange"></div>
                         </div>
-                    ))}
-                </div>
+                    ) : images.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 animate-fadeIn">
+                            {images.map((imgSrc, idx) => (
+                                <div
+                                    key={idx}
+                                    className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer aspect-square"
+                                    onClick={() => setSelectedImg(imgSrc)}
+                                >
+                                    <img
+                                        src={imgSrc}
+                                        alt={`${getTrans(dict, event.nameKey)} - Image ${idx + 1}`}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
+                                        <p className="text-white font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                            {getTrans(dict, event.nameKey)}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-8 text-stone-500">
+                            <p>{getTrans(dict, 'gallery.no_images') || 'No images found for this event.'}</p>
+                            <p className="text-sm mt-2">Make sure images are tagged with '{cloudinaryTag}' in Cloudinary.</p>
+                        </div>
+                    )}
+                </>
             )}
 
             {/* Lightbox Modal */}

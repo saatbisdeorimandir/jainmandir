@@ -4,7 +4,6 @@
             "id": "glimpses",
             "nameKey": "gallery.events.glimpses.name",
             "descriptionKey": "gallery.events.glimpses.description",
-            "driveFolderId": "https://drive.google.com/drive/folders/1vKCCP2s0BJkEFWprnNQ3LFAxUgOceFFU",
             "coverImage": "/assets/images/gallery/glimpses-cover.jpg",
             "isPermanent": true
         },
@@ -13,7 +12,6 @@
             "nameKey": "gallery.events.Flag_hosting.name",
             "date": "2026-01-20",
             "descriptionKey": "gallery.events.Flag_hosting.description",
-            "driveFolderId": "https://drive.google.com/drive/folders/1I79vPrCydBNHrjz36XbGbWBdH4cUkqlf",
             "coverImage": "/assets/images/events/flag-hosting-2026.jpg"
         }
     ]
