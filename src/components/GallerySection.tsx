@@ -1,12 +1,15 @@
 import { getTrans } from '@/lib/utils';
-import GalleryGrid from '@/components/GalleryGrid';
+import EventGalleryGrid from '@/components/EventGalleryGrid';
+import { GalleryEvent } from '@/lib/types';
+import { getEventImages } from '@/lib/gallery-images';
 
 interface GallerySectionProps {
     dict: any;
     siteConfig: any;
+    galleryEvents: { events: GalleryEvent[] };
 }
 
-export default function GallerySection({ dict, siteConfig }: GallerySectionProps) {
+export default function GallerySection({ dict, siteConfig, galleryEvents }: GallerySectionProps) {
     return (
         <div id="gallery" className="bg-gradient-to-b from-stone-50 via-white to-stone-50 scroll-mt-16">
             {/* Hero Header */}
@@ -27,7 +30,20 @@ export default function GallerySection({ dict, siteConfig }: GallerySectionProps
 
             <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
                 <div className="bg-white rounded-[2.5rem] p-6 md:p-10 border border-stone-100 shadow-xl shadow-stone-200/50">
-                    <GalleryGrid items={siteConfig.gallery} dict={dict} />
+                    {/* Event-based Gallery Sections */}
+                    {galleryEvents.events.map((event) => {
+                        // Get images for this event from centralized configuration
+                        const images = getEventImages(event.id);
+
+                        return (
+                            <EventGalleryGrid
+                                key={event.id}
+                                event={event}
+                                dict={dict}
+                                images={images}
+                            />
+                        );
+                    })}
                 </div>
             </div>
         </div>
