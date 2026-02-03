@@ -4,15 +4,15 @@
 
 // Replace this with your actual Cloudinary Cloud Name
 // You can also move this to an environment variable later
-export const CLOUDINARY_CLOUD_NAME = 'dx3qrxyew';
+export const CLOUDINARY_CLOUD_NAME: string = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || 'dx3qrxyew';
 
 /**
  * Fetch list of images tagged with a specific event ID
  * Requires "Resource list" to be enabled in Cloudinary Settings -> Security
  */
 export async function fetchCloudinaryImages(tag: string): Promise<string[]> {
-    if (CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUD_NAME_HERE') {
-        console.warn('Cloudinary Cloud Name not configured. Please update src/lib/cloudinary-utils.ts');
+    if (!CLOUDINARY_CLOUD_NAME || CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUD_NAME_HERE') {
+        console.warn('Cloudinary Cloud Name not configured. Please update src/lib/cloudinary-utils.ts or set NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME');
         return [];
     }
 
