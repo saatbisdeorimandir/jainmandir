@@ -24,24 +24,6 @@ export interface GalleryItem {
     altKey: string;
 }
 
-export interface GalleryEvent {
-    id: string;
-    nameKey: string;
-    date?: string;
-    descriptionKey: string;
-    driveFolderId: string;
-    coverImage: string;
-    isPermanent?: boolean;
-}
-
-export interface DriveImage {
-    id: string;
-    name: string;
-    thumbnailLink: string;
-    webContentLink: string;
-}
-
-
 export interface ContactInfo {
     nameKey: string;
     phone: string;

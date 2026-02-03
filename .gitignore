@@ -30,9 +30,3 @@ ts-debug.log*
 
 # typescript
 *.tsbuildinfo
-
-# google drive api credentials
-.env
-
-# tools
-output_*
