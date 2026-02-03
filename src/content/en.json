@@ -58,7 +58,20 @@
             " ",
             " ",
             " "
-        ]
+        ],
+        "events": {
+            "glimpses": {
+                "name": "Highlights",
+                "description": " "
+            },
+            "Flag_hosting": {
+                "name": "Flag Hosting 2026",
+                "description": "Photos from Flag Hosting Ceremony"
+            }
+        },
+        "no_images": "No images available yet",
+        "view_all": "View All Photos",
+        "loading": "Loading images..."
     },
     "trust": {
         "title": "Trust Committee",

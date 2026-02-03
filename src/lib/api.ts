@@ -22,6 +22,12 @@ export async function getTrustMembers(): Promise<TrustMember[]> {
     return JSON.parse(file);
 }
 
+export async function getGalleryEvents() {
+    const filePath = path.join(contentDir, 'gallery-events.json');
+    const file = await fs.promises.readFile(filePath, 'utf8');
+    return JSON.parse(file);
+}
+
 export async function getDictionary(lang: Lang) {
     if (lang !== 'en' && lang !== 'hi') {
         throw new Error(`Invalid language: ${lang}`);
@@ -30,3 +36,4 @@ export async function getDictionary(lang: Lang) {
     const file = await fs.promises.readFile(filePath, 'utf8');
     return JSON.parse(file);
 }
+
