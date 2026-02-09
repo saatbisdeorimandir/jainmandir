@@ -25,6 +25,9 @@ export default function Hero({ lang, dict }: HeroProps) {
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-10 text-stone-gray leading-[1.05] tracking-tight">
                     {getTrans(dict, 'hero.title')}
                 </h1>
+                <p className="text-xl md:text-xl lg:text-2xl text-stone-500 mb-4 max-w-3xl mx-auto font-light leading-relaxed italic border-l-4 border-jain-orange/20 pl-8 inline-block text-left">
+                    {getTrans(dict, 'hero.subtitle0')}
+                </p>
                 <p className="text-xl md:text-2xl lg:text-3xl text-stone-500 mb-14 max-w-3xl mx-auto font-light leading-relaxed italic border-l-4 border-jain-orange/20 pl-8 inline-block text-left">
                     {getTrans(dict, 'hero.subtitle')}
                 </p>

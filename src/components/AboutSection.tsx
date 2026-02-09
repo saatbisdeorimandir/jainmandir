@@ -46,10 +46,11 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                         />
                         <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:opacity-0 pointer-events-none" />
 
-                        <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-xl text-white">
+                        {/* <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-xl text-white">
                             <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-1">{estLabel}</p>
                             <p className="text-xl font-heading font-bold">{centuryLabel}</p>
-                        </div>
+                        </div> */}
+                        
                     </div>
                 </div>
 

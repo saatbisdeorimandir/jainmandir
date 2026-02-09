@@ -9,219 +9,280 @@ interface HistorySectionProps {
 }
 
 export default function HistorySection({ lang, dict }: HistorySectionProps) {
-    const pageTitle = lang === 'hi' ? 'मंदिर का गौरवशाली इतिहास' : 'Temple\'s Glorious History';
+    const pageTitle = lang === 'hi' ? 'इतिहास और गौरवशाली विरासत' : 'History and Glorious Heritage';
     const pageSubtitle = lang === 'hi'
-        ? '11वीं सदी ईस्वी में स्थापित यह मंदिर जैन समुदाय की आस्था का केंद्र है।'
-        : 'Established in the 11th century CE, this temple is the center of faith for the Jain community.';
+        ? 'चित्तौड़गढ़ की यह पावन धरा शक्ति, भक्ति और जैन वैभव का अद्भुत संगम है, जहाँ सदियों का इतिहास पत्थर की दीवारों पर अंकित है।'
+        : 'This holy land of Chittorgarh is a magnificent confluence of power, devotion, and Jain splendor, where centuries of history are inscribed on stone walls.';
 
     const timelineEvents = lang === 'hi' ? [
         {
+            year: '300 ई.पू.',
+            title: 'माध्यमिका का उत्थान',
+            description: 'सम्राट अशोक के पौत्र संप्रति के समय आर्य परिवर्तन ने माध्यमिका (नगरी) को अपना केंद्र बनाया।'
+        },
+        {
+            year: 'चौथी शताब्दी',
+            title: 'श्रीजनपद की राजधानी',
+            description: 'महाभारत काल से प्रसिद्ध श्रीजनपद की राजधानी माध्यमिका नगरी अपने चरम वैभव पर थी।'
+        },
+        {
             year: '947 ईस्वी',
-            title: 'स्थापना की शुरुआत',
-            description: 'सीमंदर शाह ने केरापुरपट्टन में व्यापार शुरू किया और भाग्य से धन प्राप्त किया।'
+            title: 'सीमंदर शाह का आगमन',
+            description: 'सीमंदर शाह ने केरापुरपट्टन में व्यापार प्रारंभ किया और भाग्य से अपार लक्ष्मी प्राप्त की।'
         },
         {
             year: '972 ईस्वी',
-            title: 'मंदिर प्रतिष्ठा',
-            description: 'आचार्य यशोभद्रविजय द्वारा पांचों जिनालयों की भव्य प्रतिष्ठा सम्पन्न हुई।'
+            title: 'पंचतीर्थ प्रतिष्ठा',
+            description: 'आचार्य यशोभद्र सूरि के मार्गदर्शन में चित्तौड़गढ़ सहित पांच तीर्थों की भव्य प्रतिष्ठा सम्पन्न हुई।'
         },
         {
-            year: '1941-1948',
-            title: 'महान जीर्णोद्धार',
-            description: 'सात वर्षों तक चला व्यापक जीर्णोद्धार कार्य, जिसे गुजरात के श्रेष्ठियों ने प्रायोजित किया।'
+            year: '1175 ईस्वी',
+            title: 'शांतिनाथ मंदिर',
+            description: 'रत्नेश्वर तालाब के पास भगवान शांतिनाथ जी के कलात्मक मंदिर का निर्माण।'
         },
         {
-            year: 'वर्तमान',
-            title: 'यूनेस्को विश्व धरोहर',
-            description: 'चित्तौड़गढ़ किला यूनेस्को विश्व धरोहर स्थल के रूप में मान्यता प्राप्त है।'
+            year: '1448 ईस्वी',
+            title: 'भंडारी वेला का योगदान',
+            description: 'भंडारी श्रेष्ठी वेला द्वारा उत्तर दिशा के पाश्र्वनाथ प्रभु मंदिर का निर्माण कराया गया।'
+        },
+        {
+            year: '1530 ईस्वी',
+            title: 'कर्माशाह दोशी का युग',
+            description: 'कर्माशाह दोशी द्वारा दक्षिण दिशा के पाश्र्वनाथ मंदिर का भव्य निर्माण कराया गया।'
+        },
+        {
+            year: '1973 ईस्वी',
+            title: 'हरिभद्रसूरि स्मृति',
+            description: '1444 ग्रंथों के रचयिता आचार्य हरिभद्रसूरि जी के स्मृति मंदिर की प्रतिष्ठा।'
         }
     ] : [
         {
+            year: '300 BCE',
+            title: 'Rise of Madhyamika',
+            description: 'Arya Parivartan made Madhyamika (Nagari) his center during the reign of Ashoka\'s grandson, Samprati.'
+        },
+        {
+            year: '4th Century',
+            title: 'Capital of Shrijanpad',
+            description: 'Madhyamika Nagari, the capital of Shrijanpad since the Mahabharata era, was at its peak.'
+        },
+        {
             year: '947 CE',
-            title: 'Foundation Begins',
-            description: 'Simandar Shah started trade in Kerapurpattan and acquired wealth through fortune.'
+            title: 'Arrival of Simandar Shah',
+            description: 'Simandar Shah started trade in Kerapurpattan and acquired immense wealth through fortune.'
         },
         {
             year: '972 CE',
-            title: 'Temple Consecration',
-            description: 'Grand consecration of all five Jinalayas by Acharya Yashobhadravijay.'
+            title: 'Panch Tirth Consecration',
+            description: 'Grand consecration of five pilgrimages including Chittorgarh under Acharya Yashobhadra Suri.'
         },
         {
-            year: '1941-1948',
-            title: 'Major Renovation',
-            description: 'Seven-year extensive renovation work sponsored by merchants from Gujarat.'
+            year: '1175 CE',
+            title: 'Shantinath Temple',
+            description: 'Construction of the artistic Lord Shantinath temple near Ratneshwar Lake.'
         },
         {
-            year: 'Present',
-            title: 'UNESCO World Heritage',
-            description: 'Chittorgarh Fort recognized as a UNESCO World Heritage Site.'
+            year: '1448 CE',
+            title: 'Bhandari Vella\'s Contribution',
+            description: 'Construction of the Northern Parshvanath Temple by Bhandari Shresthi Vella.'
+        },
+        {
+            year: '1530 CE',
+            title: 'Era of Karmashah Doshi',
+            description: 'Grand construction of the Southern Parshvanath Temple by Karmashah Doshi.'
+        },
+        {
+            year: '1973 CE',
+            title: 'Haribhadrasuri Memorial',
+            description: 'Consecration of the memorial temple of Acharya Haribhadrasuri, author of 1444 texts.'
         }
     ];
 
     const fortTemples = lang === 'hi' ? [
         {
-            title: '1. श्री सातबीस देवरी के जैन मंदिर',
-            period: '972 ईस्वी',
-            summary: 'चित्तौड़गढ़ दुर्ग के सभी मंदिरों में सबसे प्रसिद्ध, यह मंदिर अपने भव्य आकर्षक रूप में आज भी जैन धर्म के गौरव की गाथा कह रहा है।',
-            details: `सीमंदर शाह नाम के एक ब्राह्मण हलवाई ने वि. सं. 1004 (सन् 947) में केरापुरपट्टन में व्यापार शुरू किया। भाग्य से मिली लक्ष्मी के साथ, आचार्य यशोभद्र सूरि के मार्गदर्शन में उन्होंने पांच स्थानों पर जैन पंचतीर्थ बनवाए।
+            title: '1. श्री सातबीस देवरी जैन मंदिर समूह',
+            period: '972 ईस्वी (प्रतिष्ठा)',
+            summary: '27 देवरियों से घिरा यह भव्य मंदिर परिसर जैन वास्तुकला की सात्विक सादगी और विपुल अलंकरण का साक्षी है।',
+            details: `सीमंदर शाह ने आचार्य यशोभद्र सूरि के आशीर्वाद से सन 957 में इसका निर्माण प्रारंभ कर 972 ईस्वी में पूर्ण करवाया। बैशाख सूदी एकम संवत 1029 को पांचों जिनलयों की प्रतिष्ठा हुई। सीमंदर शाह ने मंदिर की नींव में मजबूती के लिए 4000 मन तेल ढलवाया था, जिससे उन्हें 'तलेसरा' गोत्र प्राप्त हुआ।
 
-सन् 957 में निर्माण कार्य प्रारंभ हुआ और 15 वर्षों में सन् 972 में पूर्ण हुआ। वैशाख सुदी एकम् सम्वत् 1029 (सन् 972) को पांचों जिनालयों की प्रतिष्ठा एक ही दिन सम्पन्न हुई।
+मंदिर के चारों ओर गलियारों में 26 देवरियाँ होने से इसे 'सातबीस देवरी' कहा जाता है। मुख्य मंदिर में गर्भगृह, अन्तराल और सभा मण्डप है, जहाँ मूलनायक आदिनाथ भगवान के साथ पाषाण की 47 मूर्तियाँ विराजित हैं।
 
-मंदिर में तीन मण्डप हैं और चारों ओर गलियारों में 26 देवरियाँ होने से इसे सातबीस देवरी कहा जाता है। मूल मंदिर में गर्भगृह, अन्तराल, सभा मण्डप युक्त है। मूलनायक आदिनाथ भगवान के साथ 47 पाषाण मूर्तियाँ हैं।
-
-मंदिर की बाहरी दीवारों पर विविध प्रकार की शिल्पकारी स्तब्धकारी है। सम्पूर्ण मंदिर में 163 पत्थर के कलात्मक स्तंभ हैं जो मेवाड़-देलवाड़ा, रणकपुर की शिल्प कला के समान हैं।`
+मंदिर के जंघा भाग, तोरणद्वार और 163 कलात्मक स्तंभों पर की गई शिल्पकारी मेवाड़-रणकपुर के मंदिरों के समान भव्य है। गुंबज में 16 नर्तकियों और आदिनाथ भगवान की जीवन-लीला के दृश्य उत्कीर्ण हैं।`
         },
         {
-            title: '2. चैमुखा भगवान का मंदिर',
-            period: '1491 सं.',
-            summary: 'गौमुख कुण्ड पर स्थित यह चैमुखा पाश्र्वनाथ भगवान का मंदिर अपनी अनूठी वास्तुकला के लिए प्रसिद्ध है।',
-            details: 'गौमुख कुण्ड पर सुकोशल मुनि के मंदिर के ऊपर स्थित इस चैमुखे मंदिर को चैमुखा पाश्र्वनाथ भगवान का मंदिर कहा जाता है। एक प्रतिमा पर 1491 सं. का लेख है।'
+            title: '2. उत्तराभिमुख पाश्र्वनाथ मंदिर (भंडारी वेला)',
+            period: '1448 ईस्वी',
+            summary: 'भंडारी श्रेष्ठी वेला द्वारा निर्मित यह मंदिर अपने बारीक शिल्प और आचार्यों की मूर्तियों के लिए प्रसिद्ध है।',
+            details: `उत्तर दिशा में स्थित इस मंदिर का निर्माण 1448 ईस्वी में भंडारी वेला ने करवाया था, जिन्होंने श्रृंगार चंवरी का भी जीर्णोद्धार किया था।
+
+इसके गंभारे के बाहर चित्तौड़ उद्धारक आचार्य विजय नीतिसूरिश्वरजी और युगान्तरकारी आचार्य हरिभद्र सूरिजी की भव्य मूर्तियाँ विराजित हैं। प्रवेश द्वार पर सन 1941 और 1980 के जीर्णोद्धार के शिलालेख अंकित हैं।`
         },
         {
-            title: '3. गौमुख कुण्ड के पास सुकौशलमुनिजी का मंदिर',
-            period: '1543 सं.',
-            summary: 'किले पर गौमुख कुण्ड के पास स्थित इस मंदिर में श्री पाश्र्वनाथ, श्री कीर्तिधर मुनि और श्री सुकौशलमुनिजी की प्रतिमाएं हैं।',
-            details: 'एक कमरे में दीवार पर एक ही पाषाण पर बनी हुई श्री पाश्र्वनाथ, श्री कीर्तिधर मुनि, श्री सुकौशलमुनिजी की 9" की प्रतिमाओं के पास ही सिंहनी की मूर्ति है। ऊपर कन्नड़ भाषा में लेख उत्कीर्ण है व एक लेख प्राकृत में सं. 1543 में जिनसमुद्रसूरि द्वारा प्रतिष्ठा का है।'
+            title: '3. दक्षिणाभिमुख पाश्र्वनाथ मंदिर (कर्माशाह दोशी)',
+            period: '1530 ईस्वी',
+            summary: 'तोलाशाह और उनके सुपुत्र कर्माशाह दोशी द्वारा निर्मित यह मंदिर भक्ति और त्याग का प्रतीक है।',
+            details: `सन 1530 में निर्मित इस पूर्वाभिमुख मंदिर में तीन पाषाण मूर्तियां हैं। इसकी देवरी में माँ पद्मावती की अत्यंत सुंदर मूर्ति विराजित है। इस मंदिर की बाहरी दीवारों का शिल्प भी अत्यंत चमत्कृत करने वाला है।`
+        },
+        {
+            title: '4. शांतिनाथ एवं महावीर स्वामी मंदिर',
+            period: '1175 - 1444 ईस्वी',
+            summary: 'रत्नेश्वर तालाब के समीप स्थित ये मंदिर अपनी प्राचीनता और शांत वातावरण के लिए जाने जाते हैं।',
+            details: `रामपोल के पास रत्नेश्वर तालाब पर स्थित शांतिनाथ मंदिर का उल्लेख 1175 ईस्वी का है। भगवान शांतिनाथ की 31 इंच की प्रतिमा की प्रतिष्ठा 1444 ईस्वी में आचार्य सोमसुन्दर सूरि द्वारा की गई थी। यहाँ का वातावरण आध्यात्मिक शांति प्रदान करता है।`
+        },
+        {
+            title: '5. चैमुखा पाश्र्वनाथ मंदिर',
+            period: '1491 संवत',
+            summary: 'गौमुख कुण्ड के समीप स्थित यह मंदिर अपने अनूठे पाषाण शिल्प और कन्नड़ शिलालेखों के लिए प्रसिद्ध है।',
+            details: `गौमुख कुण्ड के पास सुकोशल मुनि मंदिर के ऊपर स्थित इस मंदिर में एक ही पाषाण पर श्री पाश्र्वनाथ, श्री कीर्तिधर मुनि और श्री सुकौशलमुनिजी की प्रतिमाएं उत्कीर्ण हैं। यहाँ कन्नड़ और प्राकृत भाषा के प्राचीन शिलालेख इतिहास की गवाही देते हैं।`
         }
     ] : [
         {
-            title: '1. Shri Satbis Deori Jain Temples',
-            period: '972 CE',
-            summary: 'The most famous among all temples in Chittorgarh Fort, this temple continues to narrate the glory of Jainism in its magnificent form.',
-            details: `A Brahmin confectioner named Simandar Shah started trade in Kerapurpattan in 947 CE. With wealth acquired through fortune, under the guidance of Acharya Yashobhadra Suri, he built Jain Panchtirth at five locations.
+            title: '1. Shri Saat Bees Deori Temple Complex',
+            period: '972 CE (Consecration)',
+            summary: 'Surrounded by 27 shrines, this magnificent temple complex witnesses the spiritual simplicity and rich ornamentation of Jain architecture.',
+            details: `Under the guidance of Acharya Yashobhadra Suri, Simandar Shah began construction in 957 CE and completed it in 972 CE. The consecration took place on Vaishakh Sudi Ekam Samvat 1029. Simandar Shah poured 4,000 mounds of oil into the foundation for strength, earning the 'Talesara' gotra.
 
-Construction began in 957 CE and was completed in 972 CE after 15 years. The consecration of all five Jinalayas was completed on the same day - Vaishakh Sudi Ekam Samvat 1029 (972 CE).
+The complex is called 'Saat Bees Deori' due to the 26 shrines in the corridors (7+20=27). The main temple houses Lord Adinath along with 47 stone idols.
 
-The temple has three mandaps and 26 shrines in corridors around it, hence called Satbis Deori (Twenty-Seven Shrines). The main temple includes sanctum, antarala, and assembly hall. Along with Lord Adinath as the main deity, there are 47 stone idols.
-
-The exterior walls feature stunning craftsmanship. The entire temple has 163 artistic stone pillars similar to the sculptural art of Mewar-Delwara and Ranakpur.`
+The craftsmanship on the 163 artistic pillars and torans is as grand as the temples of Mewar-Ranakpur. The domes feature 16 dancers and scenes from Lord Adinath's life.`
         },
         {
-            title: '2. Chaumukha Bhagwan Temple',
+            title: '2. Northern Parshvanath Temple (Bhandari Vella)',
+            period: '1448 CE',
+            summary: 'Built by Bhandari Shresthi Vella, this temple is famous for its fine craftsmanship and idols of great Acharyas.',
+            details: `Located in the north, this temple was built in 1448 CE by Bhandari Vella, who also renovated Shringar Chauri.
+
+Outside the sanctum are grand idols of Acharya Vijay Nitisurishwarji (the savior of Chittor) and Acharya Haribhadrasuri. Inscriptions at the entrance document renovations in 1941 and 1980.`
+        },
+        {
+            title: '3. Southern Parshvanath Temple (Karmashah Doshi)',
+            period: '1530 CE',
+            summary: 'Built by Tolashah and his son Karmashah Doshi, this temple symbolizes devotion and sacrifice.',
+            details: `Built in 1530 CE, this east-facing temple contains three stone idols. A beautiful idol of Goddess Padmavati is enshrined in its wing. The craftsmanship on the exterior walls is miraculous.`
+        },
+        {
+            title: '4. Shantinath and Mahavir Swami Temples',
+            period: '1175 - 1444 CE',
+            summary: 'Located near Ratneshwar Lake, these temples are known for their antiquity and serene atmosphere.',
+            details: `The Shantinath temple near Rampol and Ratneshwar Lake dates back to 1175 CE. The 31-inch idol of Lord Shantinath was consecrated in 1444 CE by Acharya Somasundara Suri. The environment provides profound spiritual peace.`
+        },
+        {
+            title: '5. Chaumukha Parshvanath Temple',
             period: '1491 VS',
-            summary: 'Located at Gaumukh Kund, this four-faced Parshvanath temple is renowned for its unique architecture.',
-            details: 'Located above Sukoshal Muni\'s temple at Gaumukh Kund, this four-faced temple is called Chaumukha Parshvanath Bhagwan Temple. One idol bears an inscription dated 1491 VS.'
-        },
-        {
-            title: '3. Sukoshalmunji Temple near Gaumukh Kund',
-            period: '1543 VS',
-            summary: 'Located near Gaumukh Kund in the fort, this temple houses idols of Shri Parshvanath, Shri Kirtidhar Muni, and Shri Sukoshalmuniji.',
-            details: 'In one room, on a single stone carved on the wall, there are 9" idols of Shri Parshvanath, Shri Kirtidhar Muni, and Shri Sukoshalmuniji, along with a lioness sculpture. An inscription in Kannada language is engraved above, and a Prakrit inscription mentions consecration by Jinsamudrasuri in 1543 VS.'
+            summary: 'Located near Gaumukh Kund, this temple is famous for its unique stone craft and Kannada inscriptions.',
+            details: `Situated above the Sukoshal Muni temple at Gaumukh Kund, this temple features idols of Shri Parshvanath, Shri Kirtidhar Muni, and Shri Sukoshalmuniji carved on a single stone. Ancient inscriptions in Kannada and Prakrit bear witness to its history.`
         }
     ];
 
     const cityTemples = lang === 'hi' ? [
         {
-            title: '4. धीमों का मंदिर',
+            title: '4. श्री ऋषभदेव मंदिर (धीमों का मंदिर)',
             period: '400 वर्ष पुराना',
-            summary: '400 वर्ष पुराना यह जैन मंदिर दुर्ग की तलहटी में शहर के जूना बाजार में स्थित है।',
-            details: `इसे धीग गौत्र वालों ने बनवाया था। प्रवेश द्वार की कलात्मक छतरी पर चार कोनों पर चार धीग श्रावक बैठे हुए दर्शाए गए हैं।
+            summary: "दुर्ग की तलहटी में स्थित यह मंदिर 'धीग' गोत्र के श्रावकों द्वारा श्रद्धापूर्वक बनाया गया था।",
+            details: `चित्तौड़गढ़ नगर के जूना बाजार में स्थित इस मंदिर का निर्माण धीग (धीमों) गोत्र के श्रेष्ठियों ने करवाया था। प्रवेश द्वार की कलात्मक छतरी पर चार धीग श्रावक को बैठा हुआ दर्शाया गया है।
 
-पहला जीर्णोद्वार सं 1887 में एवं बाद का महाराणा सज्जन सिंह के समय सं 1941 की पोष बदी आठम को पूर्ण हुआ। मंदिर की सेवा पूजा हेतु सन 1981 में 'श्री जैन श्वेताम्बर ऋषभदेव ट्रस्ट मंदिर, चित्तौड़गढ़' की स्थापना की गई।
-
-वैशाख सुदी छठ सं 2050 (28.4.1993) को भव्य समारोह के साथ प्रतिष्ठा सम्पन्न हुई।`
+सन् 1887 और 1941 में इसके जीर्णोद्धार का कार्य पूर्ण हुआ। 1993 में भव्य प्रतिष्ठा के साथ यह मंदिर नगर के जैन समुदाय की आस्था का प्रमुख केंद्र बना हुआ है। यहाँ की सेवा-पूजा 'श्री जैन श्वेताम्बर ऋषभदेव ट्रस्ट' द्वारा की जाती है।`
         },
         {
             title: '5. श्री हरिभद्रसूरि स्मृति मंदिर',
-            period: '1973',
-            summary: '1444 ग्रंथों के रचयिता आचार्य हरिभद्रसूरि जी के महान अवदान को देखते हुए उनका स्मृति मंदिर निर्मित किया गया।',
-            details: `यह चार मंजिला मंदिर है। प्रथम मंजिल पर उपाश्रय व ज्ञान भंडार है। द्वितीय मंजिल पर श्री हरिभद्रसूरि जी की 41" की भव्य प्रतिमा के साथ उनकी धर्म माता साध्वी श्री याकिनी महत्तरा और अन्य आचार्यों की प्रतिमाएँ हैं।
+            period: '1973 ईस्वी',
+            summary: 'महान दार्शनिक आचार्य हरिभद्रसूरि जी की पावन स्मृति में निर्मित यह मंदिर ज्ञान और वैराग्य का केंद्र है।',
+            details: `1444 ग्रंथों के अद्वितीय रचयिता आचार्य हरिभद्रसूरि जी का चित्तौड़गढ़ से गहरा नाता रहा है। उनकी स्मृति में यह चार मंजिला भव्य मंदिर पद्मश्री मुनि जिन विजय जी के प्रयासों से निर्मित किया गया।
 
-पद्मश्री मुनि जिन विजय जी ने अपनी स्व अर्जित पूंजी से निर्मित करवाया। प्रतिष्ठा 15.2.73 को आचार्य श्री उदयसागरजी म. सा. की निश्रा में हुई।`
+द्वितीय मंजिल पर आचार्य श्री की 41 इंच की भव्य प्रतिमा के साथ उनकी धर्म माता साध्वी याकिनी महत्तरा की प्रतिमा विराजित है। यह स्थान शोधार्थियों और भक्तों के लिए प्रेरणा का स्रोत है।`
         }
     ] : [
         {
-            title: '4. Dhimo Temple',
+            title: '4. Shri Rishabhdev Temple (Dhimo Temple)',
             period: '400 Years Old',
-            summary: 'This 400-year-old Jain temple is located in Juna Bazaar at the foot of the fort.',
-            details: `Built by the Dhig gotra community. The artistic canopy at the entrance depicts four Dhig devotees seated at the four corners.
+            summary: "Located at the foot of the fort, this temple was built with devotion by the Shravaks of the \"Dhig\" gotra.",
+            details: `Situated in Juna Bazaar of Chittorgarh city, this temple was built by the merchants of the Dhig (Dhimo) gotra. The entrance features an artistic canopy depicting four Dhig devotees.
 
-The first renovation was completed in 1887 VS, and the later one during Maharana Sajjan Singh's time on Posh Vadi Aatham 1941 VS. In 1981, 'Shri Jain Shwetambar Rishabdev Trust Temple, Chittorgarh' was established for temple service.
-
-Grand consecration was completed on Vaishakh Sudi Chhath 2050 VS (28.4.1993).`
+Renovations were completed in 1887 and 1941. Since its grand consecration in 1993, it has been a major center of faith for the city's Jain community, managed by the 'Shri Jain Shwetambar Rishabhdev Trust'.`
         },
         {
             title: '5. Shri Haribhadrasuri Memorial Temple',
-            period: '1973',
-            summary: 'Built in memory of Acharya Haribhadrasuri, author of 1444 texts, recognizing his great contribution.',
-            details: `This is a four-story temple. The first floor has an upashraya and knowledge repository. The second floor features a magnificent 41" idol of Shri Haribhadrasuri along with idols of his dharma mother Sadhvi Shri Yakini Mahattara and other acharyas.
+            period: '1973 CE',
+            summary: 'Built in the holy memory of the great philosopher Acharya Haribhadrasuri, this temple is a center of knowledge and detachment.',
+            details: `Acharya Haribhadrasuri, the author of 1444 unique texts, had a deep connection with Chittorgarh. This four-story grand memorial temple was built through the efforts of Padma Shri Muni Jin Vijay Ji.
 
-Built by Padma Shri Muni Jin Vijay Ji from his self-earned capital. Consecration was performed on 15.2.73 under the guidance of Acharya Shri Udaysagarji M. Sa.`
+The second floor houses a 41-inch magnificent idol of the Acharya along with his spiritual mother, Sadhvi Yakini Mahattara. It remains a source of inspiration for scholars and devotees.`
         }
     ];
 
     const digambarTemples = lang === 'hi' ? [
         {
-            title: '9. दुर्ग पर मल्लिनाथ भगवान का मंदिर',
-            period: '1428 ई.',
-            summary: 'कीर्तिस्तंभ के समीप स्थित यह दिगम्बर मंदिर "महावीर प्रासाद" के नाम से प्रसिद्ध है।',
-            details: `महाराणा हमीर के समय मूलतः यह चंद्रप्रभु जिनालय था। अलाउद्दीन खिलजी के आक्रमण के समय मूल मंदिर खंडित कर दिया गया था।
-
-ई. 1428 में श्वेताम्बर श्रेष्ठी गुणराज ने सोमदेवसूरि के हाथों जीर्णोद्धार कर प्रतिष्ठा करवाई। बाद में ई. 1979 में दिगम्बर श्रेष्ठी ने जीर्णोद्धार करवाया। आज भगवान श्री मल्लिनाथ जी की मूर्ति विराजित है।`
+            title: '9. श्री मल्लिनाथ भगवान मंदिर (महावीर प्रासाद)',
+            period: '1428 ईस्वी',
+            summary: 'कीर्ति स्तंभ के समीप स्थित यह मंदिर दिगम्बर परंपरा के प्राचीन वैभव को दर्शाता है।',
+            details: `महाराणा हमीर के समय यह मूलतः चंद्रप्रभु जिनालय था। 1428 ईस्वी में श्वेताम्बर श्रेष्ठी गुणराज ने इसका जीर्णोद्धार कराया। बाद में 1979 में दिगम्बर समाज द्वारा पुनर्निर्माण के पश्चात आज यहाँ भगवान मल्लिनाथ जी की प्रतिमा विराजित है। इसे 'महावीर प्रासाद' के नाम से भी जाना जाता है।`
         },
         {
             title: '11. श्री सुपाश्र्वनाथ दिगम्बर जैन मंदिर',
-            period: '2005',
-            summary: 'श्री दिगम्बर जैन समाज द्वारा निर्मित इस सुन्दर मंदिर की प्रतिष्ठा दिसम्बर 2005 में हुई।',
-            details: 'मुनिपुंगव श्री सुधासागर जी म. सा. की निश्रा में प्रतिष्ठा सम्पन्न हुई। यह मंदिर दिगम्बर समाज की सभी गतिविधियों का केन्द्र बन गया है।'
+            period: '2005 ईस्वी',
+            summary: 'आधुनिक वास्तुशिल्प का यह सुंदर मंदिर दिगम्बर जैन समाज की धार्मिक गतिविधियों का प्रमुख केंद्र है।',
+            details: `दिसंबर 2005 में मुनिपुंगव श्री सुधासागर जी महाराज की निश्रा में इस मंदिर की प्रतिष्ठा हुई। यह मंदिर अपनी शांति और भक्तिमय वातावरण के लिए भक्तों के बीच अत्यंत लोकप्रिय है।`
         }
     ] : [
         {
-            title: '9. Mallinath Bhagwan Temple on Fort',
+            title: '9. Shri Mallinath Bhagwan Temple (Mahavir Prasad)',
             period: '1428 CE',
-            summary: 'Located near Kirti Stambh, this Digambar temple is famous as "Mahavir Prasad".',
-            details: `During Maharana Hamir's time, this was originally Chandraprabhu Jinalaya. The original temple was destroyed during Alauddin Khilji's invasion.
-
-In 1428 CE, Shwetambar merchant Gunraj renovated and consecrated it through Somadev Suri. Later in 1979 CE, Digambar merchants renovated it. Today, the idol of Lord Mallinath is enshrined.`
+            summary: 'Located near Kirti Stambh, this temple reflects the ancient glory of the Digambar tradition.',
+            details: `Originally the Chandraprabhu Jinalaya during the time of Maharana Hamir, it was renovated by Shwetambar merchant Gunraj in 1428 CE. After reconstruction by the Digambar community in 1979, the idol of Lord Mallinath is enshrined here today. It is also known as 'Mahavir Prasad'.`
         },
         {
             title: '11. Shri Suparshvanath Digambar Jain Temple',
-            period: '2005',
-            summary: 'This beautiful temple built by the Digambar Jain community was consecrated in December 2005.',
-            details: 'Consecration was completed under the guidance of Munipungav Shri Sudhasagar Ji M. Sa. This temple has become the center of all activities of the Digambar community.'
+            period: '2005 CE',
+            summary: 'This beautiful temple of modern architecture is a major center for the religious activities of the Digambar Jain community.',
+            details: `Consecrated in December 2005 under the guidance of Munipungav Shri Sudhasagar Ji Maharaj, this temple is highly popular among devotees for its peace and devotional atmosphere.`
         }
     ];
 
     const monuments = lang === 'hi' ? [
         {
-            title: '13. कीर्ति स्तंभ',
-            period: '11-12वीं शताब्दी',
-            summary: 'जैन गौरव का यह अद्भुत कीर्ति-स्तंभ 76\' ऊँचा है जो भगवान आदिनाथ को समर्पित है।',
-            details: `76' ऊँचा, 32' धरातलीय व्यास, 15' ऊपरी व्यास व 69 सीढ़ियों एवं सात मंजिलों से युक्त है। महाराणा कुम्भा द्वारा विजय-स्तंभ का निर्माण इसी की अनुकृति की तरह करवाया गया था।
+            title: '13. कीर्ति स्तंभ (जैन गौरव का प्रतीक)',
+            period: '11वीं - 12वीं शताब्दी',
+            summary: '76 फीट ऊँचा यह सात मंजिला स्तंभ भगवान आदिनाथ को समर्पित जैन स्थापत्य का विश्व प्रसिद्ध नमूना है।',
+            details: `यह स्तंभ 76 फीट ऊँचा है, जिसका धरातलीय व्यास 32 फीट और ऊपरी व्यास 15 फीट है। इसमें 69 सीढ़ियां और सात मंजिलें हैं। इसका निर्माण बघेरवाल जैन श्रेष्ठी नय के पुत्र जीजा और उनके पुत्र पुण्य सिंह ने करवाया था।
 
-इसका निर्माण श्रेष्ठी नय के पुत्र जीजा एवं उसके पुत्र पुण्यसिंह ने (11-12 वीं शताब्दी) में किया था, जो बघेरवाल दिगम्बर जैन थे।
-
-जीर्णोद्धार सं. 1485-1495 में श्रेष्ठि गुणराज के पुत्र वाल ने करवाया एवं तीन जिन प्रतिमाओं की प्रतिष्ठा मुनि सोमसुन्दर सूरि से करवाई थी।`
+महाराणा कुम्भा द्वारा निर्मित विजय स्तंभ इसी की अनुकृति माना जाता है। 12वीं सदी में राजा कुमारपाल और 15वीं सदी में श्रेष्ठी वाल ने इसका जीर्णोद्धार करवाया था। यह स्तंभ अचल और अमर जैन संस्कृति की विजय का उद्घोष करता है।`
         }
     ] : [
         {
             title: '13. Kirti Stambh (Tower of Fame)',
-            period: '11-12th Century',
-            summary: 'This magnificent tower of Jain glory stands 76\' tall, dedicated to Lord Adinath.',
-            details: `76' high, 32' ground diameter, 15' upper diameter with 69 steps and seven floors. Maharana Kumbha's Vijay Stambh was built as a replica of this.
+            period: '11th - 12th Century',
+            summary: 'This 76-foot tall, seven-story tower dedicated to Lord Adinath is a world-famous example of Jain architecture.',
+            details: `Standing 76 feet high with a base diameter of 32 feet and a top diameter of 15 feet, it features 69 steps across seven stories. It was built by Jija, son of Bagherwal Jain Shresthi Nay, and his son Punyasingh.
 
-Built by Jija, son of merchant Nay, and his son Punyasingh (11-12th century), who were Bagherwal Digambar Jains.
-
-Renovation was done by Val, son of merchant Gunraj in 1485-1495 VS, and three Jin idols were consecrated by Muni Somasundar Suri.`
+Maharana Kumbha's Vijay Stambh is considered a replica of this tower. It was renovated in the 12th century by King Kumarapala and in the 15th century by Shresthi Val. The tower proclaims the victory of eternal Jain culture.`
         }
     ];
+
+    const historyIntroText = lang === 'hi'
+        ? 'इतिहास में चित्तौड़गढ़ का नाम आते ही महाराणा प्रताप, सांगा और कुंभा जैसे वीरों; मीरा बाई जैसी भक्त शिरोमणि; भामाशाह जैसे दानवीर; कर्माशाह जैसे धर्मवीर; और आचार्य हरिभद्र जैसे महान विद्वानों की गौरवशाली छवियाँ उभरती हैं। यह चित्रकूट की वह पवित्र धरा है जहाँ शक्ति और भक्ति के साथ जैन गौरव का वैभव सदियों से सुरक्षित है।'
+        : 'In history, the name Chittorgarh evokes glorious images of heroes like Maharana Pratap, Sanga, and Kumbha; the supreme devotee Meera Bai; the great philanthropist Bhamashah; the righteous Karmashah; and great scholars like Acharya Haribhadra. This is the holy land of Chitrakoot, where the splendor of Jain pride is preserved alongside power and devotion for centuries.';
+
 
     return (
         <div id="history" className="bg-white min-h-screen scroll-mt-16">
             {/* Hero Section */}
-            <section className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white py-16 md:py-20">
+            <section className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white py-16 md:py-20 text-justify">
                 <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-14">
                     <div className="text-center max-w-4xl mx-auto">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-stone-gray mb-6">
                             {pageTitle}
                         </h1>
                         <div className="w-24 h-1.5 bg-jain-orange mx-auto mb-8" />
-                        <p className="text-lg md:text-xl text-stone-600 leading-relaxed">
+                        <p className="text-lg md:text-xl text-stone-600 leading-relaxed italic border-l-4 border-jain-orange/30 pl-6 py-2 bg-white/50 rounded-r-lg">
+                            {historyIntroText}
+                        </p>
+                        <p className="mt-6 text-stone-500">
                             {pageSubtitle}
                         </p>
                     </div>
                 </div>
             </section>
+
 
             {/* Timeline Section */}
             <section className="py-16 md:py-20 bg-stone-50">
@@ -244,7 +305,7 @@ Renovation was done by Val, son of merchant Gunraj in 1485-1495 VS, and three Ji
                             {lang === 'hi' ? 'किले के मंदिर' : 'Fort Temples'}
                         </h2>
                         <p className="text-stone-600 text-justify">
-                            {lang === 'hi' ? 'सात बीस देवरी परिसर' : 'Sat Bees Deori Complex'}
+                            {lang === 'hi' ? 'सात बीस देवरी परिसर' : 'Saat Bees Deori Complex'}
                         </p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

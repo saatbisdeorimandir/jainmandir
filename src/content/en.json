@@ -14,7 +14,8 @@
         "read_more": "Read More"
     },
     "hero": {
-        "title": "Welcome to Shri Shwetamber Jain Sat Bees Deori Temple Chittorgarh",
+        "title": "Welcome to Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
+        "subtitle0": "Center of Jain Heritage and Culture - Chitrakoot Tirth",
         "subtitle": "A sanctuary of Peace, Non-Violence, and Spiritual Growth.",
         "btn": "Explore"
     },
@@ -22,10 +23,10 @@
         "about": {
             "title": "Our Heritage",
             "desc": [
-                "Situated near the Fateh Prakash Palace within Chittorgarh Fort, the Sat Bees Deori Temple is a group of twenty-seven temples dedicated to the Jain Tirthankaras. Established in the 11th century CE, entering this sacred land of Chittorgarh through the presence of the Jain community marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
-                "According to legend, the Sat Bees Deori Temple was originally a complex of twenty-seven Jain temples. As you approach the temple entrance, a sense of anticipation steadily grows. Step inside and prepare to be embraced by a calm and cool atmosphere, where sunlight filtering through intricately carved windows creates a gentle shimmer on the polished floors. The corridors are lined with impressive pillars adorned with detailed depictions of Jain deities. A serene sense of devotion permeates the air, inspiring visitors to further explore the temple’s wonders.",
+                "Situated near the Fateh Prakash Palace within Chittorgarh Fort, the Saat Bees Deori Temple is a group of twenty-seven temples dedicated to the Jain Tirthankaras. Established in the 11th century CE, entering this sacred land of Chittorgarh through the presence of the Jain community marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
+                "According to legend, the Saat Bees Deori Temple was originally a complex of twenty-seven Jain temples. As you approach the temple entrance, a sense of anticipation steadily grows. Step inside and prepare to be embraced by a calm and cool atmosphere, where sunlight filtering through intricately carved windows creates a gentle shimmer on the polished floors. The corridors are lined with impressive pillars adorned with detailed depictions of Jain deities. A serene sense of devotion permeates the air, inspiring visitors to further explore the temple’s wonders.",
                 "The architecture presents a fascinating blend of Jain and Maru-Gurjara styles. To fully appreciate the fine craftsmanship and majestic grandeur, one can lift their gaze toward the beautifully detailed ceilings. Chittorgarh Fort has been declared a UNESCO World Heritage Site.",
-                "Dedicated to the Tirthankaras—revered enlightened souls believed to guide seekers on the path of spiritual liberation—the temple’s central sanctum houses a magnificent idol of Lord Adinath, worshipped as the first Tirthankara. Seated in a tranquil meditative posture, the idol creates an atmosphere of peace and serenity. Standing reverently before this divine figure inspires reflection on the profound Jain principles of Ahimsa (non-violence), Satya (truth), and Vairagya (detachment from worldly desires).",
+                "Dedicated to the Tirthankaras—revered enlightened souls believed to guide seekers on the path of spiritual liberation—the temple’s central sanctum houses a magnificent idol of Lord Adinath, worshipped as the first Tirthankara. Seated in a tranquil meditative posture, the idol creates an atmosphere of peace and serenity. Standing reverently before this divine figure inspires reflection on the profound Jain principles of Ahimsa (non-violence), Saatya (truth), and Vairagya (detachment from worldly desires).",
                 "Within the temple complex, smaller shrines pay homage to other Tirthankaras, each adorned with intricate carvings and decorated with vibrant flowers offered by devoted worshippers. A visit to this temple not only allows one to witness architectural marvels but also offers a direct connection with Jain culture and spirituality.",
                 "Chittorgarh Fort, a place echoing countless tales of valor and resilience passed down through generations, warmly awaits your visit."
             ]
@@ -115,8 +116,8 @@
             "other": "Other Contacts"
         },
         "main": {
-            "name": "Shri Shwetamber Jain Temple Trust",
-            "address": "Jain Dharamshala, Station Road, Chittorgarh, Rajasthan - 312001"
+            "name": "Shri Shwetamber Jain Saat Bees Deori Tirth",
+            "address": "Chittorgarh, Rajasthan - 312001"
         },
         "maincontact1": {
             "name": "Dr. A.L. Jain",
@@ -135,7 +136,7 @@
     },
     "disclaimer": {
         "title": "Disclaimer",
-        "text": "The phone number of the Jain Dharamshala operated by Shri Jain Shwetambar Satbees Deori Fort Teerth Trust, Chittorgarh, appears differently every day on Google search. This number has been wrongly changed by a scammers. People who call the number provided by the scammers for room booking are being cheated. Therefore, all people are requested not to make any payment for bookings to any phone number."
+        "text": "The phone number of the Jain Dharamshala operated by Shri Jain Shwetambar Saat Bees Deori Fort Teerth Trust, Chittorgarh, appears differently every day on Google search. This number has been wrongly changed by a scammers. People who call the number provided by the scammers for room booking are being cheated. Therefore, all people are requested not to make any payment for bookings to any phone number."
     },
     "cards": {
         "darshan": {
@@ -159,7 +160,7 @@
         "location_label": "Location",
         "location_value": "Chittorgarh Fort, Rajasthan",
         "heritage_tag": "Heritage",
-        "heritage_value": "Sat Bees Deori Temple",
+        "heritage_value": "Saat Bees Deori Temple",
         "history_section": {
             "title": "Temple History & Heritage",
             "subtitle": "A Journey Through Time",
@@ -168,7 +169,7 @@
                     "image": "/assets/images/about/history-ancient.jpg",
                     "title": "Ancient Origins",
                     "period": "11th Century CE",
-                    "description": "The Sat Bees Deori Temple was established in the 11th century CE as a magnificent complex of twenty-seven Jain temples. Built during the reign of the Rajput rulers, this sacred site represents the pinnacle of medieval Jain architecture and devotion."
+                    "description": "The Saat Bees Deori Temple was established in the 11th century CE as a magnificent complex of twenty-seven Jain temples. Built during the reign of the Rajput rulers, this sacred site represents the pinnacle of medieval Jain architecture and devotion."
                 },
                 {
                     "image": "/assets/images/about/history-architecture.jpg",
@@ -180,7 +181,7 @@
                     "image": "/assets/images/about/history-sculptures.jpg",
                     "title": "Sacred Sculptures",
                     "period": "Tirthankara Idols",
-                    "description": "The temple houses magnificent sculptures of the twenty-four Tirthankaras, each carved with meticulous detail. The central sanctum features Lord Adinath in serene meditation, inspiring devotees with the profound principles of Ahimsa, Satya, and Vairagya."
+                    "description": "The temple houses magnificent sculptures of the twenty-four Tirthankaras, each carved with meticulous detail. The central sanctum features Lord Adinath in serene meditation, inspiring devotees with the profound principles of Ahimsa, Saatya, and Vairagya."
                 },
                 {
                     "image": "/assets/images/about/history-pillars.jpg",
