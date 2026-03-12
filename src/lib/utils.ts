@@ -14,7 +14,7 @@ export function getBilingualAuth(obj: any, lang: Lang): string {
 
 export function assetPath(path: string): string {
     const isProd = process.env.NODE_ENV === 'production';
-    const basePath = isProd ? '/jainmandir' : '';
+    const basePath = '';
     if (!path.startsWith('/')) return path;
     // Prevent double slash if basePath ends with / or path starts with /
     return `${basePath}${path}`;

@@ -3,9 +3,10 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig = {
   output: 'export',
-  // On GitHub Pages, the site is served from /jainmandir/
-  basePath: isProd ? '/jainmandir' : '',
-  assetPrefix: isProd ? '/jainmandir/' : '',
+  trailingSlash: true,
+  // On GitHub Pages with custom domain, the site is served from the root
+  basePath: '',
+  assetPrefix: '',
   images: {
     unoptimized: true,
     remotePatterns: [
