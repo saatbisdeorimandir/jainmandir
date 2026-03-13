@@ -30,7 +30,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html className={`${inter.variable} ${poppins.variable} ${rozha.variable}`} suppressHydrationWarning>
+        <html className={`${inter.variable} ${poppins.variable} ${rozha.variable}`} suppressHydrationWarning translate="no">
             <body className="font-sans antialiased text-stone-gray" suppressHydrationWarning>
                 {children}
             </body>

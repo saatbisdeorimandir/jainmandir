@@ -1,5 +1,9 @@
+'use client';
+
 import { getTrans, assetPath } from '@/lib/utils';
 import PhotoCard from '@/components/PhotoCard';
+import { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
 interface AboutSectionProps {
     dict: any;
@@ -29,12 +33,19 @@ export default function AboutSection({ dict }: AboutSectionProps) {
     const historySubtitle = historySection?.subtitle || '';
     const historyCards = historySection?.cards || [];
 
+    const [isVideoLoading, setIsVideoLoading] = useState(true);
+
     return (
         <div id="about" className="bg-white scroll-mt-16">
             <div className="flex flex-col lg:flex-row min-h-[80vh]">
                 {/* Left Side: Sticky Media (Desktop Only) */}
                 <div className="lg:w-1/2 lg:h-[80vh] lg:sticky lg:top-16 order-1 lg:order-1 overflow-hidden bg-stone-950 flex items-center justify-center">
-                    <div className="relative w-full h-[400px] md:h-[500px] lg:h-full group">
+                    <div className="relative w-full h-[400px] md:h-[500px] lg:h-full group flex items-center justify-center">
+                        {isVideoLoading && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-stone-900 z-10 transition-opacity duration-500">
+                                <LoadingSpinner />
+                            </div>
+                        )}
                         <video
                             src={assetPath("/assets/images/about/mandir_video.mp4")}
                             poster={assetPath("/assets/images/about/SathisDeori-Temple.jpg")}
@@ -42,15 +53,10 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                             muted
                             loop
                             playsInline
-                            className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105"
+                            onLoadedData={() => setIsVideoLoading(false)}
+                            className={`w-full h-full object-contain transition-all duration-1000 group-hover:scale-105 ${isVideoLoading ? 'opacity-0' : 'opacity-100'}`}
                         />
                         <div className="absolute inset-0 bg-black/10 transition-opacity group-hover:opacity-0 pointer-events-none" />
-
-                        {/* <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-xl text-white">
-                            <p className="text-xs tracking-[0.3em] uppercase opacity-80 mb-1">{estLabel}</p>
-                            <p className="text-xl font-heading font-bold">{centuryLabel}</p>
-                        </div> */}
-                        
                     </div>
                 </div>
 

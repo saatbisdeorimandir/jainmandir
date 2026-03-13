@@ -1,4 +1,8 @@
+'use client';
+
 import { getTrans } from '@/lib/utils';
+import { useState } from 'react';
+import LoadingSpinner from './LoadingSpinner';
 
 interface ContactSectionProps {
     dict: any;
@@ -7,6 +11,7 @@ interface ContactSectionProps {
 
 export default function ContactSection({ dict, siteConfig }: ContactSectionProps) {
     const mainContact = siteConfig.contact.mainContacts[0];
+    const [isMapLoading, setIsMapLoading] = useState(true);
 
     return (
         <div id="contact" className="bg-gradient-to-b from-stone-50 via-white to-stone-50 scroll-mt-16">
@@ -123,7 +128,12 @@ export default function ContactSection({ dict, siteConfig }: ContactSectionProps
 
                     {/* Right Column: Map with Info Overlay */}
                     <div className="lg:sticky lg:top-24 h-fit">
-                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl shadow-stone-400/30 border border-stone-200 relative h-[450px] lg:h-[600px]">
+                        <div className="rounded-[2.5rem] overflow-hidden shadow-2xl shadow-stone-400/30 border border-stone-200 relative h-[450px] lg:h-[600px] flex items-center justify-center bg-stone-100">
+                            {isMapLoading && (
+                                <div className="absolute inset-0 flex items-center justify-center bg-stone-50 z-10 transition-opacity duration-500">
+                                    <LoadingSpinner />
+                                </div>
+                            )}
                             <iframe
                                 src={siteConfig.contact.mapUrl}
                                 width="100%"
@@ -132,7 +142,8 @@ export default function ContactSection({ dict, siteConfig }: ContactSectionProps
                                 allowFullScreen
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                className="grayscale-[0.3] hover:grayscale-0 transition-all duration-1000"
+                                onLoad={() => setIsMapLoading(false)}
+                                className={`grayscale-[0.3] hover:grayscale-0 transition-all duration-1000 ${isMapLoading ? 'opacity-0' : 'opacity-100'}`}
                             ></iframe>
 
                             {/* Floating Info Card */}
