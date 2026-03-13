@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const baseUrl = 'https://www.saatbeesdeorimandir.co.in';
     const title = getTrans(dict, 'site_name');
     const description = getTrans(dict, 'hero.subtitle');
+    const keywords = (dict as any).keywords || [];
     const ogImage = siteConfig.general.logo ? `${baseUrl}${siteConfig.general.logo}` : '';
 
     return {
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
             template: `%s | ${title}`,
         },
         description: description,
-        keywords: ["Jain Temple", "Chittorgarh", "Saat Bees Deori", "Shwetamber Jain", "Rajasthan", "Historical Temple"],
+        keywords: keywords,
         authors: [{ name: title }],
         metadataBase: new URL(baseUrl),
         alternates: {
