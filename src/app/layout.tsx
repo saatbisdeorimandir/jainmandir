@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins, Rozha_One } from 'next/font/google';
 import './globals.css';
+import { Suspense } from 'react';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const inter = Inter({
     subsets: ['latin'],
@@ -32,6 +34,9 @@ export default function RootLayout({
     return (
         <html className={`${inter.variable} ${poppins.variable} ${rozha.variable}`} suppressHydrationWarning translate="no">
             <body className="font-sans antialiased text-stone-gray" suppressHydrationWarning>
+                <Suspense fallback={null}>
+                    <GoogleAnalytics />
+                </Suspense>
                 {children}
             </body>
         </html>
