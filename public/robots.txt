@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://saatbisdeorimandir.github.io/jainmandir/sitemap.xml

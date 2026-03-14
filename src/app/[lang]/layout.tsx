@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     const baseUrl = 'https://www.saatbeesdeorimandir.co.in';
     const title = getTrans(dict, 'site_name');
     const description = getTrans(dict, 'hero.subtitle');
-    const keywords = (dict as any).keywords || [];
+    const keywords = ((dict as any).keywords || []).map((keyword: string) => keyword.toLowerCase());
     const ogImage = siteConfig.general.logo ? `${baseUrl}${siteConfig.general.logo}` : '';
 
     return {
