@@ -42,6 +42,15 @@ export interface ContactInfo {
     addressKey: string;
 }
 
+export interface ExternalLink {
+    id: string;
+    url: string;
+    labelKey: string;
+    descKey: string;
+    icon: string;
+    isActive: boolean;
+}
+
 export interface SiteConfig {
     general: {
         siteName: string;
@@ -69,6 +78,7 @@ export interface SiteConfig {
             image: string;
         }[];
     };
+    externalLinks?: ExternalLink[];
     social: {
         facebook: string;
         instagram: string;

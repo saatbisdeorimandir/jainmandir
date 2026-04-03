@@ -62,6 +62,16 @@
             }
         ]
     },
+    "externalLinks": [
+        {
+            "id": "dharamshala_booking",
+            "url": "https://jain-dharamsala-front.vercel.app/",
+            "labelKey": "external_links.dharamshala_booking.label",
+            "descKey": "external_links.dharamshala_booking.desc",
+            "icon": "booking",
+            "isActive": true
+        }
+    ],
     "social": {
         "facebook": "https://facebook.com",
         "instagram": "https://instagram.com",

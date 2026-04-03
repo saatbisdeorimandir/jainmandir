@@ -18,30 +18,281 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth Transitions */
-a,
-button {
+/* =============================================
+   GLOBAL KEYFRAMES
+   ============================================= */
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(32px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.88); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes floatY {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.18); }
+    50%       { box-shadow: 0 0 0 16px rgba(255, 153, 51, 0); }
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes slideReveal {
+    from { opacity: 0; transform: translateY(20px) scaleX(0.97); }
+    to   { opacity: 1; transform: translateY(0) scaleX(1); }
+}
+
+@keyframes spinOnce {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes navSlide {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes mobileMenuSlide {
+    from { opacity: 0; transform: translateY(-10px); max-height: 0; }
+    to   { opacity: 1; transform: translateY(0); max-height: 500px; }
+}
+
+@keyframes borderGlow {
+    0%, 100% { border-color: rgba(255, 153, 51, 0.2); }
+    50%       { border-color: rgba(255, 153, 51, 0.7); }
+}
+
+@keyframes particleFade {
+    0%   { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0; transform: scale(2.5); }
+}
+
+/* =============================================
+   ANIMATION CLASSES
+   ============================================= */
+
+.animate-fade-up   { animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-down { animation: fadeInDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-left { animation: fadeInLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-fade-right{ animation: fadeInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-scale-in  { animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.animate-float-y   { animation: floatY 4s ease-in-out infinite; }
+.animate-glow-pulse{ animation: glowPulse 2.5s ease-in-out infinite; }
+.animate-gradient  { animation: gradientShift 4s ease infinite; background-size: 200% 200%; }
+.animate-slide-reveal { animation: slideReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-nav-slide { animation: navSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-mobile-menu { animation: mobileMenuSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.animate-border-glow { animation: borderGlow 2s ease-in-out infinite; }
+
+/* Delay utilities */
+.delay-100  { animation-delay: 100ms; }
+.delay-150  { animation-delay: 150ms; }
+.delay-200  { animation-delay: 200ms; }
+.delay-300  { animation-delay: 300ms; }
+.delay-400  { animation-delay: 400ms; }
+.delay-500  { animation-delay: 500ms; }
+.delay-600  { animation-delay: 600ms; }
+.delay-700  { animation-delay: 700ms; }
+.delay-800  { animation-delay: 800ms; }
+
+/* =============================================
+   SCROLL-TRIGGERED ANIMATIONS
+   ============================================= */
+
+/* Elements start hidden; JS adds .in-view to trigger */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-36px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-left.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(36px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-right.in-view {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+                transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.reveal-scale.in-view {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* =============================================
+   SHIMMER BUTTON EFFECT
+   ============================================= */
+
+.shimmer-btn {
+    position: relative;
+    overflow: hidden;
+}
+.shimmer-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%);
+    background-size: 200% 100%;
+    background-position: -200% center;
+    transition: background-position 0.6s ease;
+}
+.shimmer-btn:hover::after {
+    background-position: 200% center;
+}
+
+/* =============================================
+   NAV LINK UNDERLINE SLIDE
+   ============================================= */
+
+.nav-link {
+    position: relative;
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(to right, #FF9933, #D32F2F);
+    border-radius: 2px;
+    transition: width 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* =============================================
+   CARD 3D TILT (CSS only via transform-style)
+   ============================================= */
+
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease;
+}
+.tilt-card:hover {
+    transform: perspective(800px) rotateX(-3deg) rotateY(3deg) translateY(-6px);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(255, 153, 51, 0.12);
+}
+
+/* =============================================
+   FLOATING ORBS (Hero background decoration)
+   ============================================= */
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(60px);
+    opacity: 0.25;
+    animation: floatY 6s ease-in-out infinite;
+}
+
+/* =============================================
+   GLASS NAVBAR
+   ============================================= */
+
+.navbar-glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 153, 51, 0.12);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar-solid {
+    background: rgba(255, 255, 255, 1);
+    backdrop-filter: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* =============================================
+   SMOOTH TRANSITIONS
+   ============================================= */
+
+a, button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 6px;
-}
+/* =============================================
+   CUSTOM SCROLLBAR
+   ============================================= */
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #FF9933; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #e68a00; }
 
-::-webkit-scrollbar-thumb {
-    background: #FF9933;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #e68a00;
-}
+/* =============================================
+   UTILITIES
+   ============================================= */
 
 .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-jain-orange to-jain-red;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-left, .reveal-right, .reveal-scale,
+    .animate-float-y, .animate-glow-pulse, .animate-gradient,
+    .orb { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
 }

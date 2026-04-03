@@ -60,10 +60,28 @@ export default function Footer({ dict, siteConfig }: FooterProps) {
                 <div>
                     <h3 className="text-xl font-bold mb-4">{getTrans(dict, 'footer.contact')}</h3>
                     {siteConfig.contact.mainContacts.length > 0 && (
-                        <>
-                            <p className="text-gray-300 text-sm mb-2">{siteConfig.contact.mainContacts[0].phone}</p>
+                        <div className="space-y-2 mb-6">
+                            <p className="text-gray-300 text-sm">{siteConfig.contact.mainContacts[0].phone}</p>
                             <p className="text-gray-300 text-sm">{getTrans(dict, siteConfig.contact.mainContacts[0].addressKey)}</p>
-                        </>
+                        </div>
+                    )}
+                    
+                    {/* Dharamshala Booking Link */}
+                    {siteConfig.externalLinks?.find(l => l.id === 'dharamshala_booking')?.isActive && (
+                        <div className="pt-4 border-t border-white/10">
+                            <a 
+                                href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')!.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm text-orange-400 hover:text-orange-300 transition-colors font-medium group"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                                {getTrans(dict, 'footer.booking')}
+                                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
+                        </div>
                     )}
                 </div>
             </div>

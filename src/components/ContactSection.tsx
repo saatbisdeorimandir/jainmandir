@@ -169,6 +169,68 @@ export default function ContactSection({ dict, siteConfig }: ContactSectionProps
                     </div>
                 </div>
 
+                {/* Online Services / External Links */}
+                {siteConfig.externalLinks && siteConfig.externalLinks.filter((l: any) => l.isActive).length > 0 && (
+                    <div className="mb-12">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-1 h-7 bg-gradient-to-b from-jain-orange to-jain-red rounded-full"></div>
+                            <h2 className="text-2xl md:text-3xl font-heading font-bold text-stone-800">
+                                {getTrans(dict, 'external_links.section_title')}
+                            </h2>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                            {siteConfig.externalLinks.filter((link: any) => link.isActive).map((link: any) => (
+                                <a
+                                    key={link.id}
+                                    href={link.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group relative flex flex-col overflow-hidden rounded-[2rem] border border-jain-orange/20 bg-gradient-to-br from-jain-orange/5 via-amber-50/60 to-white shadow-lg shadow-jain-orange/10 hover:shadow-2xl hover:shadow-jain-orange/20 transition-all duration-500 hover:-translate-y-1"
+                                >
+                                    {/* Top accent bar */}
+                                    <div className="h-1.5 w-full bg-gradient-to-r from-jain-orange via-amber-400 to-jain-red rounded-t-[2rem]"></div>
+
+                                    <div className="flex flex-col gap-4 p-6">
+                                        {/* Icon + Label row */}
+                                        <div className="flex items-center gap-4">
+                                            <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-jain-orange to-jain-red flex items-center justify-center shadow-lg shadow-jain-orange/40 group-hover:scale-110 transition-transform duration-300">
+                                                {/* Booking icon */}
+                                                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-heading font-bold text-stone-800 group-hover:text-jain-orange transition-colors duration-300 leading-tight">
+                                                    {getTrans(dict, link.labelKey)}
+                                                </h3>
+                                                <span className="inline-flex items-center gap-1 text-xs text-jain-orange font-semibold uppercase tracking-widest mt-1">
+                                                    <span className="w-2 h-2 rounded-full bg-jain-orange animate-pulse inline-block"></span>
+                                                    {getTrans(dict, 'about_page.contact_labels.official_portal') || 'Official Portal'}
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Description */}
+                                        <p className="text-sm text-stone-500 font-light leading-relaxed flex-1">
+                                            {getTrans(dict, link.descKey)}
+                                        </p>
+
+                                        {/* CTA row */}
+                                        <div className="flex items-center justify-between pt-3 border-t border-jain-orange/10">
+                                            <span className="text-sm font-semibold text-jain-orange group-hover:text-jain-red transition-colors duration-300">
+                                                {getTrans(dict, 'about_page.contact_labels.book_now') || 'Book Now'} →
+                                            </span>
+                                            <svg className="w-5 h-5 text-stone-300 group-hover:text-jain-orange group-hover:translate-x-1 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                )}
+
                 {/* Disclaimer Section */}
                 {siteConfig.contact.disclaimer && (
                     <div className="max-w-4xl mx-auto">

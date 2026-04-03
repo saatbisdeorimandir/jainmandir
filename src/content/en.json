@@ -24,7 +24,12 @@
         "jain tirth chittorgarh",
         "chittorgarh fort temples",
         "jain pilgrimages in india",
-        "jain temple near me"
+        "jain temple near me",
+        "jain dharamshala room booking chittorgarh",
+        "online dharamshala reservation chittorgarh",
+        "stay at jain temple chittorgarh",
+        "accommodation at chittorgarh jain temple",
+        "book rooms chittorgarh jain mandir"
     ],
     "nav": {
         "home": "Home",
@@ -127,7 +132,8 @@
     "footer": {
         "text": "© 2026 Shri Saat Bees Deori Jain Temple Trust. Dedicated to the path of Tirthankaras.",
         "social": "Social",
-        "contact": "Contact"
+        "contact": "Contact",
+        "booking": "Book Dharamshala"
     },
     "contact": {
         "intro": "Jai Jinendra. Please visit us or reach out via email.",
@@ -159,6 +165,13 @@
         "items": [
             "Jain Shwetambar Vishranti Griha, located opposite the railway station in Chittorgarh, offers excellent facilities including air-conditioned rooms along with Navkarshi and a dining hall. At Chittorgarh Fort as well, 9 rooms are available along with regular Navkarshi and dining hall facilities."
         ]
+    },
+    "external_links": {
+        "section_title": "Online Services",
+        "dharamshala_booking": {
+            "label": "Book Dharamshala Rooms",
+            "desc": "Reserve your stay at our Jain Dharamshala online. Check availability and book rooms conveniently through our official booking portal."
+        }
     },
     "disclaimer": {
         "title": "Disclaimer",
@@ -228,6 +241,38 @@
                     "description": "The main sanctum serves as the spiritual heart of the temple complex. Here, devotees offer prayers and flowers to the Tirthankaras, experiencing a profound connection with Jain philosophy and the path to spiritual liberation."
                 }
             ]
+        },
+        "unesco_badge": "Chitrakoot Tirth — UNESCO World Heritage",
+        "stats": {
+            "century_value": "11th",
+            "century_label": "Century CE",
+            "temples_value": "27",
+            "temples_label": "Temples",
+            "unesco_value": "UNESCO",
+            "unesco_label": "World Heritage",
+            "years_value": "900+",
+            "years_label": "Years of History"
+        },
+        "video_section": {
+            "eyebrow": "Our Heritage",
+            "title": "A Sacred Journey Through",
+            "subtitle": "Eleven Centuries",
+            "live_badge": "LIVE TEMPLE ATMOSPHERE"
+        },
+        "philosophy_section": {
+            "eyebrow": "Jain Philosophy",
+            "title": "Principles That",
+            "subtitle": "Guide the Faithful",
+            "principles": {
+                "ahimsa": "Ahimsa",
+                "saatya": "Saatya",
+                "vairagya": "Vairagya"
+            }
+        },
+        "scroll_label": "Scroll",
+        "contact_labels": {
+            "official_portal": "Official Portal",
+            "book_now": "Book Now"
         }
     }
 }
