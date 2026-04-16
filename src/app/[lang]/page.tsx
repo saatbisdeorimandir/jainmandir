@@ -1,6 +1,7 @@
 import { getDictionary } from '@/lib/api';
 import Hero from '@/components/Hero';
 import HomeFeatures from '@/components/HomeFeatures';
+import StaySection from '@/components/StaySection';
 import { Lang } from '@/lib/types';
 
 export async function generateStaticParams() {

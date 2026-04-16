@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { getTrans, assetPath } from '@/lib/utils';
+import siteConfig from '@/content/site-config.json';
 import { useEffect, useRef, useState } from 'react';
 
 interface HeroProps {
@@ -94,16 +95,28 @@ export default function Hero({ lang, dict }: HeroProps) {
                 </p>
 
                 {/* CTA */}
-                <div className={mounted ? 'animate-scale-in delay-600' : 'opacity-0'}>
+                <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 ${mounted ? 'animate-scale-in delay-600' : 'opacity-0'}`}>
                     <Link
                         href={`/${lang}/about`}
-                        className="shimmer-btn inline-flex items-center gap-3 bg-stone-900 border border-stone-800 text-stone-50 hover:bg-stone-800 font-medium py-5 px-12 rounded-full shadow-2xl tracking-[0.1em] uppercase text-sm hover:scale-105 hover:shadow-jain-orange/20"
+                        className="shimmer-btn inline-flex items-center gap-3 bg-stone-900 border border-stone-800 text-stone-50 hover:bg-stone-800 font-medium py-5 px-10 md:px-12 rounded-full shadow-2xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 hover:shadow-jain-orange/20 transition-all duration-300 min-w-[220px] justify-center"
                     >
                         {getTrans(dict, 'hero.btn')}
                         <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
                     </Link>
+
+                    <a
+                        href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')?.url || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-stone-800 hover:bg-white/20 font-medium py-5 px-10 md:px-12 rounded-full shadow-xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 transition-all duration-300 min-w-[220px] justify-center"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {getTrans(dict, 'hero.booking_btn')}
+                    </a>
                 </div>
             </div>
 
