@@ -49,6 +49,49 @@ export async function fetchCloudinaryImages(tag: string): Promise<string[]> {
     }
 }
 
+export interface CloudinaryResource {
+    public_id: string;
+    version: number;
+    format: string;
+    width: number;
+    height: number;
+    url: string;
+}
+
+/**
+ * Fetch list of resources tagged with a specific tag
+ * Returns the full resource info instead of just URLs
+ */
+export async function fetchCloudinaryResources(tag: string): Promise<CloudinaryResource[]> {
+    if (!CLOUDINARY_CLOUD_NAME || CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUD_NAME_HERE') {
+        return [];
+    }
+
+    try {
+        const response = await fetch(
+            `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/list/${tag}.json`
+        );
+
+        if (!response.ok) {
+            return [];
+        }
+
+        const data = await response.json();
+
+        return data.resources.map((res: any) => ({
+            public_id: res.public_id,
+            version: res.version,
+            format: res.format,
+            width: res.width,
+            height: res.height,
+            url: `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
+        }));
+    } catch (error) {
+        console.error('Error fetching resources from Cloudinary:', error);
+        return [];
+    }
+}
+
 /**
  * Get a single image URL with transformations
  */

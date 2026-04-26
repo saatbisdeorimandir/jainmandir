@@ -5,6 +5,7 @@ import { Lang } from '@/lib/types';
 import { Metadata } from 'next';
 import { getTrans } from '@/lib/utils';
 import StructuredData from '@/components/StructuredData';
+import AnnouncementPopup from '@/components/AnnouncementPopup';
 
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'hi' }];
@@ -84,6 +85,7 @@ export default async function Layout({
     return (
         <div className="flex flex-col min-h-screen">
             <StructuredData dict={dict} siteConfig={siteConfig} lang={lang} />
+            <AnnouncementPopup dict={dict} />
             <Navbar lang={lang} dict={dict} pagesConfig={pagesConfig} siteConfig={siteConfig} />
             <main className="flex-grow">{children}</main>
             <Footer dict={dict} siteConfig={siteConfig} />

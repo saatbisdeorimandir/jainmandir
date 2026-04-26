@@ -38,11 +38,13 @@
         "events": "Events",
         "gallery": "Gallery",
         "trust": "Trust",
-        "contact": "Contact"
+        "contact": "Contact",
+        "announcements": "Announcements"
     },
     "buttons": {
         "lang": "हिंदी",
-        "read_more": "Read More"
+        "read_more": "Read More",
+        "got_it": "Got it"
     },
     "hero": {
         "title": "Welcome to Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
