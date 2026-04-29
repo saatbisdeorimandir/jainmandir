@@ -56,6 +56,7 @@ export interface CloudinaryResource {
     width: number;
     height: number;
     url: string;
+    folder?: string;
 }
 
 /**
@@ -84,7 +85,8 @@ export async function fetchCloudinaryResources(tag: string): Promise<CloudinaryR
             format: res.format,
             width: res.width,
             height: res.height,
-            url: `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`
+            url: `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/v${res.version}/${res.public_id}.${res.format}`,
+            folder: res.asset_folder || (res.public_id.includes('/') ? res.public_id : undefined)
         }));
     } catch (error) {
         console.error('Error fetching resources from Cloudinary:', error);
@@ -106,4 +108,98 @@ export function getCloudinaryUrl(publicId: string, options: { width?: number; he
     const transformationString = transformations.length > 0 ? transformations.join(',') + '/' : '';
 
     return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${transformationString}${publicId}`;
+}
+
+/**
+ * Interface for dynamically discovered events
+ */
+export interface DynamicGalleryEvent {
+    id: string;
+    name: string; // Default name (English)
+    nameHi?: string; // Hindi name
+    date?: string;
+    images: string[];
+}
+
+/**
+ * Fetch and discover gallery events dynamically based on tags and folders.
+ * 
+ * Strategy:
+ * 1. Fetch all images with tag 'gallery_event'
+ * 2. Group them by their folder path
+ * 3. Parse folder name for event details (e.g., '2024-05-20_Holi')
+ */
+export async function fetchDynamicGalleryEvents(): Promise<DynamicGalleryEvent[]> {
+    if (!CLOUDINARY_CLOUD_NAME || CLOUDINARY_CLOUD_NAME === 'YOUR_CLOUD_NAME_HERE') {
+        return [];
+    }
+
+    try {
+        const resources = await fetchCloudinaryResources('gallery_event');
+        console.log(`Cloudinary Discovery: Found ${resources.length} images with tag 'gallery_event'`);
+        
+        if (resources.length === 0) return [];
+
+        const eventGroups: Record<string, DynamicGalleryEvent> = {};
+
+        resources.forEach(res => {
+            // Priority: asset_folder field, then folder prefix in public_id
+            let folderPath = res.folder || '';
+            
+            const parts = folderPath.split('/');
+            if (parts.length === 0 || !folderPath) return;
+
+            // The event folder is the last part of the folder path
+            const folderName = parts[parts.length - 1];
+            
+            // Skip the main root folder if it's the only one
+            if (parts.length === 1 && folderPath === 'jaintemple_webapp') return;
+
+            if (!eventGroups[folderName]) {
+                let eventName = folderName.replace(/_/g, ' ');
+                let eventNameHi: string | undefined = undefined;
+                let eventDate: string | undefined = undefined;
+
+                const dateMatch = folderName.match(/^(\d{4}-\d{2}-\d{2})_(.*)$/);
+                let namePart = folderName;
+                
+                if (dateMatch) {
+                    eventDate = dateMatch[1];
+                    namePart = dateMatch[2];
+                }
+
+                // Check for bilingual separator _HI_
+                if (namePart.includes('_HI_')) {
+                    const [en, hi] = namePart.split('_HI_');
+                    eventName = en.replace(/_/g, ' ');
+                    eventNameHi = hi.replace(/_/g, ' ');
+                } else {
+                    eventName = namePart.replace(/_/g, ' ');
+                }
+
+                eventGroups[folderName] = {
+                    id: folderName,
+                    name: eventName,
+                    nameHi: eventNameHi,
+                    date: eventDate,
+                    images: []
+                };
+            }
+
+            eventGroups[folderName].images.push(res.url);
+        });
+
+        // Convert groups to sorted array (latest date first)
+        const result = Object.values(eventGroups).sort((a, b) => {
+            if (!a.date) return 1;
+            if (!b.date) return -1;
+            return b.date.localeCompare(a.date);
+        });
+
+        console.log(`Cloudinary Discovery: Grouped into ${result.length} dynamic events:`, result.map(e => e.id));
+        return result;
+    } catch (error) {
+        console.error('Error discovering dynamic events:', error);
+        return [];
+    }
 }

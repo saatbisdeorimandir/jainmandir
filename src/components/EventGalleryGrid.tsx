@@ -9,13 +9,20 @@ interface EventGalleryGridProps {
     event: GalleryEvent;
     dict: any;
     images: string[];
+    defaultExpanded?: boolean;
 }
 
-export default function EventGalleryGrid({ event, dict, images: initialImages }: EventGalleryGridProps) {
+export default function EventGalleryGrid({ event, dict, images: initialImages, defaultExpanded }: EventGalleryGridProps) {
     const [selectedImg, setSelectedImg] = useState<string | null>(null);
-    const [isExpanded, setIsExpanded] = useState(event.isPermanent || false);
+    const [selectedIdx, setSelectedIdx] = useState<number>(0);
+    const [isExpanded, setIsExpanded] = useState(event.isPermanent || defaultExpanded || false);
     const [images, setImages] = useState<string[]>(initialImages);
     const [isLoading, setIsLoading] = useState(initialImages.length === 0);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     // If initial images are empty, we might want to fetch from Cloudinary
     const shouldFetchDynamic = initialImages.length === 0;
@@ -43,7 +50,7 @@ export default function EventGalleryGrid({ event, dict, images: initialImages }:
                         <h2 className="text-2xl md:text-3xl font-heading font-bold text-stone-gray">
                             {getTrans(dict, event.nameKey)}
                         </h2>
-                        {event.date && (
+                        {event.date && mounted && (
                             <span className="text-sm text-stone-500 font-medium">
                                 {new Date(event.date).toLocaleDateString('en-IN', {
                                     year: 'numeric',
@@ -87,20 +94,23 @@ export default function EventGalleryGrid({ event, dict, images: initialImages }:
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-jain-orange"></div>
                         </div>
                     ) : images.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 animate-fadeIn">
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 animate-fadeIn">
                             {images.map((imgSrc, idx) => (
                                 <div
                                     key={idx}
                                     className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer aspect-square"
-                                    onClick={() => setSelectedImg(imgSrc)}
+                                    onClick={() => {
+                                        setSelectedImg(imgSrc);
+                                        setSelectedIdx(idx);
+                                    }}
                                 >
                                     <img
                                         src={imgSrc}
                                         alt={`${getTrans(dict, event.nameKey)} - Image ${idx + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-6">
-                                        <p className="text-white font-medium transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4 md:p-5">
+                                        <p className="text-white font-medium text-sm md:text-base transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                                             {getTrans(dict, event.nameKey)}
                                         </p>
                                     </div>
@@ -122,15 +132,57 @@ export default function EventGalleryGrid({ event, dict, images: initialImages }:
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 transition-opacity"
                     onClick={() => setSelectedImg(null)}
                 >
-                    <button className="absolute top-4 right-4 text-white text-4xl hover:text-jain-orange transition-colors">
-                        &times;
-                    </button>
-                    <img
-                        src={selectedImg}
-                        alt="Lightbox"
-                        className="max-w-[90vw] max-h-[90vh] rounded shadow-lg transform scale-100 transition-transform"
+                    <div
+                        className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex items-center justify-center p-4"
                         onClick={(e) => e.stopPropagation()}
-                    />
+                    >
+                        {/* Close Button */}
+                        <button 
+                            onClick={() => setSelectedImg(null)}
+                            className="absolute top-0 right-0 md:-top-4 md:-right-4 z-20 text-white/50 hover:text-white transition-colors p-2"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+
+                        {/* Lightbox Navigation */}
+                        {images.length > 1 && (
+                            <>
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        const newIdx = (selectedIdx - 1 + images.length) % images.length;
+                                        setSelectedIdx(newIdx);
+                                        setSelectedImg(images[newIdx]);
+                                    }}
+                                    className="absolute left-4 md:left-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                                </button>
+
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        const newIdx = (selectedIdx + 1) % images.length;
+                                        setSelectedIdx(newIdx);
+                                        setSelectedImg(images[newIdx]);
+                                    }}
+                                    className="absolute right-4 md:right-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </button>
+                            </>
+                        )}
+
+                        <img
+                            src={selectedImg}
+                            alt="Lightbox"
+                            className="max-w-full max-h-full object-contain rounded shadow-2xl animate-in zoom-in-95 duration-300"
+                        />
+                        
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                            {selectedIdx + 1} / {images.length}
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

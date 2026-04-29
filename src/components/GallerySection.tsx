@@ -3,14 +3,16 @@ import EventGalleryGrid from '@/components/EventGalleryGrid';
 import { GalleryEvent } from '@/lib/types';
 import { getEventImages } from '@/lib/gallery-images';
 import AnnouncementSlideshow from '@/components/AnnouncementSlideshow';
+import DynamicGallery from '@/components/DynamicGallery';
 
 interface GallerySectionProps {
     dict: any;
     siteConfig: any;
     galleryEvents: { events: GalleryEvent[] };
+    lang: string;
 }
 
-export default function GallerySection({ dict, siteConfig, galleryEvents }: GallerySectionProps) {
+export default function GallerySection({ dict, siteConfig, galleryEvents, lang }: GallerySectionProps) {
     return (
         <div id="gallery" className="bg-gradient-to-b from-stone-50 via-white to-stone-50 scroll-mt-16">
             {/* Hero Header */}
@@ -30,22 +32,43 @@ export default function GallerySection({ dict, siteConfig, galleryEvents }: Gall
             </div>
 
             <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
-                <AnnouncementSlideshow dict={dict} />
-                <div className="bg-white rounded-[2.5rem] p-6 md:p-10 border border-stone-100 shadow-xl shadow-stone-200/50">
-                    {/* Event-based Gallery Sections */}
-                    {galleryEvents.events.map((event) => {
-                        // Get images for this event from centralized configuration
-                        const images = getEventImages(event.id);
+                <div className="mb-12">
+                    <AnnouncementSlideshow dict={dict} />
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Manual / Permanent Events Column */}
+                    <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-stone-100 shadow-xl shadow-stone-200/50 h-fit">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="w-2 h-8 bg-jain-orange rounded-full"></div>
+                            <h2 className="text-2xl font-bold text-stone-gray uppercase tracking-tight">
+                                {getTrans(dict, 'gallery.permanent_collections') || 'Main Collections'}
+                            </h2>
+                        </div>
+                        
+                        {galleryEvents.events.map((event) => {
+                            const images = getEventImages(event.id);
+                            return (
+                                <EventGalleryGrid
+                                    key={event.id}
+                                    event={event}
+                                    dict={dict}
+                                    images={images}
+                                />
+                            );
+                        })}
+                    </div>
 
-                        return (
-                            <EventGalleryGrid
-                                key={event.id}
-                                event={event}
-                                dict={dict}
-                                images={images}
-                            />
-                        );
-                    })}
+                    {/* Dynamic / Latest Updates Column */}
+                    <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-stone-100 shadow-xl shadow-stone-200/50 h-fit">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="w-2 h-8 bg-amber-400 rounded-full"></div>
+                            <h2 className="text-2xl font-bold text-stone-gray uppercase tracking-tight">
+                                {getTrans(dict, 'gallery.latest_updates') || 'Latest Updates'}
+                            </h2>
+                        </div>
+                        <DynamicGallery dict={dict} lang={lang} />
+                    </div>
                 </div>
             </div>
         </div>

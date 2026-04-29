@@ -35,14 +35,33 @@ The gallery displays images based on **Tags**. When you upload a photo, you must
 4.  Add the appropriate tag (e.g., `glimpses`) in the **Tags** field.
 5.  Save changes. The images will appear on the website instantly.
 
-## 3. Adding New Events
+## 3. Dynamic Gallery (FULLY AUTOMATIC)
 
-To add a new event to the gallery:
+You can now add new events without editing any JSON files. The website will automatically discover new events based on Cloudinary folders.
+
+### Steps to add a dynamic event:
+1.  **Create a Folder** in Cloudinary (e.g., inside your main folder).
+2.  **Naming Convention**: Name the folder starting with the date in `YYYY-MM-DD_` format.
+    - Example: `2024-05-15_Pratishtha_Mahotsav`
+    - Example: `2024-08-10_Shivir_Glimpses`
+3.  **Bilingual Support (Optional)**: You can provide both English and Hindi names in the folder name using `_HI_` as a separator.
+    - Example: `2024-05-15_Pratishtha Mahotsav_HI_प्रतिष्ठा महोत्सव`
+    - The website will automatically show the correct language based on the user's selection.
+4.  **Upload** your photos into that folder.
+5.  **Tag all images** in that folder with the tag: `gallery_event`
+6.  The website will automatically:
+    - Create a new section in the Gallery.
+    - Extract the date (e.g., 15 May 2024).
+    - Use the correct name for English or Hindi (e.g., "Pratishtha Mahotsav" or "प्रतिष्ठा महोत्सव").
+
+## 4. Manual Events (Legacy Way)
+
+To add a manual event to the gallery (where you want custom descriptions or specific IDs):
 1.  Open `src/content/gallery-events.json`.
 2.  Add a new entry with a unique `id` (e.g., `"Diwali_2026"`).
 3.  Upload photos to Cloudinary and tag them with that same ID (`Diwali_2026`).
 
-## 4. Troubleshooting
+## 5. Troubleshooting
 
 -   **Images not appearing?** Double-check that "Resource list" is enabled in Cloudinary Security settings.
 -   **Wrong images showing?** Ensure the tags in Cloudinary exactly match the IDs in `gallery-events.json`.

@@ -12,5 +12,5 @@ export default async function GalleryPage({ params }: { params: Promise<{ lang: 
     const siteConfig = await getSiteConfig();
     const galleryEvents = await getGalleryEvents();
 
-    return <GallerySection dict={dict} siteConfig={siteConfig} galleryEvents={galleryEvents} />;
+    return <GallerySection dict={dict} siteConfig={siteConfig} galleryEvents={galleryEvents} lang={lang} />;
 }

@@ -106,7 +106,9 @@
         },
         "no_images": "No images available yet",
         "view_all": "View All Photos",
-        "loading": "Loading images..."
+        "loading": "Loading images...",
+        "permanent_collections": "Collection",
+        "latest_updates": "Latest Updates"
     },
     "trust": {
         "title": "Trust Committee",

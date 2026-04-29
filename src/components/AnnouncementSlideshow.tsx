@@ -37,7 +37,7 @@ export default function AnnouncementSlideshow({ dict }: AnnouncementSlideshowPro
                 </h2>
             </div>
 
-            <div className="relative aspect-[16/9] md:aspect-[21/9] w-full overflow-hidden rounded-[2.5rem] shadow-lg bg-stone-50 border border-stone-100 group">
+            <div className="relative aspect-[16/10] md:aspect-[21/7] w-full overflow-hidden rounded-[2.5rem] shadow-lg bg-stone-50 border border-stone-100 group">
                 {announcements.map((announcement, index) => (
                     <div
                         key={announcement.public_id}
@@ -48,15 +48,11 @@ export default function AnnouncementSlideshow({ dict }: AnnouncementSlideshowPro
                         }`}
                         onClick={() => setSelectedImg(announcement.url)}
                     >
-                        <div className="relative w-full h-full rounded-2xl overflow-hidden">
-                            <Image
+                        <div className="relative w-full h-full flex items-center justify-center p-2 md:p-4">
+                            <img
                                 src={announcement.url}
                                 alt="Announcement"
-                                fill
-                                className="object-contain md:object-cover"
-                                sizes="(max-width: 1280px) 100vw, 1200px"
-                                priority={index === 0}
-                                unoptimized
+                                className="max-w-full max-h-full w-auto h-auto object-contain rounded-xl shadow-sm"
                             />
                         </div>
                     </div>
@@ -110,12 +106,35 @@ export default function AnnouncementSlideshow({ dict }: AnnouncementSlideshowPro
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                     </button>
                     <div className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex items-center justify-center p-4">
+                        {/* Lightbox Navigation */}
+                        <button 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCurrentIndex((prev) => (prev - 1 + announcements.length) % announcements.length);
+                                setSelectedImg(announcements[(currentIndex - 1 + announcements.length) % announcements.length].url);
+                            }}
+                            className="absolute left-4 md:left-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                        </button>
+
                         <img
                             src={selectedImg}
                             alt="Announcement Full View"
                             className="max-w-full max-h-full object-contain rounded shadow-2xl animate-in zoom-in-95 duration-300"
                             onClick={(e) => e.stopPropagation()}
                         />
+
+                        <button 
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setCurrentIndex((prev) => (prev + 1) % announcements.length);
+                                setSelectedImg(announcements[(currentIndex + 1) % announcements.length].url);
+                            }}
+                            className="absolute right-4 md:right-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
                     </div>
                 </div>
             )}
