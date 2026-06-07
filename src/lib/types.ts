@@ -51,6 +51,13 @@ export interface ExternalLink {
     isActive: boolean;
 }
 
+export interface LocationInfo {
+    nameKey: string;
+    embedUrl: string;
+    directionsUrl: string;
+    addressKey: string;
+}
+
 export interface SiteConfig {
     general: {
         siteName: string;
@@ -69,7 +76,8 @@ export interface SiteConfig {
             titleKey: string;
             textKey: string;
         };
-        mapUrl: string;
+        mapUrl?: string;
+        locations: LocationInfo[];
     };
     trust: {
         committee: {

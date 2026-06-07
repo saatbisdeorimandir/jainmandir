@@ -41,7 +41,21 @@
             "titleKey": "disclaimer.title",
             "textKey": "disclaimer.text"
         },
-        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin"
+        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
+        "locations": [
+            {
+                "nameKey": "contact.locations.temple.name",
+                "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
+                "directionsUrl": "https://maps.app.goo.gl/T3jrprMhsZUeocXE8?g_st=aw",
+                "addressKey": "contact.locations.temple.address"
+            },
+            {
+                "nameKey": "contact.locations.vishranti.name",
+                "embedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14499.45680483428!2d74.623823!3d24.872838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39682f6e9c916297%3A0x6e760c6d9d150257!2sShwetamber%20Jain%20Dharamsala!5e0!3m2!1sen!2sin!4v1717782348507!5m2!1sen!2sin",
+                "directionsUrl": "https://maps.app.goo.gl/NymRam5MKRi8BdiR8?g_st=aw",
+                "addressKey": "contact.locations.vishranti.address"
+            }
+        ]
     },
     "trust": {
         "committee": [

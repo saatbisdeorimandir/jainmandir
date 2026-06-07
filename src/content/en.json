@@ -113,6 +113,12 @@
     "trust": {
         "title": "Trust Committee",
         "subtitle": "Dedicated members serving the community.",
+        "gallery": {
+            "title": "Trustee Assemblies & Meetings",
+            "subtitle": "Glimpses from the general meetings, assemblies, and executive sessions of our trust.",
+            "img1_desc": "Executive Committee Assembly",
+            "img2_desc": "Annual General Meeting of the Trust"
+        },
         "table": {
             "title": "All Members",
             "no": "S.No",
@@ -146,7 +152,19 @@
             "address": "Address",
             "email": "Email",
             "name": "Name",
-            "phone": "Phone"
+            "phone": "Phone",
+            "directions": "Get Directions on Google Maps",
+            "switch_location": "Select Location"
+        },
+        "locations": {
+            "temple": {
+                "name": "Shri Saat Bees Deori Jain Temple (Chittorgarh Fort)",
+                "address": "Inside Chittorgarh Fort, near Fateh Prakash Palace, Chittorgarh, Rajasthan 312001"
+            },
+            "vishranti": {
+                "name": "Jain Shwetambar Vishranti Griha & Dharamshala (Railway Station)",
+                "address": "Opposite Railway Station, Railway Station Road, Chittorgarh, Rajasthan 312001"
+            }
         },
         "sections": {
             "main": "Main Contact",

@@ -1,6 +1,6 @@
 import { getTrans } from '@/lib/utils';
 import { Lang } from '@/lib/types';
-import { TrustCommittee, TrustTable } from '@/components/TrustComponents';
+import { TrustCommittee, TrustTable, TrustGallery } from '@/components/TrustComponents';
 
 interface TrustSectionProps {
     lang: string;
@@ -23,7 +23,7 @@ export default function TrustSection({ lang, dict, siteConfig, members }: TrustS
                     <h1 className="text-4xl md:text-6xl font-heading font-bold text-stone-gray mb-4 leading-[1.1] tracking-tight">
                         {getTrans(dict, 'trust.title')}
                     </h1>
-                    <div className="w-16 h-1.5 bg-jain-orange mb-6 mx-auto" />
+                    <div className="w-16 h-1.5 bg-jain-orange mb-6 mx-auto rounded-full" />
                     <p className="text-lg md:text-xl text-stone-500 font-light leading-relaxed max-w-3xl mx-auto">
                         {getTrans(dict, 'trust.subtitle')}
                     </p>
@@ -32,6 +32,11 @@ export default function TrustSection({ lang, dict, siteConfig, members }: TrustS
 
             <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
                 <div className="space-y-16">
+                    {/* Trustee Galleries */}
+                    <div className="bg-white rounded-[2.5rem] p-6 md:p-12 border border-stone-100 shadow-xl shadow-stone-200/50">
+                        <TrustGallery dict={dict} />
+                    </div>
+
                     {/* Trust Committee */}
                     <div className="bg-white rounded-[2.5rem] p-6 md:p-12 border border-stone-100 shadow-xl shadow-stone-200/50">
                         <TrustCommittee siteConfig={siteConfig} dict={dict} />
