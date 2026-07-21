@@ -1,7 +1,7 @@
-import { getDictionary } from '@/lib/api';
+import { getDictionary, getSiteConfig } from '@/lib/api';
 import Hero from '@/components/Hero';
 import HomeFeatures from '@/components/HomeFeatures';
-import StaySection from '@/components/StaySection';
+import InstagramPromotersSection from '@/components/InstagramPromotersSection';
 import { Lang } from '@/lib/types';
 
 export async function generateStaticParams() {
@@ -11,11 +11,13 @@ export async function generateStaticParams() {
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
     const { lang } = await params;
     const dict = await getDictionary(lang as Lang);
+    const siteConfig = await getSiteConfig();
 
     return (
         <>
             <Hero lang={lang} dict={dict} />
             <HomeFeatures dict={dict} />
+            <InstagramPromotersSection dict={dict} siteConfig={siteConfig} />
         </>
     );
 }

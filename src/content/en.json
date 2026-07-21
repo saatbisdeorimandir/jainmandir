@@ -308,5 +308,22 @@
                 "dining": "Traditional Dining Hall"
             }
         }
+    },
+    "instagram_promoters": {
+        "eyebrow": "Social Media Partner",
+        "title": "Promoted on Instagram",
+        "subtitle": "Special thanks to CharanSparsh Parivar Csp for showcasing the divine beauty, rich heritage, and spiritual sanctity of Saat Bees Deori Jain Mandir.",
+        "visit_page": "Visit Instagram Page",
+        "watch_reel": "View Profile & Posts",
+        "followers_label": "Followers",
+        "tag_us_title": "Did you feature our Mandir on Instagram?",
+        "tag_us_desc": "Tag our official page or share your reels & posts with us to get featured right here on our website!",
+        "tag_us_btn": "Tag Us on Instagram",
+        "items": [
+            {
+                "title": "CharanSparsh Parivar - Jain Tirth & Mandir Highlights",
+                "desc": "Regularly features peaceful glimpses, divine darshan, and architectural beauty of Jain Tirthankara temples including Saat Bees Deori Temple to thousands of devotees."
+            }
+        ]
     }
 }

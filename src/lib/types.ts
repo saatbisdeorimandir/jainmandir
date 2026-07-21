@@ -58,6 +58,20 @@ export interface LocationInfo {
     addressKey: string;
 }
 
+export interface InstagramPromoter {
+    id: string;
+    pageName: string;
+    handle: string;
+    url: string;
+    avatar?: string;
+    followers?: string;
+    badge?: string;
+    titleKey?: string;
+    descKey?: string;
+    postUrl?: string;
+    isActive?: boolean;
+}
+
 export interface SiteConfig {
     general: {
         siteName: string;
@@ -95,6 +109,7 @@ export interface SiteConfig {
     };
     events: EventItem[];
     gallery: GalleryItem[];
+    instagramPromoters?: InstagramPromoter[];
 }
 
 export interface PageConfig {
