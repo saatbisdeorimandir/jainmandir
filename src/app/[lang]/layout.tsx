@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Lang } from '@/lib/types';
 import { Metadata } from 'next';
+import { notFound, redirect } from 'next/navigation';
 import { getTrans } from '@/lib/utils';
 import StructuredData from '@/components/StructuredData';
 import AnnouncementPopup from '@/components/AnnouncementPopup';
@@ -13,6 +14,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
     const { lang } = await params;
+    if (lang !== 'en' && lang !== 'hi') {
+        return {};
+    }
     const dict = await getDictionary(lang as Lang);
     const siteConfig = await getSiteConfig();
     
@@ -78,6 +82,12 @@ export default async function Layout({
     params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params;
+    if (lang === 'admin') {
+        redirect('/admin/index.html');
+    }
+    if (lang !== 'en' && lang !== 'hi') {
+        notFound();
+    }
     const dict = await getDictionary(lang as Lang);
     const pagesConfig = await getPagesConfig();
     const siteConfig = await getSiteConfig();
