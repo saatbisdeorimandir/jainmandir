@@ -77,7 +77,7 @@
             "labelKey": "external_links.dharamshala_booking.label",
             "descKey": "external_links.dharamshala_booking.desc",
             "icon": "booking",
-            "isActive": true
+            "isActive": false
         }
     ],
     "social": {

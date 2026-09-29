@@ -106,17 +106,19 @@ export default function Hero({ lang, dict }: HeroProps) {
                         </svg>
                     </Link>
 
-                    <a
-                        href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')?.url || '#'}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-stone-800 hover:bg-white/20 font-medium py-5 px-10 md:px-12 rounded-full shadow-xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 transition-all duration-300 min-w-[220px] justify-center"
-                    >
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                        {getTrans(dict, 'hero.booking_btn')}
-                    </a>
+                    {siteConfig.externalLinks?.find(l => l.id === 'dharamshala_booking')?.isActive && (
+                        <a
+                            href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')?.url || '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-stone-800 hover:bg-white/20 font-medium py-5 px-10 md:px-12 rounded-full shadow-xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 transition-all duration-300 min-w-[220px] justify-center"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            {getTrans(dict, 'hero.booking_btn')}
+                        </a>
+                    )}
                 </div>
             </div>
 

@@ -10,7 +10,13 @@ interface StaySectionProps {
 
 export default function StaySection({ dict }: StaySectionProps) {
     const { ref, isInView } = useInView<HTMLElement>({ threshold: 0.1 });
-    const bookingLink = siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')?.url || '#';
+    const bookingItem = siteConfig.externalLinks?.find(l => l.id === 'dharamshala_booking');
+
+    if (!bookingItem?.isActive) {
+        return null;
+    }
+
+    const bookingLink = bookingItem.url || '#';
 
     const features = ['peace', 'amenities', 'dining'];
 
