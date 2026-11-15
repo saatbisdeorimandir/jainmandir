@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TrustMember, SiteConfig, Lang } from '@/lib/types';
 import { getTrans, getBilingualAuth, assetPath } from '@/lib/utils';
 
@@ -92,15 +92,33 @@ export function TrustGallery({ dict }: TrustGalleryProps) {
         document.body.style.overflow = '';
     };
 
-    const nextImage = (e: React.MouseEvent) => {
-        e.stopPropagation();
+    const nextImage = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
         setActiveImageIndex((prev) => (prev !== null ? (prev + 1) % images.length : 0));
     };
 
-    const prevImage = (e: React.MouseEvent) => {
-        e.stopPropagation();
+    const prevImage = (e?: React.MouseEvent) => {
+        if (e) e.stopPropagation();
         setActiveImageIndex((prev) => (prev !== null ? (prev - 1 + images.length) % images.length : 0));
     };
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (activeImageIndex === null) return;
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            } else if (e.key === 'ArrowLeft') {
+                prevImage();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+        };
+    }, [activeImageIndex, images.length]);
 
     return (
         <div className="mb-8">
@@ -152,7 +170,7 @@ export function TrustGallery({ dict }: TrustGalleryProps) {
             {/* Lightbox Modal */}
             {activeImageIndex !== null && (
                 <div 
-                    className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-fade-in"
+                    className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-black/95 backdrop-blur-md p-4 animate-fade-in select-none"
                     onClick={closeLightbox}
                 >
                     {/* Close button */}

@@ -19,7 +19,8 @@ export async function getPagesConfig(): Promise<PageConfig> {
 export async function getTrustMembers(): Promise<TrustMember[]> {
     const filePath = path.join(contentDir, 'trust-members.json');
     const file = await fs.promises.readFile(filePath, 'utf8');
-    return JSON.parse(file);
+    const parsed = JSON.parse(file);
+    return Array.isArray(parsed) ? parsed : (parsed.members || []);
 }
 
 export async function getGalleryEvents() {
@@ -29,10 +30,8 @@ export async function getGalleryEvents() {
 }
 
 export async function getDictionary(lang: Lang) {
-    if (lang !== 'en' && lang !== 'hi') {
-        throw new Error(`Invalid language: ${lang}`);
-    }
-    const filePath = path.join(contentDir, `${lang}.json`);
+    const validLang = lang === 'hi' ? 'hi' : 'en';
+    const filePath = path.join(contentDir, `${validLang}.json`);
     const file = await fs.promises.readFile(filePath, 'utf8');
     return JSON.parse(file);
 }

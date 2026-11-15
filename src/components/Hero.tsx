@@ -1,9 +1,16 @@
 'use client';
 
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getTrans, assetPath } from '@/lib/utils';
-import siteConfig from '@/content/site-config.json';
-import { useEffect, useRef, useState } from 'react';
+import { useExhibition } from '@/context/ExhibitionContext';
+import { ArrowDown, Compass, Bed, Sparkles } from 'lucide-react';
+
+if (typeof window !== 'undefined') {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 interface HeroProps {
     lang: string;
@@ -11,130 +18,226 @@ interface HeroProps {
 }
 
 export default function Hero({ lang, dict }: HeroProps) {
-    const [scrollY, setScrollY] = useState(0);
-    const [mounted, setMounted] = useState(false);
-    const bgRef = useRef<HTMLImageElement>(null);
+    const { theme, openCurator } = useExhibition();
+    const heroRef = useRef<HTMLElement>(null);
+    const bgImageRef = useRef<HTMLImageElement>(null);
+    const textContainerRef = useRef<HTMLDivElement>(null);
+    const badgeRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
+
+    const isHi = lang === 'hi';
 
     useEffect(() => {
-        setMounted(true);
-        const onScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
+        const hero = heroRef.current;
+        const bg = bgImageRef.current;
+        const title = titleRef.current;
+        const badge = badgeRef.current;
+        const subtitle = subtitleRef.current;
+        const cta = ctaRef.current;
+
+        if (!hero || !bg) return;
+
+        // Entrance animation
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+            tl.fromTo(
+                bg,
+                { scale: 1.25, opacity: 0.6 },
+                { scale: 1.1, opacity: 1, duration: 1.6 }
+            )
+            .fromTo(
+                badge,
+                { y: -20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                '-=1.2'
+            )
+            .fromTo(
+                title,
+                { y: 40, opacity: 0 },
+                { y: 0, opacity: 1, duration: 1 },
+                '-=0.8'
+            )
+            .fromTo(
+                subtitle,
+                { y: 30, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                '-=0.6'
+            )
+            .fromTo(
+                cta,
+                { y: 20, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8 },
+                '-=0.5'
+            );
+
+            // Scroll-driven parallax using ScrollTrigger
+            gsap.to(bg, {
+                yPercent: 25,
+                scale: 1.18,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: hero,
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            });
+
+            if (textContainerRef.current) {
+                gsap.to(textContainerRef.current, {
+                    yPercent: -15,
+                    opacity: 0.2,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: hero,
+                        start: 'top top',
+                        end: 'bottom top',
+                        scrub: true,
+                    },
+                });
+            }
+        }, heroRef);
+
+        return () => ctx.revert();
     }, []);
 
-    const parallaxOffset = scrollY * 0.35;
+    const scrollToExhibition = () => {
+        const target = document.getElementById('exhibition-chapters');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
-        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-32 bg-stone-50">
-            {/* Background with parallax */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
+        <section
+            ref={heroRef}
+            className="relative min-h-[92vh] md:min-h-screen flex items-center justify-center overflow-hidden bg-exhibit-bg text-exhibit-fg transition-colors duration-500"
+        >
+            {/* Atmospheric Background with Architectural Lighting */}
+            <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <img
-                    ref={bgRef}
-                    src={assetPath("/assets/images/about/SathisDeori-Temple.jpg")}
-                    className="w-full h-full object-cover opacity-100 scale-110"
-                    style={{ transform: `scale(1.1) translateY(${parallaxOffset}px)`, willChange: 'transform' }}
-                    alt="Jain Temple Background"
+                    ref={bgImageRef}
+                    src={assetPath('/assets/images/about/SathisDeori-Temple.jpg')}
+                    alt="Shri Saat Bees Deori Jain Temple Chittorgarh Fort"
+                    className="w-full h-full object-cover object-center will-change-transform"
                 />
-                <div className="absolute inset-0 bg-stone-50/20"></div>
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-stone-50/40 to-stone-50"></div>
+
+                {/* Day / Night Exhibition Mode Atmospheric Lighting Masks */}
+                {theme === 'daylight' ? (
+                    <>
+                        {/* Daylight Marble: Sunlit limestone radiance */}
+                        <div className="absolute inset-0 bg-stone-900/35" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#F8F7F4] via-[#F8F7F4]/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-stone-950/40 via-transparent to-[#F8F7F4]" />
+                    </>
+                ) : (
+                    <>
+                        {/* Nocturnal Sanctuary: Deep basalt & warm lantern aura */}
+                        <div className="absolute inset-0 bg-black/65" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0C0D0F] via-[#0C0D0F]/80 to-transparent" />
+                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-500/10 via-transparent to-[#0C0D0F]/90" />
+                    </>
+                )}
             </div>
 
-            {/* Floating decorative orbs */}
-            {mounted && (
-                <>
-                    <div
-                        className="orb w-72 h-72 bg-jain-orange top-16 -left-16"
-                        style={{ animationDelay: '0s', animationDuration: '7s' }}
-                    />
-                    <div
-                        className="orb w-56 h-56 bg-jain-red bottom-24 -right-12"
-                        style={{ animationDelay: '2s', animationDuration: '9s' }}
-                    />
-                    <div
-                        className="orb w-40 h-40 bg-amber-300 top-1/2 right-1/4"
-                        style={{ animationDelay: '1s', animationDuration: '6s' }}
-                    />
-                </>
-            )}
+            {/* Architectural Grid Overlay (Subtle Hairline Grid) */}
+            <div className="absolute inset-0 z-[1] pointer-events-none opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:48px_48px]" />
 
-            {/* Content */}
-            <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
-                {/* Decorative rule */}
+            {/* Content Container */}
+            <div
+                ref={textContainerRef}
+                className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 pt-20 pb-28 text-center flex flex-col items-center justify-center"
+            >
+                {/* Catalog Metadata Plate */}
                 <div
-                    className={`flex justify-center mb-8 ${mounted ? 'animate-fade-down' : 'opacity-0'}`}
+                    ref={badgeRef}
+                    className="badge-royal mb-6 shadow-sm"
                 >
-                    <div className="flex items-center gap-3">
-                        <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-jain-orange rounded-full" />
-                        <div className="w-2.5 h-2.5 rounded-full bg-jain-orange animate-glow-pulse" />
-                        <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-jain-orange rounded-full" />
-                    </div>
+                    <span className="w-1.5 h-1.5 rounded-full bg-mewar-crimson animate-pulse" />
+                    <span className="font-sans tracking-widest text-[10px] md:text-xs font-bold uppercase text-mewar-crimson">
+                        {isHi
+                            ? 'चित्रकूट महातीर्थ • 11वीं शताब्दी यूनेस्को धरोहर'
+                            : 'CHITRAKOOT TIRTH • 11TH CENTURY UNESCO HERITAGE'}
+                    </span>
                 </div>
 
-                {/* Heading */}
+                {/* Monumental Royal Headline */}
                 <h1
-                    className={`text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-10 text-stone-gray leading-[1.05] tracking-tight
-                        ${mounted ? 'animate-fade-up delay-150' : 'opacity-0'}`}
+                    ref={titleRef}
+                    className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-exhibit-fg tracking-wide mb-6 max-w-5xl drop-shadow-sm select-none"
                 >
-                    {getTrans(dict, 'hero.title')}
+                    {isHi ? (
+                        <>
+                            <span className="font-yatra text-mewar-crimson tracking-normal">श्री सात बीस देवरी</span> <br className="hidden sm:inline" />
+                            <span className="gold-gradient-text font-yatra tracking-normal">जैन महातीर्थ</span>
+                        </>
+                    ) : (
+                        <>
+                            <span className="font-cormorant font-bold text-mewar-crimson">Shree Saat Bees Deori</span> <br className="hidden sm:inline" />
+                            <span className="gold-gradient-text font-cormorant italic font-normal">Sanctuary of 27 Shrines</span>
+                        </>
+                    )}
                 </h1>
 
-                {/* Subtitle 1 */}
+                {/* Sacred Motif Divider */}
+                <div className="motif-divider mb-6">❖ ❖ ❖</div>
+
+                {/* Subtitle & Curatorial Statement */}
                 <p
-                    className={`text-xl md:text-xl lg:text-2xl text-stone-500 mb-4 max-w-3xl mx-auto font-light leading-relaxed italic border-l-4 border-jain-orange/20 pl-8 inline-block text-left
-                        ${mounted ? 'animate-fade-up delay-300' : 'opacity-0'}`}
+                    ref={subtitleRef}
+                    className="font-sans text-base sm:text-lg md:text-xl text-exhibit-fg/85 max-w-3xl mx-auto mb-10 leading-relaxed font-normal"
                 >
-                    {getTrans(dict, 'hero.subtitle0')}
+                    {isHi
+                        ? 'चित्तौड़गढ़ दुर्ग के हृदय में स्थित 27 भव्य जिनालयों का वह पावन धाम, जहाँ शांति, अहिंसा और सदियों की संगमरमर कला जीवंत है।'
+                        : 'At the heart of majestic Chittorgarh Fort—a serene sanctuary of 27 sacred shrines, timeless peace, and intricate marble carvings preserved across a thousand years.'}
                 </p>
 
-                {/* Subtitle 2 */}
-                <p
-                    className={`text-xl md:text-2xl lg:text-3xl text-stone-500 mb-14 max-w-3xl mx-auto font-light leading-relaxed italic border-l-4 border-jain-orange/20 pl-8 inline-block text-left
-                        ${mounted ? 'animate-fade-up delay-400' : 'opacity-0'}`}
+                {/* Action Controls */}
+                <div
+                    ref={ctaRef}
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
                 >
-                    {getTrans(dict, 'hero.subtitle')}
-                </p>
-
-                {/* CTA */}
-                <div className={`flex flex-col sm:flex-row items-center justify-center gap-6 ${mounted ? 'animate-scale-in delay-600' : 'opacity-0'}`}>
-                    <Link
-                        href={`/${lang}/about`}
-                        className="shimmer-btn inline-flex items-center gap-3 bg-stone-900 border border-stone-800 text-stone-50 hover:bg-stone-800 font-medium py-5 px-10 md:px-12 rounded-full shadow-2xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 hover:shadow-jain-orange/20 transition-all duration-300 min-w-[220px] justify-center"
+                    {/* Primary Exhibition Button */}
+                    <button
+                        onClick={scrollToExhibition}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-mewar-crimson via-mewar-crimson-deep to-[#B8860B] text-white font-sans font-bold text-xs md:text-sm tracking-wider uppercase hover:opacity-95 transition-all shadow-xl shadow-mewar-crimson/30 group border border-mewar-brass/50 hover:scale-[1.02]"
                     >
-                        {getTrans(dict, 'hero.btn')}
-                        <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </Link>
+                        <Compass className="w-4 h-4 text-mewar-brass-light group-hover:rotate-45 transition-transform duration-300" />
+                        <span>{isHi ? 'प्रदर्शनी अध्याय देखें' : 'Explore Sacred Chronicles'}</span>
+                    </button>
 
-                    {siteConfig.externalLinks?.find(l => l.id === 'dharamshala_booking')?.isActive && (
-                        <a
-                            href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')?.url || '#'}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-stone-800 hover:bg-white/20 font-medium py-5 px-10 md:px-12 rounded-full shadow-xl tracking-[0.1em] uppercase text-xs md:text-sm hover:scale-105 transition-all duration-300 min-w-[220px] justify-center"
-                        >
-                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                            {getTrans(dict, 'hero.booking_btn')}
-                        </a>
-                    )}
+                    {/* Curator Guide / Search Trigger - Non-grey Crisp Button */}
+                    <button
+                        onClick={openCurator}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full border-2 border-mewar-crimson/35 bg-white text-mewar-crimson font-sans font-bold text-xs md:text-sm tracking-wider uppercase hover:border-mewar-crimson hover:bg-mewar-crimson hover:text-white hover:shadow-lg transition-all shadow-sm group"
+                    >
+                        <Sparkles className="w-4 h-4 text-mewar-brass group-hover:text-white transition-colors" />
+                        <span>{isHi ? 'मार्गदर्शिका खोलें (⌘K)' : 'Curator Guide (Cmd+K)'}</span>
+                    </button>
+
+                    {/* Dharamshala Quick Link - Non-grey Crisp Button */}
+                    <Link
+                        href={`/${lang}/contact#stay`}
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full border-2 border-mewar-brass/50 bg-white text-mewar-crimson hover:bg-mewar-brass hover:text-white font-sans text-xs md:text-sm tracking-wider uppercase transition-all shadow-sm font-bold group"
+                    >
+                        <Bed className="w-4 h-4 text-mewar-crimson group-hover:text-white transition-colors" />
+                        <span>{isHi ? 'धर्मशाला आवास' : 'Dharamshala Stay'}</span>
+                    </Link>
                 </div>
             </div>
 
-            {/* Scroll indicator - Centered Wrapper */}
-            {mounted && (
-                <div className="absolute bottom-8 left-0 right-0 flex justify-center pointer-events-none z-20">
-                    <div className={`animate-fade-up delay-800 flex flex-col items-center gap-2 pointer-events-auto`}>
-                        <span className="text-xs text-stone-400 uppercase tracking-widest font-medium">
-                            {getTrans(dict, 'about_page.scroll_label') || 'Scroll'}
-                        </span>
-                        <div className="w-5 h-8 border-2 border-stone-300/50 rounded-full flex justify-center pt-1.5">
-                            <div className="w-1 h-2 bg-jain-orange rounded-full animate-bounce" />
-                        </div>
-                    </div>
+            {/* Bottom Scroll Indicator */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none">
+                <span className="font-editorial-meta text-[10px] text-exhibit-muted tracking-[0.25em]">
+                    {isHi ? 'नीचे स्क्रॉल करें' : 'SCROLL TO EXPLORE'}
+                </span>
+                <div className="w-4 h-7 rounded-full border border-exhibit-hairline flex items-start justify-center p-1">
+                    <span className="w-1 h-2 rounded-full bg-exhibit-gold animate-bounce" />
                 </div>
-            )}
+            </div>
         </section>
     );
 }

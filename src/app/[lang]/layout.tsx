@@ -7,6 +7,9 @@ import { notFound, redirect } from 'next/navigation';
 import { getTrans } from '@/lib/utils';
 import StructuredData from '@/components/StructuredData';
 import AnnouncementPopup from '@/components/AnnouncementPopup';
+import { ExhibitionProvider } from '@/context/ExhibitionContext';
+import CuratorDrawer from '@/components/CuratorDrawer';
+import ExhibitionDock from '@/components/ExhibitionDock';
 
 export async function generateStaticParams() {
     return [{ lang: 'en' }, { lang: 'hi' }];
@@ -82,9 +85,6 @@ export default async function Layout({
     params: Promise<{ lang: string }>;
 }) {
     const { lang } = await params;
-    if (lang === 'admin') {
-        redirect('/admin/index.html');
-    }
     if (lang !== 'en' && lang !== 'hi') {
         notFound();
     }
@@ -93,12 +93,16 @@ export default async function Layout({
     const siteConfig = await getSiteConfig();
 
     return (
-        <div className="flex flex-col min-h-screen">
-            <StructuredData dict={dict} siteConfig={siteConfig} lang={lang} />
-            <AnnouncementPopup dict={dict} />
-            <Navbar lang={lang} dict={dict} pagesConfig={pagesConfig} siteConfig={siteConfig} />
-            <main className="flex-grow">{children}</main>
-            <Footer dict={dict} siteConfig={siteConfig} />
-        </div>
+        <ExhibitionProvider>
+            <div className="flex flex-col min-h-screen bg-exhibit-bg text-exhibit-fg transition-colors duration-300">
+                <StructuredData dict={dict} siteConfig={siteConfig} lang={lang} />
+                <AnnouncementPopup dict={dict} />
+                <CuratorDrawer lang={lang} />
+                <Navbar lang={lang} dict={dict} pagesConfig={pagesConfig} siteConfig={siteConfig} />
+                <main className="flex-grow">{children}</main>
+                <Footer dict={dict} siteConfig={siteConfig} />
+                <ExhibitionDock lang={lang} />
+            </div>
+        </ExhibitionProvider>
     );
 }

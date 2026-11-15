@@ -32,16 +32,24 @@ export default function Footer({ dict, siteConfig }: FooterProps) {
     };
 
     return (
-        <footer className="bg-stone-gray text-white py-12 mt-12">
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+        <footer className="bg-exhibit-surface border-t border-exhibit-hairline text-exhibit-fg py-16 transition-colors duration-500">
+            <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
                 <div>
-                    <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-red-400">
+                    <div className="badge-royal mb-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse" />
+                        <span className="font-cinzel text-[10px] tracking-widest">
+                            CHITRAKOOT TIRTH
+                        </span>
+                    </div>
+                    <h3 className="font-heading text-xl md:text-2xl font-bold mb-3 text-exhibit-fg tracking-wide">
                         {getTrans(dict, 'site_name')}
                     </h3>
-                    <p className="text-gray-300 text-sm">{getTrans(dict, 'footer.text')}</p>
+                    <p className="text-exhibit-muted text-sm font-sans leading-relaxed">{getTrans(dict, 'footer.text')}</p>
                 </div>
                 <div>
-                    <h3 className="text-xl font-bold mb-4">{getTrans(dict, 'footer.social')}</h3>
+                    <h4 className="font-cinzel text-xs font-bold text-royal-gold tracking-widest uppercase mb-4">
+                        {getTrans(dict, 'footer.social')}
+                    </h4>
                     <div className="flex justify-center md:justify-start space-x-4">
                         {Object.entries(siteConfig.social).map(([key, url]) => (
                             <a
@@ -49,7 +57,7 @@ export default function Footer({ dict, siteConfig }: FooterProps) {
                                 href={url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="p-2.5 rounded-full border border-mewar-crimson/25 text-mewar-crimson hover:bg-mewar-crimson hover:text-white transition-all bg-white dark:bg-mewar-basalt shadow-sm"
                                 aria-label={key}
                             >
                                 {getIcon(key)}
@@ -58,31 +66,39 @@ export default function Footer({ dict, siteConfig }: FooterProps) {
                     </div>
                 </div>
                 <div>
-                    <h3 className="text-xl font-bold mb-4">{getTrans(dict, 'footer.contact')}</h3>
+                    <h4 className="font-cinzel text-xs font-bold text-royal-gold tracking-widest uppercase mb-4">
+                        {getTrans(dict, 'footer.contact')}
+                    </h4>
                     {siteConfig.contact.mainContacts.length > 0 && (
-                        <div className="space-y-2 mb-6">
-                            <p className="text-gray-300 text-sm">{siteConfig.contact.mainContacts[0].phone}</p>
-                            <p className="text-gray-300 text-sm">{getTrans(dict, siteConfig.contact.mainContacts[0].addressKey)}</p>
+                        <div className="space-y-1.5 mb-6 text-sm font-sans text-exhibit-muted">
+                            <p className="text-exhibit-fg font-medium">{siteConfig.contact.mainContacts[0].phone}</p>
+                            <p>{getTrans(dict, siteConfig.contact.mainContacts[0].addressKey)}</p>
                         </div>
                     )}
                     
                     {/* Dharamshala Booking Link */}
                     {siteConfig.externalLinks?.find(l => l.id === 'dharamshala_booking')?.isActive && (
-                        <div className="pt-4 border-t border-white/10">
+                        <div className="pt-4 border-t border-royal-gold/20">
                             <a 
                                 href={siteConfig.externalLinks.find(l => l.id === 'dharamshala_booking')!.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-sm text-orange-400 hover:text-orange-300 transition-colors font-medium group"
+                                className="inline-flex items-center gap-2 text-xs font-cinzel uppercase tracking-wider text-royal-gold hover:text-royal-gold-light transition-colors font-bold group"
                             >
-                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                                {getTrans(dict, 'footer.booking')}
+                                <span>{getTrans(dict, 'footer.booking')}</span>
                                 <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </a>
                         </div>
                     )}
+                </div>
+            </div>
+
+            <div className="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-exhibit-hairline flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-exhibit-muted/70">
+                <div>
+                    © {new Date().getFullYear()} Shri Saat Bees Deori Jain Temple Trust. All Rights Reserved.
+                </div>
+                <div>
+                    Chittorgarh Fort, Rajasthan • UNESCO World Heritage Site
                 </div>
             </div>
         </footer>

@@ -38,15 +38,18 @@ export default function StaySection({ dict }: StaySectionProps) {
             <div className="relative z-10 max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div className={`reveal ${isInView ? 'in-view' : ''}`}>
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-jain-orange/20 border border-jain-orange/30 text-jain-orange text-xs font-bold tracking-[0.2em] uppercase mb-8">
-                            {getTrans(dict, 'stay_section.eyebrow')}
-                        </span>
+                        <div className="badge-royal mb-6">
+                            <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse inline-block" />
+                            <span className="font-cinzel text-xs tracking-widest">
+                                {getTrans(dict, 'stay_section.eyebrow')}
+                            </span>
+                        </div>
                         
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-8 leading-[1.1] text-white">
+                        <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-8 font-bold leading-[1.1] text-white tracking-wide">
                             {getTrans(dict, 'stay_section.title')}
                         </h2>
                         
-                        <p className="text-lg md:text-xl text-stone-300 mb-10 font-light leading-relaxed max-w-xl">
+                        <p className="text-base sm:text-lg md:text-xl text-stone-300 mb-10 font-sans font-normal leading-relaxed max-w-xl">
                             {getTrans(dict, 'stay_section.subtitle')}
                         </p>
 
@@ -57,7 +60,7 @@ export default function StaySection({ dict }: StaySectionProps) {
                                     className={`flex items-start gap-4 transition-all duration-700 delay-[400ms] ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
                                     style={{ transitionDelay: `${400 + (i * 100)}ms` }}
                                 >
-                                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-jain-orange flex-shrink-0">
+                                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-exhibit-gold flex-shrink-0">
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                                         </svg>
@@ -71,7 +74,7 @@ export default function StaySection({ dict }: StaySectionProps) {
                             href={bookingLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="shimmer-btn inline-flex items-center gap-4 bg-jain-orange text-white hover:bg-jain-red font-bold py-5 px-10 rounded-xl shadow-2xl transition-all duration-500 hover:scale-105 group"
+                            className="inline-flex items-center gap-3 bg-gradient-to-r from-mewar-crimson via-mewar-crimson-deep to-[#B8860B] text-white hover:opacity-95 font-sans font-bold py-4 px-9 rounded-full shadow-2xl shadow-mewar-crimson/30 transition-all duration-300 hover:scale-105 group border border-mewar-brass/50"
                         >
                             {getTrans(dict, 'stay_section.btn')}
                             <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

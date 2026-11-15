@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GalleryItem } from '@/lib/types';
 import { getTrans, assetPath } from '@/lib/utils';
 
@@ -11,6 +11,26 @@ interface GalleryGridProps {
 
 export default function GalleryGrid({ items, dict }: GalleryGridProps) {
     const [selectedImg, setSelectedImg] = useState<string | null>(null);
+
+    // Body scroll lock
+    useEffect(() => {
+        if (selectedImg) {
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [selectedImg]);
+
+    // Keyboard ESC to close
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') setSelectedImg(null);
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
 
     return (
         <>
@@ -38,15 +58,20 @@ export default function GalleryGrid({ items, dict }: GalleryGridProps) {
             {/* Lightbox Modal */}
             {selectedImg && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 transition-opacity"
+                    className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity select-none"
                     onClick={() => setSelectedImg(null)}
                 >
-                    <button className="absolute top-4 right-4 text-white text-4xl">&times;</button>
+                    <button 
+                        className="absolute top-6 right-6 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/25 transition-all text-2xl leading-none"
+                        aria-label="Close fullscreen view"
+                    >
+                        &times;
+                    </button>
                     <img
                         src={assetPath(selectedImg)}
                         alt="Lightbox"
-                        className="max-w-[90vw] max-h-[90vh] rounded shadow-lg transform scale-100 transition-transform"
-                        onClick={(e) => e.stopPropagation()} // Click image shouldn't close it? typically yes or no.
+                        className="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-2xl"
+                        onClick={(e) => e.stopPropagation()}
                     />
                 </div>
             )}

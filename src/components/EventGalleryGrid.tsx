@@ -1,9 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GalleryEvent } from '@/lib/types';
-import { getTrans } from '@/lib/utils';
+import { getTrans, assetPath } from '@/lib/utils';
 import CloudinaryLoader from './CloudinaryLoader';
+import {
+    X,
+    ChevronLeft,
+    ChevronRight,
+    ZoomIn,
+    ZoomOut,
+    Maximize2,
+    Calendar,
+    Sparkles
+} from 'lucide-react';
 
 interface EventGalleryGridProps {
     event: GalleryEvent;
@@ -12,69 +22,177 @@ interface EventGalleryGridProps {
     defaultExpanded?: boolean;
 }
 
-export default function EventGalleryGrid({ event, dict, images: initialImages, defaultExpanded }: EventGalleryGridProps) {
+export default function EventGalleryGrid({
+    event,
+    dict,
+    images: initialImages,
+    defaultExpanded,
+}: EventGalleryGridProps) {
     const [selectedImg, setSelectedImg] = useState<string | null>(null);
     const [selectedIdx, setSelectedIdx] = useState<number>(0);
     const [isExpanded, setIsExpanded] = useState(event.isPermanent || defaultExpanded || false);
     const [images, setImages] = useState<string[]>(initialImages);
     const [isLoading, setIsLoading] = useState(initialImages.length === 0);
     const [mounted, setMounted] = useState(false);
+    const [isZoomed, setIsZoomed] = useState(false);
+    const lightboxRef = useRef<HTMLDivElement>(null);
+
+    // Touch swipe gesture references
+    const touchStartX = useRef<number | null>(null);
+    const touchStartY = useRef<number | null>(null);
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    // If initial images are empty, we might want to fetch from Cloudinary
-    const shouldFetchDynamic = initialImages.length === 0;
+    // Lock background body scroll when fullscreen lightbox is active
+    useEffect(() => {
+        if (selectedImg) {
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [selectedImg]);
 
-    // Use event.id as the Cloudinary tag
+    const closeLightbox = useCallback(() => {
+        if (typeof document !== 'undefined' && document.fullscreenElement) {
+            try {
+                document.exitFullscreen().catch(() => {});
+            } catch {}
+        }
+        setSelectedImg(null);
+        setIsZoomed(false);
+    }, []);
+
+    const showNext = useCallback(() => {
+        if (images.length <= 1) return;
+        const nextIdx = (selectedIdx + 1) % images.length;
+        setSelectedIdx(nextIdx);
+        setSelectedImg(images[nextIdx]);
+        setIsZoomed(false);
+    }, [selectedIdx, images]);
+
+    const showPrev = useCallback(() => {
+        if (images.length <= 1) return;
+        const prevIdx = (selectedIdx - 1 + images.length) % images.length;
+        setSelectedIdx(prevIdx);
+        setSelectedImg(images[prevIdx]);
+        setIsZoomed(false);
+    }, [selectedIdx, images]);
+
+    // Keyboard navigation for Lightbox
+    const handleKeyDown = useCallback(
+        (e: KeyboardEvent) => {
+            if (!selectedImg) return;
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                showNext();
+            } else if (e.key === 'ArrowLeft') {
+                showPrev();
+            }
+        },
+        [selectedImg, closeLightbox, showNext, showPrev]
+    );
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
+
+    // Touch handlers for mobile swipe
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchStartY.current = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: React.TouchEvent) => {
+        if (touchStartX.current === null || touchStartY.current === null) return;
+        const diffX = touchStartX.current - e.changedTouches[0].clientX;
+        const diffY = touchStartY.current - e.changedTouches[0].clientY;
+
+        // If horizontal swipe is distinct and greater than 40px
+        if (Math.abs(diffX) > 40 && Math.abs(diffX) > Math.abs(diffY)) {
+            if (diffX > 0) {
+                showNext();
+            } else {
+                showPrev();
+            }
+        }
+        touchStartX.current = null;
+        touchStartY.current = null;
+    };
+
+    const toggleNativeFullscreen = () => {
+        if (!document.fullscreenElement) {
+            if (lightboxRef.current?.requestFullscreen) {
+                lightboxRef.current.requestFullscreen().catch(() => {});
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen().catch(() => {});
+            }
+        }
+    };
+
+    const shouldFetchDynamic = initialImages.length === 0;
     const cloudinaryTag = event.id;
 
     if (images.length === 0 && !shouldFetchDynamic) {
         return (
-            <div className="text-center py-8 text-stone-500">
-                <p>{getTrans(dict, 'gallery.no_images') || 'No images available yet'}</p>
+            <div className="text-center py-8 text-exhibit-muted">
+                <p>{getTrans(dict, 'gallery.no_images') || 'No images available in this collection.'}</p>
             </div>
         );
     }
 
+    const openLightbox = (imgSrc: string, idx: number) => {
+        setSelectedImg(imgSrc);
+        setSelectedIdx(idx);
+        setIsZoomed(false);
+    };
+
     return (
-        <div className="mb-12 last:mb-0">
-            {/* Event Header */}
+        <div className="mb-14 last:mb-0">
+            {/* Collection Header */}
             <div
-                className="flex items-center justify-between mb-6 cursor-pointer group"
+                className="flex items-center justify-between p-5 rounded-2xl bg-exhibit-elevated/40 border border-exhibit-hairline hover:border-exhibit-gold/40 transition-all cursor-pointer group mb-6"
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 <div className="flex-1">
-                    <div className="flex items-center gap-4">
-                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-stone-gray">
+                    <div className="flex items-center gap-3">
+                        <span className="w-1.5 h-1.5 rounded-full bg-royal-gold" />
+                        <h3 className="text-xl md:text-2xl font-cinzel font-bold text-exhibit-fg group-hover:text-royal-gold transition-colors">
                             {getTrans(dict, event.nameKey)}
-                        </h2>
-                        {event.date && mounted && (
-                            <span className="text-sm text-stone-500 font-medium">
+                        </h3>
+                    </div>
+                    {event.date && mounted && (
+                        <div className="flex items-center gap-1.5 text-xs text-exhibit-muted mt-1 font-mono">
+                            <Calendar className="w-3.5 h-3.5 text-exhibit-gold" />
+                            <span>
                                 {new Date(event.date).toLocaleDateString('en-IN', {
                                     year: 'numeric',
                                     month: 'long',
-                                    day: 'numeric'
+                                    day: 'numeric',
                                 })}
                             </span>
-                        )}
-                    </div>
-                    <p className="text-stone-600 mt-2">
-                        {getTrans(dict, event.descriptionKey)}
-                    </p>
+                        </div>
+                    )}
                 </div>
-                <button
-                    className="ml-4 text-jain-orange transition-transform duration-300"
-                    style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)' }}
-                >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
+
+                <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono px-2.5 py-1 rounded-full bg-exhibit-surface border border-exhibit-hairline text-exhibit-muted">
+                        {images.length} {images.length === 1 ? 'Photo' : 'Photos'}
+                    </span>
+                    <span className="text-xs font-mono text-exhibit-gold px-2 py-1 rounded-full border border-exhibit-gold/30">
+                        {isExpanded ? '− Collapse' : '+ Expand'}
+                    </span>
+                </div>
             </div>
 
-            {/* Dynamic Loader */}
+            {/* Cloudinary dynamic fetch if needed */}
             {shouldFetchDynamic && (
                 <CloudinaryLoader
                     tag={cloudinaryTag}
@@ -86,101 +204,217 @@ export default function EventGalleryGrid({ event, dict, images: initialImages, d
                 />
             )}
 
-            {/* Image Grid */}
+            {/* Asymmetric Architectural Gallery Grid */}
             {isExpanded && (
                 <>
                     {isLoading ? (
-                        <div className="flex justify-center py-12">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-jain-orange"></div>
+                        <div className="flex justify-center py-16">
+                            <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-exhibit-gold" />
                         </div>
                     ) : images.length > 0 ? (
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 animate-fadeIn">
-                            {images.map((imgSrc, idx) => (
-                                <div
-                                    key={idx}
-                                    className="group relative overflow-hidden rounded-xl shadow-md cursor-pointer aspect-square"
-                                    onClick={() => {
-                                        setSelectedImg(imgSrc);
-                                        setSelectedIdx(idx);
-                                    }}
-                                >
-                                    <img
-                                        src={imgSrc}
-                                        alt={`${getTrans(dict, event.nameKey)} - Image ${idx + 1}`}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4 md:p-5">
-                                        <p className="text-white font-medium text-sm md:text-base transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                            {getTrans(dict, event.nameKey)}
-                                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+                            {images.map((imgSrc, idx) => {
+                                // Variable aspect ratios for architectural cadence
+                                const isWide = idx % 5 === 0;
+                                const isTall = idx % 5 === 1;
+
+                                return (
+                                    <div
+                                        key={idx}
+                                        onClick={() => openLightbox(imgSrc, idx)}
+                                        className={`group relative overflow-hidden rounded-2xl border border-exhibit-hairline shadow-md cursor-pointer bg-stone-900 transition-all duration-500 hover:shadow-2xl hover:border-exhibit-gold/60 ${
+                                            isWide
+                                                ? 'sm:col-span-2 aspect-[16/10]'
+                                                : isTall
+                                                ? 'aspect-[3/4]'
+                                                : 'aspect-square'
+                                        }`}
+                                    >
+                                        <img
+                                            src={assetPath(imgSrc)}
+                                            alt={`${getTrans(dict, event.nameKey)} - ${idx + 1}`}
+                                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                        />
+
+                                        {/* Hover Lens Reveal Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 md:p-5">
+                                            <div className="flex items-center justify-between">
+                                                <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20">
+                                                    {String(idx + 1).padStart(2, '0')} / {images.length}
+                                                </span>
+                                                <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                                                    <Maximize2 className="w-4 h-4" />
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <p className="text-white font-sans font-bold text-sm line-clamp-1">
+                                                    {getTrans(dict, event.nameKey)}
+                                                </p>
+                                                <p className="text-[11px] font-mono text-white/70 mt-0.5">
+                                                    Click to inspect details
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     ) : (
-                        <div className="text-center py-8 text-stone-500">
+                        <div className="text-center py-8 text-exhibit-muted">
                             <p>{getTrans(dict, 'gallery.no_images') || 'No images found for this event.'}</p>
-                            <p className="text-sm mt-2">Make sure images are tagged with '{cloudinaryTag}' in Cloudinary.</p>
                         </div>
                     )}
                 </>
             )}
 
-            {/* Lightbox Modal */}
+            {/* Fullscreen Museum Lens Lightbox */}
             {selectedImg && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 transition-opacity"
-                    onClick={() => setSelectedImg(null)}
+                    ref={lightboxRef}
+                    className="fixed inset-0 z-[99999] flex flex-col justify-between bg-black/95 backdrop-blur-2xl transition-opacity animate-fadeIn select-none"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) {
+                            closeLightbox();
+                        }
+                    }}
                 >
+                    {/* Lightbox Top Header */}
+                    <div className="flex items-center justify-between px-4 md:px-8 py-3.5 border-b border-white/15 bg-black/50 backdrop-blur-md text-white z-20">
+                        <div className="flex-1 min-w-0 mr-4">
+                            <div className="flex items-center gap-2">
+                                <span className="font-mono text-xs text-amber-300 font-bold tracking-widest">
+                                    {selectedIdx + 1} / {images.length}
+                                </span>
+                                <span className="hidden sm:inline text-xs text-white/50">•</span>
+                                <span className="hidden sm:inline text-xs text-white/70 font-sans">
+                                    {isZoomed ? 'विस्तृत दृश्य (Zoomed View)' : 'सामान्य दृश्य (Fit to Screen)'}
+                                </span>
+                            </div>
+                            <h4 className="font-sans font-bold text-sm md:text-base text-white truncate mt-0.5">
+                                {getTrans(dict, event.nameKey)}
+                            </h4>
+                        </div>
+
+                        <div className="flex items-center gap-2 md:gap-3">
+                            {/* Native Fullscreen Toggle */}
+                            <button
+                                onClick={toggleNativeFullscreen}
+                                className="p-2 md:p-2.5 rounded-full bg-white/10 hover:bg-white/25 text-white/90 hover:text-white transition-colors"
+                                title="Toggle Fullscreen"
+                                aria-label="Toggle Fullscreen"
+                            >
+                                <Maximize2 className="w-4 h-4" />
+                            </button>
+
+                            {/* Lens Zoom Toggle */}
+                            <button
+                                onClick={() => setIsZoomed(!isZoomed)}
+                                className={`p-2 md:p-2.5 rounded-full transition-colors ${
+                                    isZoomed 
+                                        ? 'bg-amber-400 text-black font-bold' 
+                                        : 'bg-white/10 hover:bg-white/25 text-white/90 hover:text-white'
+                                }`}
+                                title={isZoomed ? 'Reset zoom' : 'Inspect close-up'}
+                                aria-label={isZoomed ? 'Reset zoom' : 'Inspect close-up'}
+                            >
+                                {isZoomed ? <ZoomOut className="w-4 h-4" /> : <ZoomIn className="w-4 h-4" />}
+                            </button>
+
+                            {/* Close Button */}
+                            <button
+                                onClick={closeLightbox}
+                                className="flex items-center gap-1 px-3 py-1.5 md:py-2 rounded-full bg-white/15 hover:bg-white/30 text-white transition-colors text-xs font-mono font-bold"
+                                aria-label="Close fullscreen view"
+                            >
+                                <span className="hidden sm:inline">ESC</span>
+                                <X className="w-4 h-4" />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Central Inspection Area */}
                     <div
-                        className="relative max-w-[95vw] max-h-[95vh] w-full h-full flex items-center justify-center p-4"
-                        onClick={(e) => e.stopPropagation()}
+                        className={`relative flex-1 w-full flex items-center justify-center ${
+                            isZoomed ? 'overflow-auto cursor-zoom-out' : 'overflow-hidden cursor-default'
+                        } p-2 md:p-4`}
+                        onClick={(e) => {
+                            if (e.target === e.currentTarget) {
+                                closeLightbox();
+                            }
+                        }}
+                        onTouchStart={handleTouchStart}
+                        onTouchEnd={handleTouchEnd}
                     >
-                        {/* Close Button */}
-                        <button 
-                            onClick={() => setSelectedImg(null)}
-                            className="absolute top-0 right-0 md:-top-4 md:-right-4 z-20 text-white/50 hover:text-white transition-colors p-2"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                        </button>
-
-                        {/* Lightbox Navigation */}
+                        {/* Navigation Left */}
                         {images.length > 1 && (
-                            <>
-                                <button 
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        const newIdx = (selectedIdx - 1 + images.length) % images.length;
-                                        setSelectedIdx(newIdx);
-                                        setSelectedImg(images[newIdx]);
-                                    }}
-                                    className="absolute left-4 md:left-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-                                </button>
-
-                                <button 
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        const newIdx = (selectedIdx + 1) % images.length;
-                                        setSelectedIdx(newIdx);
-                                        setSelectedImg(images[newIdx]);
-                                    }}
-                                    className="absolute right-4 md:right-10 z-10 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-md transition-all"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                                </button>
-                            </>
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    showPrev();
+                                }}
+                                className="absolute left-2 md:left-6 z-30 p-2.5 md:p-3.5 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/25 hover:border-white/60 transition-all shadow-2xl group"
+                                aria-label="Previous image"
+                            >
+                                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 group-hover:-translate-x-0.5 transition-transform" />
+                            </button>
                         )}
 
-                        <img
-                            src={selectedImg}
-                            alt="Lightbox"
-                            className="max-w-full max-h-full object-contain rounded shadow-2xl animate-in zoom-in-95 duration-300"
-                        />
-                        
-                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/70 text-sm font-medium bg-black/40 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                            {selectedIdx + 1} / {images.length}
+                        {/* Image Container */}
+                        <div
+                            className={`flex items-center justify-center transition-all duration-300 ${
+                                isZoomed
+                                    ? 'min-w-full min-h-full items-start justify-center p-4'
+                                    : 'max-w-full max-h-[75vh] md:max-h-[80vh]'
+                            }`}
+                            onClick={(e) => {
+                                if (e.target === e.currentTarget) {
+                                    closeLightbox();
+                                }
+                            }}
+                        >
+                            <img
+                                src={assetPath(selectedImg)}
+                                alt={`${getTrans(dict, event.nameKey)} - ${selectedIdx + 1}`}
+                                className={`object-contain rounded-xl shadow-2xl transition-transform duration-300 ${
+                                    isZoomed
+                                        ? 'min-w-[125%] sm:min-w-[150%] max-w-none h-auto cursor-zoom-out'
+                                        : 'max-w-[92vw] max-h-[74vh] md:max-h-[78vh] cursor-zoom-in'
+                                }`}
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsZoomed(!isZoomed);
+                                }}
+                            />
+                        </div>
+
+                        {/* Navigation Right */}
+                        {images.length > 1 && (
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    showNext();
+                                }}
+                                className="absolute right-2 md:right-6 z-30 p-2.5 md:p-3.5 rounded-full bg-black/60 hover:bg-black/90 text-white backdrop-blur-md border border-white/25 hover:border-white/60 transition-all shadow-2xl group"
+                                aria-label="Next image"
+                            >
+                                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-0.5 transition-transform" />
+                            </button>
+                        )}
+                    </div>
+
+                    {/* Lightbox Footer Bar */}
+                    <div className="flex items-center justify-between px-4 md:px-8 py-2.5 border-t border-white/15 bg-black/50 backdrop-blur-md text-xs font-mono text-white/70 z-20">
+                        <div className="flex items-center gap-2 truncate">
+                            <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                            <span className="truncate">Shri Saat Bees Deori Jain Sanctuary • Chittorgarh Fort</span>
+                        </div>
+                        <div className="hidden md:flex items-center gap-3 text-white/60">
+                            <span>← / → to browse</span>
+                            <span>•</span>
+                            <span>Swipe on mobile</span>
+                            <span>•</span>
+                            <span>Click image to zoom</span>
                         </div>
                     </div>
                 </div>

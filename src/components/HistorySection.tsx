@@ -2,6 +2,7 @@ import { getTrans } from '@/lib/utils';
 import { Lang } from '@/lib/types';
 import TempleHistoryCard from '@/components/TempleHistoryCard';
 import HistoricalTimeline from '@/components/HistoricalTimeline';
+import MultiChapterExhibition from '@/components/MultiChapterExhibition';
 
 interface HistorySectionProps {
     lang: string;
@@ -264,48 +265,66 @@ Maharana Kumbha's Vijay Stambh is considered a replica of this tower. It was ren
 
 
     return (
-        <div id="history" className="bg-white min-h-screen scroll-mt-16">
-            {/* Hero Section */}
-            <section className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white py-16 md:py-20 text-justify">
-                <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-14">
-                    <div className="text-center max-w-4xl mx-auto">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-stone-gray mb-6">
-                            {pageTitle}
-                        </h1>
-                        <div className="w-24 h-1.5 bg-jain-orange mx-auto mb-8" />
-                        <p className="text-lg md:text-xl text-stone-600 leading-relaxed italic border-l-4 border-jain-orange/30 pl-6 py-2 bg-white/50 rounded-r-lg">
-                            {historyIntroText}
-                        </p>
-                        <p className="mt-6 text-stone-500">
-                            {pageSubtitle}
-                        </p>
+        <div id="history" className="bg-exhibit-bg text-exhibit-fg min-h-screen scroll-mt-16 transition-colors duration-500">
+            {/* Multi-Chapter Architectural Exhibition */}
+            <MultiChapterExhibition lang={lang} />
+
+            {/* Curatorial Introduction */}
+            <section className="py-16 md:py-24 border-t border-exhibit-hairline bg-white/60 dark:bg-mewar-basalt/60">
+                <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
+                    <div className="badge-royal mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-mewar-crimson animate-pulse" />
+                        <span className="font-sans font-bold text-xs tracking-widest text-mewar-crimson">
+                            {lang === 'hi' ? 'ऐतिहासिक प्रस्तावना' : 'CURATORIAL PROLOGUE'}
+                        </span>
                     </div>
+                    <h2 className="font-heading text-3xl md:text-5xl font-bold text-mewar-crimson tracking-wide mb-6">
+                        {pageTitle}
+                    </h2>
+                    <p className={`text-lg sm:text-xl md:text-2xl text-mewar-brass font-medium leading-relaxed max-w-3xl mx-auto mb-6 ${lang === 'hi' ? 'font-mukta' : 'font-cormorant italic'}`}>
+                        {pageSubtitle}
+                    </p>
+                    <p className={`text-base sm:text-lg text-exhibit-fg/90 leading-relaxed max-w-3xl mx-auto ${lang === 'hi' ? 'font-mukta' : 'font-sans'}`}>
+                        {historyIntroText}
+                    </p>
                 </div>
             </section>
 
 
             {/* Timeline Section */}
-            <section className="py-16 md:py-20 bg-stone-50">
+            <section className="py-16 md:py-24 bg-exhibit-surface border-t border-exhibit-hairline">
                 <div className="max-w-6xl mx-auto px-6 md:px-10">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-stone-gray mb-4">
+                        <div className="badge-royal mb-3">
+                            <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse" />
+                            <span className="font-cinzel text-xs tracking-widest">
+                                {lang === 'hi' ? 'कालक्रम' : 'CHRONOLOGY'}
+                            </span>
+                        </div>
+                        <h2 className="font-cinzel text-3xl md:text-5xl font-bold text-exhibit-fg tracking-wide mb-4">
                             {lang === 'hi' ? 'ऐतिहासिक समयरेखा' : 'Historical Timeline'}
                         </h2>
-                        <div className="w-20 h-1.5 bg-jain-orange mx-auto" />
+                        <div className="motif-divider mx-auto max-w-xs">✦</div>
                     </div>
                     <HistoricalTimeline events={timelineEvents} />
                 </div>
             </section>
 
             {/* Fort Temples Section */}
-            <section className="py-16 md:py-20">
+            <section className="py-16 md:py-24 bg-exhibit-bg border-t border-exhibit-hairline">
                 <div className="max-w-7xl mx-auto px-6 md:px-10">
                     <div className="mb-12">
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-stone-gray mb-3">
+                        <div className="badge-royal mb-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse" />
+                            <span className="font-cinzel text-xs tracking-widest">
+                                {lang === 'hi' ? 'परिसर जिनालय' : 'FORT SANCTUMS'}
+                            </span>
+                        </div>
+                        <h2 className="font-cinzel text-3xl md:text-5xl font-bold text-exhibit-fg tracking-wide mb-2">
                             {lang === 'hi' ? 'किले के मंदिर' : 'Fort Temples'}
                         </h2>
-                        <p className="text-stone-600 text-justify">
-                            {lang === 'hi' ? 'सात बीस देवरी परिसर' : 'Saat Bees Deori Complex'}
+                        <p className="text-exhibit-muted font-sans text-sm md:text-base">
+                            {lang === 'hi' ? 'सात बीस देवरी परिसर एवं निकटवर्ती ऐतिहासिक जिनालय' : 'Saat Bees Deori Complex and adjacent sacred shrines'}
                         </p>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

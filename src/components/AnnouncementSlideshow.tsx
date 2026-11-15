@@ -14,6 +14,37 @@ export default function AnnouncementSlideshow({ dict }: AnnouncementSlideshowPro
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedImg, setSelectedImg] = useState<string | null>(null);
 
+    // Body scroll lock
+    useEffect(() => {
+        if (selectedImg) {
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [selectedImg]);
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!selectedImg) return;
+            if (e.key === 'Escape') {
+                setSelectedImg(null);
+            } else if (e.key === 'ArrowRight' && announcements.length > 0) {
+                const next = (currentIndex + 1) % announcements.length;
+                setCurrentIndex(next);
+                setSelectedImg(announcements[next].url);
+            } else if (e.key === 'ArrowLeft' && announcements.length > 0) {
+                const prev = (currentIndex - 1 + announcements.length) % announcements.length;
+                setCurrentIndex(prev);
+                setSelectedImg(announcements[prev].url);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImg, currentIndex, announcements]);
+
     useEffect(() => {
         if (announcements.length <= 1) return;
 
@@ -99,7 +130,7 @@ export default function AnnouncementSlideshow({ dict }: AnnouncementSlideshowPro
             {/* Lightbox Modal */}
             {selectedImg && (
                 <div
-                    className="fixed inset-0 z-[10000] flex items-center justify-center bg-black bg-opacity-95 transition-opacity animate-in fade-in duration-200"
+                    className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/95 backdrop-blur-md transition-opacity animate-in fade-in duration-200 select-none"
                     onClick={() => setSelectedImg(null)}
                 >
                     <button className="absolute top-6 right-6 text-white hover:text-jain-orange transition-colors">

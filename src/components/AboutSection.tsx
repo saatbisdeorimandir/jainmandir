@@ -19,8 +19,8 @@ function StatBadge({ value, label, delay = 0 }: { value: string; label: string; 
             className={`text-center reveal ${isInView ? 'in-view' : ''}`}
             style={{ transitionDelay: `${delay}ms` }}
         >
-            <div className="text-3xl md:text-4xl font-heading font-bold text-white mb-1">{value}</div>
-            <div className="text-xs text-white/60 uppercase tracking-[0.18em] font-medium">{label}</div>
+            <div className="text-3xl md:text-4xl font-heading font-bold text-mewar-crimson mb-1">{value}</div>
+            <div className="text-xs text-exhibit-fg/80 uppercase tracking-widest font-sans font-bold">{label}</div>
         </div>
     );
 }
@@ -47,6 +47,7 @@ export default function AboutSection({ dict }: AboutSectionProps) {
     const historySubtitle = historySection?.subtitle || '';
     const historyCards = historySection?.cards || [];
 
+    const isHi = /[\u0900-\u097F]/.test(title || quote || '');
     const descArr: string[] = Array.isArray(desc) ? desc : [desc];
 
     const unescoBadge = getTrans(dict, 'about_page.unesco_badge');
@@ -72,7 +73,7 @@ export default function AboutSection({ dict }: AboutSectionProps) {
     const { ref: principlesRef, isInView: principlesVisible } = useInView<HTMLDivElement>({ threshold: 0.15 });
 
     return (
-        <div id="about" className="bg-white overflow-hidden">
+        <div id="about" className="bg-exhibit-bg text-exhibit-fg overflow-hidden transition-colors duration-500">
 
             {/* ═══════════════════════════════════════════
                 SECTION 1 — CINEMATIC HERO
@@ -94,14 +95,6 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                     <div className="absolute inset-0 bg-gradient-to-r from-stone-950/40 via-transparent to-transparent" />
                 </div>
 
-                {/* Floating orbs */}
-                {mounted && (
-                    <>
-                        <div className="orb w-64 h-64 bg-jain-orange top-16 -right-20" style={{ animationDuration: '8s' }} />
-                        <div className="orb w-48 h-48 bg-amber-400 -top-12 left-1/3" style={{ animationDelay: '2s', animationDuration: '11s' }} />
-                    </>
-                )}
-
                 {/* Hero text content */}
                 <div
                     ref={heroTextRef}
@@ -109,20 +102,20 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                 >
                     {/* Badge */}
                     <div className={`mb-5 reveal ${heroTextVisible ? 'in-view' : ''}`}>
-                        <span className="inline-flex items-center gap-2 bg-jain-orange/20 backdrop-blur-sm border border-jain-orange/30 text-jain-orange text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full">
-                            <span className="w-1.5 h-1.5 rounded-full bg-jain-orange animate-pulse inline-block" />
+                        <span className="badge-royal">
+                            <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse inline-block" />
                             {unescoBadge}
                         </span>
                     </div>
 
                     {/* Main heading */}
-                    <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-6 leading-[1.05] tracking-tight max-w-3xl reveal ${heroTextVisible ? 'in-view' : ''}`}
+                    <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-cinzel font-bold text-white mb-6 leading-[1.08] tracking-wide max-w-3xl drop-shadow-md reveal ${heroTextVisible ? 'in-view' : ''}`}
                         style={{ transitionDelay: '120ms' }}>
                         {title}
                     </h1>
 
                     {/* Quote */}
-                    <p className={`text-lg md:text-xl text-white/70 font-light italic max-w-2xl leading-relaxed border-l-4 border-jain-orange/50 pl-5 reveal ${heroTextVisible ? 'in-view' : ''}`}
+                    <p className={`text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed border-l-4 border-mewar-brass pl-5 reveal ${heroTextVisible ? 'in-view' : ''} ${isHi ? 'font-mukta not-italic font-medium text-xl md:text-2xl' : 'font-cormorant italic font-normal'}`}
                         style={{ transitionDelay: '240ms' }}>
                         "{quote}"
                     </p>
@@ -130,10 +123,10 @@ export default function AboutSection({ dict }: AboutSectionProps) {
             </section>
 
             {/* ═══════════════════════════════════════════
-                SECTION 2 — DARK STATS STRIP
+                SECTION 2 — EXHIBITION STATS STRIP
             ═══════════════════════════════════════════ */}
-            <div ref={statsRef} className="bg-stone-950 py-10 px-6">
-                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-white/10">
+            <div ref={statsRef} className="bg-exhibit-surface border-y border-exhibit-hairline py-10 px-6">
+                <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-exhibit-hairline">
                     <StatBadge value={stats.century_value || "11th"} label={stats.century_label || "Century CE"} delay={0} />
                     <StatBadge value={stats.temples_value || "27"} label={stats.temples_label || "Temples"} delay={100} />
                     <StatBadge value={stats.unesco_value || "UNESCO"} label={stats.unesco_label || "World Heritage"} delay={200} />
@@ -144,36 +137,36 @@ export default function AboutSection({ dict }: AboutSectionProps) {
             {/* ═══════════════════════════════════════════
                 SECTION 3 — CINEMATIC VIDEO HIGHLIGHT
             ═══════════════════════════════════════════ */}
-            <section className="bg-gradient-to-br from-stone-50 via-white to-amber-50/20 py-20 md:py-28">
+            <section className="bg-exhibit-bg py-20 md:py-28">
                 <div ref={splitRef} className="max-w-7xl mx-auto px-6 md:px-12">
                     {/* Centered Text Content */}
                     <div className={`text-center max-w-4xl mx-auto mb-16 reveal ${splitVisible ? 'in-view' : ''}`}>
-                        <p className="text-jain-orange text-xs font-bold tracking-[0.25em] uppercase mb-4 flex items-center justify-center gap-2">
-                            <span className="w-6 h-[2px] bg-jain-orange rounded-full inline-block" />
+                        <p className="text-exhibit-gold text-xs font-editorial-meta tracking-[0.25em] uppercase mb-4 flex items-center justify-center gap-2">
+                            <span className="w-6 h-[1px] bg-exhibit-gold rounded-full inline-block" />
                             {videoSec.eyebrow || "Our Heritage"}
-                            <span className="w-6 h-[2px] bg-jain-orange rounded-full inline-block" />
+                            <span className="w-6 h-[1px] bg-exhibit-gold rounded-full inline-block" />
                         </p>
-                        <h2 className="text-4xl md:text-5xl font-heading font-bold text-stone-900 mb-8 leading-tight">
+                        <h2 className="text-3xl md:text-5xl font-cinzel font-bold text-exhibit-fg tracking-wide mb-8 leading-tight">
                             {videoSec.title || "A Sacred Journey Through"}<br />
-                            <span className="text-gradient">{videoSec.subtitle || "Eleven Centuries"}</span>
+                            <span className={`text-mewar-brass font-medium ${isHi ? 'font-mukta' : 'font-cormorant italic'}`}>{videoSec.subtitle || "Eleven Centuries"}</span>
                         </h2>
 
-                        <div className="space-y-6 text-stone-600 font-light leading-relaxed text-lg md:text-xl max-w-3xl mx-auto">
+                        <div className={`space-y-6 leading-relaxed max-w-3xl mx-auto ${isHi ? 'text-exhibit-fg font-mukta text-lg md:text-xl' : 'text-exhibit-fg/85 font-sans text-base md:text-lg'}`}>
                             {descArr.slice(0, 2).map((p, i) => (
                                 <p key={i} className="text-justify md:text-center">{p}</p>
                             ))}
                         </div>
 
                         {/* Meta chips centered */}
-                        <div className="mt-10 pt-8 border-t border-stone-100 flex flex-wrap justify-center gap-8 md:gap-12">
+                        <div className="mt-10 pt-8 border-t border-mewar-crimson/15 flex flex-wrap justify-center gap-8 md:gap-12">
                             <div className="flex flex-col items-center gap-1">
-                                <span className="text-stone-400 text-[10px] uppercase tracking-widest font-bold">{locLabel}</span>
-                                <span className="text-stone-800 font-semibold text-base">{locValue}</span>
+                                <span className="text-mewar-crimson text-xs uppercase tracking-widest font-sans font-bold">{locLabel}</span>
+                                <span className="text-exhibit-fg font-sans font-bold text-base md:text-lg">{locValue}</span>
                             </div>
-                            <div className="w-px bg-stone-200 h-10 hidden sm:block" />
+                            <div className="w-px bg-mewar-crimson/20 h-10 hidden sm:block" />
                             <div className="flex flex-col items-center gap-1">
-                                <span className="text-stone-400 text-[10px] uppercase tracking-widest font-bold">{herTag}</span>
-                                <span className="text-stone-800 font-semibold text-base">{herValue}</span>
+                                <span className="text-mewar-crimson text-xs uppercase tracking-widest font-sans font-bold">{herTag}</span>
+                                <span className="text-exhibit-fg font-sans font-bold text-base md:text-lg">{herValue}</span>
                             </div>
                         </div>
                     </div>
@@ -234,7 +227,7 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-jain-orange/10 rounded-full blur-3xl pointer-events-none" />
                 <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
                     <div className="w-12 h-[2px] bg-jain-orange mx-auto mb-8" />
-                    <p className="text-2xl md:text-3xl lg:text-4xl font-heading font-light text-white/90 leading-relaxed italic">
+                    <p className={`text-2xl md:text-3xl lg:text-4xl leading-relaxed ${isHi ? 'font-mukta not-italic font-medium text-white/95' : 'font-heading font-light text-white/90 italic'}`}>
                         "{descArr[2] || quote}"
                     </p>
                     <div className="w-12 h-[2px] bg-jain-orange mx-auto mt-8" />
@@ -258,7 +251,7 @@ export default function AboutSection({ dict }: AboutSectionProps) {
                                 {philosophySec.title || "Principles That"}<br />
                                 {philosophySec.subtitle || "Guide the Faithful"}
                             </h2>
-                            <div className="space-y-4 text-stone-600 font-light leading-relaxed text-sm md:text-base">
+                            <div className={`space-y-4 leading-relaxed ${isHi ? 'text-stone-800 font-mukta font-normal text-base md:text-lg' : 'text-stone-600 font-light text-sm md:text-base'}`}>
                                 {descArr.slice(3).map((p, i) => (
                                     <p key={i} className="text-justify">{p}</p>
                                 ))}

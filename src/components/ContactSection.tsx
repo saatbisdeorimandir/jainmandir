@@ -3,13 +3,15 @@
 import { getTrans } from '@/lib/utils';
 import { useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
+import FortNavigationMap from '@/components/FortNavigationMap';
 
 interface ContactSectionProps {
     dict: any;
     siteConfig: any;
+    lang?: string;
 }
 
-export default function ContactSection({ dict, siteConfig }: ContactSectionProps) {
+export default function ContactSection({ dict, siteConfig, lang = 'en' }: ContactSectionProps) {
     const mainContact = siteConfig.contact.mainContacts[0];
     const [isMapLoading, setIsMapLoading] = useState(true);
     const [activeLocIdx, setActiveLocIdx] = useState(0);
@@ -32,22 +34,21 @@ export default function ContactSection({ dict, siteConfig }: ContactSectionProps
     };
 
     return (
-        <div id="contact" className="bg-gradient-to-b from-stone-50 via-white to-stone-50 scroll-mt-16">
+        <div id="contact" className="bg-exhibit-bg text-exhibit-fg min-h-screen scroll-mt-16 transition-colors duration-500">
 
             {/* ── Hero Header ── */}
-            <div className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white">
-                <div className="max-w-7xl mx-auto px-6 pt-16 pb-10 md:pt-24 md:pb-14 text-center">
-                    <div className="flex justify-center mb-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-jain-orange" />
-                            <div className="w-3 h-3 rounded-full bg-jain-orange" />
-                            <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-jain-orange" />
-                        </div>
+            <div className="border-b border-exhibit-hairline bg-exhibit-surface/60 py-16 md:py-24 text-center">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="badge-royal mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse" />
+                        <span className="font-cinzel text-xs tracking-widest">
+                            PILGRIM SERVICES & CONTACT DESK
+                        </span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-stone-gray mb-4 leading-[1.1] tracking-tight">
+                    <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-exhibit-fg tracking-wide mb-4">
                         {getTrans(dict, 'nav.contact')}
                     </h1>
-                    <p className="text-lg md:text-xl text-stone-500 font-light leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-base sm:text-lg text-exhibit-muted max-w-2xl mx-auto font-sans leading-relaxed">
                         {getTrans(dict, 'contact.intro')}
                     </p>
                 </div>
@@ -243,6 +244,13 @@ export default function ContactSection({ dict, siteConfig }: ContactSectionProps
                         )}
                     </div>
                 </div>
+
+                {/* ── Interactive Fort Navigation & Pilgrim Map ── */}
+                <FortNavigationMap
+                    lang={lang}
+                    mapEmbedUrl={mapEmbedUrl}
+                    directionsUrl={activeLocation?.directionsUrl}
+                />
 
                 {/* ── Online Services / External Links ── */}
                 {siteConfig.externalLinks && siteConfig.externalLinks.filter((l: any) => l.isActive).length > 0 && (

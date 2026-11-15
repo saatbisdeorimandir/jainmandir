@@ -13,39 +13,45 @@ interface GallerySectionProps {
 }
 
 export default function GallerySection({ dict, siteConfig, galleryEvents, lang }: GallerySectionProps) {
+    const isHi = lang === 'hi';
+
     return (
-        <div id="gallery" className="bg-gradient-to-b from-stone-50 via-white to-stone-50 scroll-mt-16">
-            {/* Hero Header */}
-            <div className="bg-gradient-to-br from-jain-orange/10 via-amber-50 to-white">
-                <div className="max-w-7xl mx-auto px-6 pt-16 pb-16 md:pt-20 md:pb-14 text-center">
-                    <div className="flex justify-center mb-4">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-[2px] bg-gradient-to-r from-transparent to-jain-orange"></div>
-                            <div className="w-3 h-3 rounded-full bg-jain-orange"></div>
-                            <div className="w-12 h-[2px] bg-gradient-to-l from-transparent to-jain-orange"></div>
-                        </div>
+        <div id="gallery" className="bg-exhibit-bg text-exhibit-fg min-h-screen scroll-mt-16 transition-colors duration-500">
+            {/* Museum Exhibition Header */}
+            <div className="border-b border-exhibit-hairline bg-exhibit-surface/60 py-16 md:py-24 text-center">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="badge-royal mb-4">
+                        <span className="w-1.5 h-1.5 rounded-full bg-royal-gold animate-pulse" />
+                        <span className="font-cinzel text-xs tracking-widest">
+                            {isHi ? 'छायाचित्र अभिलेखागार' : 'ARCHITECTURAL PHOTO ARCHIVES'}
+                        </span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-heading font-bold text-stone-gray leading-[1.1] tracking-tight">
+                    <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-bold text-exhibit-fg tracking-wide mb-4">
                         {getTrans(dict, 'nav.gallery')}
                     </h1>
+                    <p className="text-base sm:text-lg text-exhibit-muted max-w-2xl mx-auto font-sans leading-relaxed">
+                        {isHi
+                            ? 'सात बीस देवरी के 27 जिनालयों, भव्य वितान, कलात्मक स्तंभों एवं विशेष आयोजनों का सचित्र संकलन।'
+                            : 'A curated visual monograph capturing the 27 shrines, domed marble vaults, and living celebrations.'}
+                    </p>
                 </div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 py-10 md:py-16">
-                <div className="mb-12">
+            <div className="max-w-7xl mx-auto px-6 py-12 md:py-20">
+                <div className="mb-14">
                     <AnnouncementSlideshow dict={dict} />
                 </div>
-                
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Manual / Permanent Events Column */}
-                    <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-stone-100 shadow-xl shadow-stone-200/50 h-fit">
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-2 h-8 bg-jain-orange rounded-full"></div>
-                            <h2 className="text-2xl font-bold text-stone-gray uppercase tracking-tight">
-                                {getTrans(dict, 'gallery.permanent_collections') || 'Main Collections'}
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    {/* Permanent Collections Column */}
+                    <div className="bg-exhibit-surface rounded-3xl p-6 md:p-8 border border-exhibit-hairline shadow-2xl h-fit">
+                        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-exhibit-hairline">
+                            <span className="w-2 h-2 rounded-full bg-exhibit-gold" />
+                            <h2 className="font-sans font-bold text-xl md:text-2xl text-exhibit-fg tracking-tight">
+                                {getTrans(dict, 'gallery.permanent_collections') || (isHi ? 'मूल संग्रह' : 'Main Collections')}
                             </h2>
                         </div>
-                        
+
                         {galleryEvents.events.map((event) => {
                             const images = getEventImages(event.id);
                             return (
@@ -60,11 +66,11 @@ export default function GallerySection({ dict, siteConfig, galleryEvents, lang }
                     </div>
 
                     {/* Dynamic / Latest Updates Column */}
-                    <div className="bg-white rounded-[2.5rem] p-6 md:p-8 border border-stone-100 shadow-xl shadow-stone-200/50 h-fit">
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-2 h-8 bg-amber-400 rounded-full"></div>
-                            <h2 className="text-2xl font-bold text-stone-gray uppercase tracking-tight">
-                                {getTrans(dict, 'gallery.latest_updates') || 'Latest Updates'}
+                    <div className="bg-exhibit-surface rounded-3xl p-6 md:p-8 border border-exhibit-hairline shadow-2xl h-fit">
+                        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-exhibit-hairline">
+                            <span className="w-2 h-2 rounded-full bg-amber-400" />
+                            <h2 className="font-sans font-bold text-xl md:text-2xl text-exhibit-fg tracking-tight">
+                                {getTrans(dict, 'gallery.latest_updates') || (isHi ? 'नवीनतम गतिविधियाँ' : 'Latest Updates')}
                             </h2>
                         </div>
                         <DynamicGallery dict={dict} lang={lang} />

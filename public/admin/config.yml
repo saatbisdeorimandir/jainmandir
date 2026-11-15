@@ -3,13 +3,12 @@ backend:
   repo: saatbisdeorimandir/jainmandir
   branch: main
 
-local_backend: true
-
 media_folder: public/assets/images
 public_folder: /assets/images
 
 display_url: https://www.saatbeesdeorimandir.co.in
-logo_url: /assets/images/about/Jain_logo.jpg
+logo:
+  src: /assets/images/about/Jain_logo.jpg
 
 collections:
   # -------------------------------------------------------------
@@ -112,7 +111,6 @@ collections:
           - label: Members
             name: members
             widget: list
-            root: true
             summary: "#{{fields.no}} {{fields.name.en}} ({{fields.place.en}})"
             fields:
               - { label: "Member Number", name: "no", widget: "number", value_type: "int" }
@@ -148,6 +146,14 @@ collections:
               - { label: "Event ID / Cloudinary Tag", name: "id", widget: "string" }
               - { label: "Event Date (YYYY-MM-DD)", name: "date", widget: "string", required: false }
               - { label: "Cover Image", name: "coverImage", widget: "image" }
+              - label: "Event Static Photos"
+                name: "images"
+                widget: "list"
+                required: false
+                summary: "{{fields.image}}"
+                fields:
+                  - { label: "Image File / Path", name: "image", widget: "image" }
+                  - { label: "Photo Caption", name: "caption", widget: "string", required: false }
               - { label: "Name Translation Key", name: "nameKey", widget: "string" }
               - { label: "Description Translation Key", name: "descriptionKey", widget: "string", required: false }
               - { label: "Is Permanent Section", name: "isPermanent", widget: "boolean", default: false, required: false }

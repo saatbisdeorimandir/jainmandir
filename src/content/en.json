@@ -47,9 +47,9 @@
         "got_it": "Got it"
     },
     "hero": {
-        "title": "Welcome to Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
-        "subtitle0": "Center of Jain Heritage and Culture - Chitrakoot Tirth",
-        "subtitle": "A sanctuary of Peace, Non-Violence, and Spiritual Growth.",
+        "title": "Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
+        "subtitle0": "Sanctuary of 27 Sacred Shrines • Chitrakoot Mahatirth",
+        "subtitle": "A sacred sanctuary of peace, non-violence, and spiritual meditation amidst a thousand years of heritage.",
         "btn": "Explore",
         "booking_btn": "Book Your Stay"
     },
@@ -207,11 +207,11 @@
         },
         "events": {
             "title": "Events",
-            "desc": "Join us for daily Aarti and upcoming festivals."
+            "desc": "Join us for daily morning & evening Aarti, devotional prayers, and sacred festivals."
         },
         "donation": {
             "title": "Donation",
-            "desc": "Support the temple maintenance and charitable activities."
+            "desc": "Support temple heritage preservation, jivadaya (compassion for all life), and pilgrim care."
         }
     },
     "about_page": {

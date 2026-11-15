@@ -12,7 +12,7 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
     return (
         <div className="relative">
             {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-jain-orange via-amber-400 to-jain-orange" />
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-mewar-crimson via-mewar-brass to-mewar-crimson" />
 
             {/* Timeline Events */}
             <div className="space-y-8 md:space-y-12">
@@ -23,20 +23,20 @@ export default function HistoricalTimeline({ events }: HistoricalTimelineProps) 
                             } flex-col md:gap-8`}
                     >
                         {/* Timeline Dot */}
-                        <div className="absolute left-4 md:left-1/2 w-8 h-8 -ml-4 bg-jain-orange rounded-full border-4 border-white shadow-lg z-10 flex items-center justify-center">
-                            <div className="w-2 h-2 bg-white rounded-full" />
+                        <div className="absolute left-4 md:left-1/2 w-8 h-8 -ml-4 bg-white dark:bg-[#1E1210] rounded-full border-2 border-mewar-crimson shadow-md z-10 flex items-center justify-center">
+                            <div className="w-2.5 h-2.5 bg-mewar-crimson rounded-full" />
                         </div>
 
                         {/* Content Card */}
                         <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                            <div className="bg-white p-6 rounded-lg shadow-md border border-stone-100 hover:shadow-xl transition-shadow duration-300">
-                                <div className="text-jain-orange font-bold text-lg mb-2">
+                            <div className="bg-white dark:bg-[#1E1210] p-6 md:p-7 rounded-2xl shadow-sm hover:shadow-md border-2 border-mewar-crimson/20 hover:border-mewar-crimson transition-all duration-300 group">
+                                <div className="text-mewar-crimson font-sans font-bold text-sm sm:text-base tracking-wider mb-2">
                                     {event.year}
                                 </div>
-                                <h3 className="font-heading font-bold text-stone-gray text-xl mb-2">
+                                <h3 className="font-heading font-bold text-mewar-crimson text-lg md:text-xl mb-2 group-hover:text-mewar-crimson-deep transition-colors">
                                     {event.title}
                                 </h3>
-                                <p className="text-stone-600 text-sm leading-relaxed">
+                                <p className="text-exhibit-fg/85 text-sm sm:text-base leading-relaxed font-sans">
                                     {event.description}
                                 </p>
                             </div>
