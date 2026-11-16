@@ -1,5 +1,3 @@
-'use client';
-
 import { getTrans } from '@/lib/utils';
 
 interface StructuredDataProps {
@@ -43,7 +41,10 @@ export default function StructuredData({ dict, siteConfig, lang }: StructuredDat
     return (
         <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            suppressHydrationWarning
+            dangerouslySetInnerHTML={{
+                __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+            }}
         />
     );
 }

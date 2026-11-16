@@ -1,329 +1,329 @@
 {
-    "site_name": "Shri Shwetamber Jain Temple",
-    "keywords": [
-        "saat bees deori jain temple chittorgarh",
-        "sathis deori temple",
-        "sattavish deori",
-        "chittorgarh fort jain temples",
-        "unesco world heritage site chittorgarh",
-        "lord adinath temple",
-        "jain tirthankara",
-        "rajasthan jain pilgrimage",
-        "11th century jain temple",
-        "ancient jain architecture",
-        "chittorgarh tourism",
-        "jainism in rajasthan",
-        "shwetamber jain temple",
-        "heritage of chittorgarh",
-        "peaceful jain temples india",
-        "jain dharamshala chittorgarh",
-        "saat bees deori",
-        "satbis deori",
-        "jain temple chittorgarh",
-        "shri shwetamber jain mandir",
-        "jain tirth chittorgarh",
-        "chittorgarh fort temples",
-        "jain pilgrimages in india",
-        "jain temple near me",
-        "jain dharamshala room booking chittorgarh",
-        "online dharamshala reservation chittorgarh",
-        "stay at jain temple chittorgarh",
-        "accommodation at chittorgarh jain temple",
-        "book rooms chittorgarh jain mandir"
-    ],
-    "nav": {
-        "home": "Home",
-        "about": "About",
-        "history": "History",
-        "events": "Events",
-        "gallery": "Gallery",
-        "trust": "Trust",
-        "contact": "Contact",
-        "announcements": "Announcements"
-    },
-    "buttons": {
-        "lang": "हिंदी",
-        "read_more": "Read More",
-        "got_it": "Got it"
-    },
-    "hero": {
-        "title": "Welcome to Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
-        "subtitle0": "Center of Jain Heritage and Culture - Chitrakoot Tirth",
-        "subtitle": "A sanctuary of Peace, Non-Violence, and Spiritual Growth.",
-        "btn": "Explore",
-        "booking_btn": "Book Your Stay"
-    },
-    "sections": {
-        "about": {
-            "title": "Our Heritage",
-            "desc": [
-                "Situated near the Fateh Prakash Palace within Chittorgarh Fort, the Saat Bees Deori Temple is a group of twenty-seven temples dedicated to the Jain Tirthankaras. Established in the 11th century CE, entering this sacred land of Chittorgarh through the presence of the Jain community marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
-                "According to legend, the Saat Bees Deori Temple was originally a complex of twenty-seven Jain temples. As you approach the temple entrance, a sense of anticipation steadily grows. Step inside and prepare to be embraced by a calm and cool atmosphere, where sunlight filtering through intricately carved windows creates a gentle shimmer on the polished floors. The corridors are lined with impressive pillars adorned with detailed depictions of Jain deities. A serene sense of devotion permeates the air, inspiring visitors to further explore the temple’s wonders.",
-                "The architecture presents a fascinating blend of Jain and Maru-Gurjara styles. To fully appreciate the fine craftsmanship and majestic grandeur, one can lift their gaze toward the beautifully detailed ceilings. Chittorgarh Fort has been declared a UNESCO World Heritage Site.",
-                "Dedicated to the Tirthankaras—revered enlightened souls believed to guide seekers on the path of spiritual liberation—the temple’s central sanctum houses a magnificent idol of Lord Adinath, worshipped as the first Tirthankara. Seated in a tranquil meditative posture, the idol creates an atmosphere of peace and serenity. Standing reverently before this divine figure inspires reflection on the profound Jain principles of Ahimsa (non-violence), Saatya (truth), and Vairagya (detachment from worldly desires).",
-                "Within the temple complex, smaller shrines pay homage to other Tirthankaras, each adorned with intricate carvings and decorated with vibrant flowers offered by devoted worshippers. A visit to this temple not only allows one to witness architectural marvels but also offers a direct connection with Jain culture and spirituality.",
-                "Chittorgarh Fort, a place echoing countless tales of valor and resilience passed down through generations, warmly awaits your visit."
-            ]
-        },
-        "events": {
-            "title": "Upcoming Events"
-        },
-        "gallery": {
-            "title": "Photo Gallery"
-        }
+  "site_name": "Shri Shwetamber Jain Temple",
+  "keywords": [
+    "saat bees deori jain temple chittorgarh",
+    "sathis deori temple",
+    "sattavish deori",
+    "chittorgarh fort jain temples",
+    "unesco world heritage site chittorgarh",
+    "lord adinath temple",
+    "jain tirthankara",
+    "rajasthan jain pilgrimage",
+    "11th century jain temple",
+    "ancient jain architecture",
+    "chittorgarh tourism",
+    "jainism in rajasthan",
+    "shwetamber jain temple",
+    "heritage of chittorgarh",
+    "peaceful jain temples india",
+    "jain dharamshala chittorgarh",
+    "saat bees deori",
+    "satbis deori",
+    "jain temple chittorgarh",
+    "shri shwetamber jain mandir",
+    "jain tirth chittorgarh",
+    "chittorgarh fort temples",
+    "jain pilgrimages in india",
+    "jain temple near me",
+    "jain dharamshala room booking chittorgarh",
+    "online dharamshala reservation chittorgarh",
+    "stay at jain temple chittorgarh",
+    "accommodation at chittorgarh jain temple",
+    "book rooms chittorgarh jain mandir"
+  ],
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "history": "History",
+    "events": "Events",
+    "gallery": "Gallery",
+    "trust": "Trust",
+    "contact": "Contact",
+    "announcements": "Announcements"
+  },
+  "buttons": {
+    "lang": "हिंदी",
+    "read_more": "Read More",
+    "got_it": "Got it"
+  },
+  "hero": {
+    "title": "Welcome to Shri Shwetamber Jain Saat Bees Deori Temple Chittorgarh",
+    "subtitle0": "Center of Jain Heritage and Culture - Chitrakoot Tirth",
+    "subtitle": "A sanctuary of Peace, Non-Violence, and Spiritual Growth.",
+    "btn": "Explore",
+    "booking_btn": "Book Your Stay"
+  },
+  "sections": {
+    "about": {
+      "title": "Our Heritage",
+      "desc": [
+        "Situated near the Fateh Prakash Palace within Chittorgarh Fort, the Saat Bees Deori Temple is a group of twenty-seven temples dedicated to the Jain Tirthankaras. Established in the 11th century CE, entering this sacred land of Chittorgarh through the presence of the Jain community marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
+        "According to legend, the Saat Bees Deori Temple was originally a complex of twenty-seven Jain temples. As you approach the temple entrance, a sense of anticipation steadily grows. Step inside and prepare to be embraced by a calm and cool atmosphere, where sunlight filtering through intricately carved windows creates a gentle shimmer on the polished floors. The corridors are lined with impressive pillars adorned with detailed depictions of Jain deities. A serene sense of devotion permeates the air, inspiring visitors to further explore the temple’s wonders.",
+        "The architecture presents a fascinating blend of Jain and Maru-Gurjara styles. To fully appreciate the fine craftsmanship and majestic grandeur, one can lift their gaze toward the beautifully detailed ceilings. Chittorgarh Fort has been declared a UNESCO World Heritage Site.",
+        "Dedicated to the Tirthankaras—revered enlightened souls believed to guide seekers on the path of spiritual liberation—the temple’s central sanctum houses a magnificent idol of Lord Adinath, worshipped as the first Tirthankara. Seated in a tranquil meditative posture, the idol creates an atmosphere of peace and serenity. Standing reverently before this divine figure inspires reflection on the profound Jain principles of Ahimsa (non-violence), Saatya (truth), and Vairagya (detachment from worldly desires).",
+        "Within the temple complex, smaller shrines pay homage to other Tirthankaras, each adorned with intricate carvings and decorated with vibrant flowers offered by devoted worshippers. A visit to this temple not only allows one to witness architectural marvels but also offers a direct connection with Jain culture and spirituality.",
+        "Chittorgarh Fort, a place echoing countless tales of valor and resilience passed down through generations, warmly awaits your visit."
+      ]
     },
     "events": {
-        "date_label": "Date:",
-        "items": [
-            {
-                "title": "Mahavir Jayanti Celebration",
-                "desc": "Join us for the grand celebration of Mahavir Janma Kalyanak. Morning prayers followed by specialized puja."
-            },
-            {
-                "title": "Paryushan Parv",
-                "desc": "The festival of forgiveness. Daily discourses and Pratikraman."
-            }
-        ]
+      "title": "Upcoming Events"
     },
     "gallery": {
-        "items": [
-            " ",
-            " ",
-            " ",
-            " ",
-            " ",
-            " "
-        ],
-        "events": {
-            "glimpses": {
-                "name": "Highlights",
-                "description": " "
-            },
-            "Flag_hosting": {
-                "name": "Flag Hosting 2026",
-                "description": "Photos from Flag Hosting Ceremony"
-            }
-        },
-        "no_images": "No images available yet",
-        "view_all": "View All Photos",
-        "loading": "Loading images...",
-        "permanent_collections": "Collection",
-        "latest_updates": "Latest Updates"
-    },
-    "trust": {
-        "title": "Trust Committee",
-        "subtitle": "Dedicated members serving the community.",
-        "gallery": {
-            "title": "Trustee Assemblies & Meetings",
-            "subtitle": "Glimpses from the general meetings, assemblies, and executive sessions of our trust.",
-            "img1_desc": "Executive Committee Assembly",
-            "img2_desc": "Annual General Meeting of the Trust"
-        },
-        "table": {
-            "title": "All Members",
-            "no": "S.No",
-            "name": "Name",
-            "place": "Village/City"
-        },
-        "members": [
-            {
-                "name": "Dr. A.L. Jain",
-                "role": "Chairman"
-            },
-            {
-                "name": "Mr. Rakesh Kumar Jain",
-                "role": "Secretary"
-            },
-            {
-                "name": "Mr. Kanhaiyalal Chhajed",
-                "role": "Treasurer"
-            }
-        ]
-    },
-    "footer": {
-        "text": "© 2026 Shri Saat Bees Deori Jain Temple Trust. Dedicated to the path of Tirthankaras.",
-        "social": "Social",
-        "contact": "Contact",
-        "booking": "Book Dharamshala"
-    },
-    "contact": {
-        "intro": "Jai Jinendra. Please visit us or reach out via email.",
-        "labels": {
-            "address": "Address",
-            "email": "Email",
-            "name": "Name",
-            "phone": "Phone",
-            "directions": "Get Directions on Google Maps",
-            "switch_location": "Select Location"
-        },
-        "locations": {
-            "temple": {
-                "name": "Shri Saat Bees Deori Jain Temple (Chittorgarh Fort)",
-                "address": "Inside Chittorgarh Fort, near Fateh Prakash Palace, Chittorgarh, Rajasthan 312001"
-            },
-            "vishranti": {
-                "name": "Jain Shwetambar Vishranti Griha & Dharamshala (Railway Station)",
-                "address": "Opposite Railway Station, Railway Station Road, Chittorgarh, Rajasthan 312001"
-            }
-        },
-        "sections": {
-            "main": "Main Contact",
-            "other": "Other Contacts"
-        },
-        "main": {
-            "name": "Shri Shwetamber Jain Saat Bees Deori Tirth",
-            "address": "Chittorgarh, Rajasthan - 312001"
-        },
-        "maincontact1": {
-            "name": "Dr. A.L. Jain",
-            "address": "Chairman"
-        },
-        "maincontact2": {
-            "name": "Mr. Rajendra Kachara",
-            "address": "-"
-        }
-    },
-    "info": {
-        "title": "Information",
-        "items": [
-            "Jain Shwetambar Vishranti Griha, located opposite the railway station in Chittorgarh, offers excellent facilities including air-conditioned rooms along with Navkarshi and a dining hall. At Chittorgarh Fort as well, 9 rooms are available along with regular Navkarshi and dining hall facilities."
-        ]
-    },
-    "external_links": {
-        "section_title": "Online Services",
-        "dharamshala_booking": {
-            "label": "Book Dharamshala Rooms",
-            "desc": "Reserve your stay at our Jain Dharamshala online. Check availability and book rooms conveniently through our official booking portal."
-        }
-    },
-    "disclaimer": {
-        "title": "Disclaimer",
-        "text": "The phone number of the Jain Dharamshala operated by Shri Jain Shwetambar Saat Bees Deori Fort Teerth Trust, Chittorgarh, appears differently every day on Google search. This number has been wrongly changed by a scammers. People who call the number provided by the scammers for room booking are being cheated. Therefore, all people are requested not to make any payment for bookings to any phone number."
-    },
-    "cards": {
-        "darshan": {
-            "title": "Darshan Timing",
-            "desc": "Morning: 6:00 AM - 1:00 PM <br/> Evening: 4:00 PM - 9:00 PM"
-        },
-        "events": {
-            "title": "Events",
-            "desc": "Join us for daily Aarti and upcoming festivals."
-        },
-        "donation": {
-            "title": "Donation",
-            "desc": "Support the temple maintenance and charitable activities."
-        }
-    },
-    "about_page": {
-        "established_label": "Established",
-        "century_label": "11th Century CE",
-        "heritage_label": "Our Heritage",
-        "quote": "Entering this sacred land of Chittorgarh marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
-        "location_label": "Location",
-        "location_value": "Chittorgarh Fort, Rajasthan",
-        "heritage_tag": "Heritage",
-        "heritage_value": "Saat Bees Deori Temple",
-        "history_section": {
-            "title": "Temple History & Heritage",
-            "subtitle": "A Journey Through Time",
-            "cards": [
-                {
-                    "image": "/assets/images/about/history-ancient.jpg",
-                    "title": "Ancient Origins",
-                    "period": "11th Century CE",
-                    "description": "The Saat Bees Deori Temple was established in the 11th century CE as a magnificent complex of twenty-seven Jain temples. Built during the reign of the Rajput rulers, this sacred site represents the pinnacle of medieval Jain architecture and devotion."
-                },
-                {
-                    "image": "/assets/images/about/history-architecture.jpg",
-                    "title": "Architectural Marvel",
-                    "period": "Maru-Gurjara Style",
-                    "description": "The temple showcases an exquisite blend of Jain and Maru-Gurjara architectural styles. Every surface is adorned with intricate carvings featuring geometric patterns, floral motifs, and divine imagery, demonstrating the exceptional craftsmanship of ancient artisans."
-                },
-                {
-                    "image": "/assets/images/about/history-sculptures.jpg",
-                    "title": "Sacred Sculptures",
-                    "period": "Tirthankara Idols",
-                    "description": "The temple houses magnificent sculptures of the twenty-four Tirthankaras, each carved with meticulous detail. The central sanctum features Lord Adinath in serene meditation, inspiring devotees with the profound principles of Ahimsa, Saatya, and Vairagya."
-                },
-                {
-                    "image": "/assets/images/about/history-pillars.jpg",
-                    "title": "Ornate Pillars",
-                    "period": "Detailed Craftsmanship",
-                    "description": "The temple corridors are lined with impressive pillars, each a masterpiece of stone carving. These pillars depict Jain deities, celestial beings, and intricate narratives from Jain scriptures, creating an atmosphere of divine reverence."
-                },
-                {
-                    "image": "/assets/images/about/history-ceiling.jpg",
-                    "title": "Celestial Ceilings",
-                    "period": "Geometric Perfection",
-                    "description": "The temple ceilings feature breathtaking mandala designs and geometric patterns that represent the cosmic order. These intricate dome carvings showcase mathematical precision and spiritual symbolism, inviting visitors to contemplate the infinite."
-                },
-                {
-                    "image": "/assets/images/about/history-sanctum.jpg",
-                    "title": "Divine Sanctum",
-                    "period": "Spiritual Center",
-                    "description": "The main sanctum serves as the spiritual heart of the temple complex. Here, devotees offer prayers and flowers to the Tirthankaras, experiencing a profound connection with Jain philosophy and the path to spiritual liberation."
-                }
-            ]
-        },
-        "unesco_badge": "Chitrakoot Tirth — UNESCO World Heritage",
-        "stats": {
-            "century_value": "11th",
-            "century_label": "Century CE",
-            "temples_value": "27",
-            "temples_label": "Temples",
-            "unesco_value": "UNESCO",
-            "unesco_label": "World Heritage",
-            "years_value": "900+",
-            "years_label": "Years of History"
-        },
-        "video_section": {
-            "eyebrow": "Our Heritage",
-            "title": "A Sacred Journey Through",
-            "subtitle": "Eleven Centuries",
-            "live_badge": "LIVE TEMPLE ATMOSPHERE"
-        },
-        "philosophy_section": {
-            "eyebrow": "Jain Philosophy",
-            "title": "Principles That",
-            "subtitle": "Guide the Faithful",
-            "principles": {
-                "ahimsa": "Ahimsa",
-                "saatya": "Saatya",
-                "vairagya": "Vairagya"
-            }
-        },
-        "scroll_label": "Scroll",
-        "contact_labels": {
-            "official_portal": "Official Portal",
-            "book_now": "Book Now"
-        },
-        "stay_section": {
-            "eyebrow": "Temple Stay",
-            "title": "Experience Spiritual Tranquility",
-            "subtitle": "Our peaceful Dharamshala within the temple complex offers a serene environment with modern amenities and divine atmosphere.",
-            "btn": "Book Room Online",
-            "features": {
-                "peace": "Peaceful Environment",
-                "amenities": "Modern Amenities",
-                "dining": "Traditional Dining Hall"
-            }
-        }
-    },
-    "instagram_promoters": {
-        "eyebrow": "Social Media Partner",
-        "title": "Promoted on Instagram",
-        "subtitle": "Special thanks to CharanSparsh Parivar Csp for showcasing the divine beauty, rich heritage, and spiritual sanctity of Saat Bees Deori Jain Mandir.",
-        "visit_page": "Visit Instagram Page",
-        "watch_reel": "View Profile & Posts",
-        "followers_label": "Followers",
-        "tag_us_title": "Did you feature our Mandir on Instagram?",
-        "tag_us_desc": "Tag our official page or share your reels & posts with us to get featured right here on our website!",
-        "tag_us_btn": "Tag Us on Instagram",
-        "items": [
-            {
-                "title": "CharanSparsh Parivar - Jain Tirth & Mandir Highlights",
-                "desc": "Regularly features peaceful glimpses, divine darshan, and architectural beauty of Jain Tirthankara temples including Saat Bees Deori Temple to thousands of devotees."
-            }
-        ]
+      "title": "Photo Gallery"
     }
+  },
+  "cards": {
+    "darshan": {
+      "title": "Darshan Timing",
+      "desc": "Morning: 6:00 AM - 1:00 PM <br/> Evening: 4:00 PM - 9:00 PM"
+    },
+    "events": {
+      "title": "Events",
+      "desc": "Join us for daily Aarti and upcoming festivals."
+    },
+    "donation": {
+      "title": "Donation",
+      "desc": "Support the temple maintenance and charitable activities."
+    }
+  },
+  "events": {
+    "date_label": "Date:",
+    "items": [
+      {
+        "title": "Mahavir Jayanti Celebration",
+        "desc": "Join us for the grand celebration of Mahavir Janma Kalyanak. Morning prayers followed by specialized puja."
+      },
+      {
+        "title": "Paryushan Parv",
+        "desc": "The festival of forgiveness. Daily discourses and Pratikraman."
+      }
+    ]
+  },
+  "gallery": {
+    "items": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "events": {
+      "glimpses": {
+        "name": "Highlights",
+        "description": ""
+      },
+      "Flag_hosting": {
+        "name": "Flag Hosting 2026",
+        "description": "Photos from Flag Hosting Ceremony"
+      }
+    },
+    "no_images": "No images available yet",
+    "view_all": "View All Photos",
+    "loading": "Loading images...",
+    "permanent_collections": "Collection",
+    "latest_updates": "Latest Updates"
+  },
+  "trust": {
+    "title": "Trust Committee",
+    "subtitle": "Dedicated members serving the community.",
+    "gallery": {
+      "title": "Trustee Assemblies & Meetings",
+      "subtitle": "Glimpses from the general meetings, assemblies, and executive sessions of our trust.",
+      "img1_desc": "Executive Committee Assembly",
+      "img2_desc": "Annual General Meeting of the Trust"
+    },
+    "table": {
+      "title": "All Members",
+      "no": "S.No",
+      "name": "Name",
+      "place": "Village/City"
+    },
+    "members": [
+      {
+        "name": "Dr. A.L. Jain",
+        "role": "Chairman"
+      },
+      {
+        "name": "Mr. Rakesh Kumar Jain",
+        "role": "Secretary"
+      },
+      {
+        "name": "Mr. Kanhaiyalal Chhajed",
+        "role": "Treasurer"
+      }
+    ]
+  },
+  "footer": {
+    "text": "© 2026 Shri Saat Bees Deori Jain Temple Trust. Dedicated to the path of Tirthankaras.",
+    "social": "Social",
+    "contact": "Contact",
+    "booking": "Book Dharamshala"
+  },
+  "contact": {
+    "intro": "Jai Jinendra. Please visit us or reach out via email.",
+    "labels": {
+      "address": "Address",
+      "email": "Email",
+      "name": "Name",
+      "phone": "Phone",
+      "directions": "Get Directions on Google Maps",
+      "switch_location": "Select Location"
+    },
+    "locations": {
+      "temple": {
+        "name": "Shri Saat Bees Deori Jain Temple (Chittorgarh Fort)",
+        "address": "Inside Chittorgarh Fort, near Fateh Prakash Palace, Chittorgarh, Rajasthan 312001"
+      },
+      "vishranti": {
+        "name": "Jain Shwetambar Vishranti Griha & Dharamshala (Railway Station)",
+        "address": "Opposite Railway Station, Railway Station Road, Chittorgarh, Rajasthan 312001"
+      }
+    },
+    "sections": {
+      "main": "Main Contact",
+      "other": "Other Contacts"
+    },
+    "main": {
+      "name": "Shri Shwetamber Jain Saat Bees Deori Tirth",
+      "address": "Chittorgarh, Rajasthan - 312001"
+    },
+    "maincontact1": {
+      "name": "Dr. A.L. Jain",
+      "address": "Chairman"
+    },
+    "maincontact2": {
+      "name": "Mr. Praveen Jain",
+      "address": "-"
+    }
+  },
+  "info": {
+    "title": "Information",
+    "items": [
+      "Jain Shwetambar Vishranti Griha, located opposite the railway station in Chittorgarh, offers excellent facilities including air-conditioned rooms along with Navkarshi and a dining hall. At Chittorgarh Fort as well, 9 rooms are available along with regular Navkarshi and dining hall facilities."
+    ]
+  },
+  "external_links": {
+    "section_title": "Online Services",
+    "dharamshala_booking": {
+      "label": "Book Dharamshala Rooms",
+      "desc": "Reserve your stay at our Jain Dharamshala online. Check availability and book rooms conveniently through our official booking portal."
+    }
+  },
+  "disclaimer": {
+    "title": "Disclaimer",
+    "text": "The phone number of the Jain Dharamshala operated by Shri Jain Shwetambar Saat Bees Deori Fort Teerth Trust, Chittorgarh, appears differently every day on Google search. This number has been wrongly changed by a scammers. People who call the number provided by the scammers for room booking are being cheated. Therefore, all people are requested not to make any payment for bookings to any phone number."
+  },
+  "about_page": {
+    "established_label": "Established",
+    "century_label": "11th Century CE",
+    "heritage_label": "Our Heritage",
+    "quote": "Entering this sacred land of Chittorgarh marks the beginning of an ethereal journey, resonating with legends and captivating architecture.",
+    "location_label": "Location",
+    "location_value": "Chittorgarh Fort, Rajasthan",
+    "heritage_tag": "Heritage",
+    "heritage_value": "Saat Bees Deori Temple",
+    "unesco_badge": "Chitrakoot Tirth — UNESCO World Heritage",
+    "scroll_label": "Scroll",
+    "stats": {
+      "century_value": "11th",
+      "century_label": "Century CE",
+      "temples_value": "27",
+      "temples_label": "Temples",
+      "unesco_value": "UNESCO",
+      "unesco_label": "World Heritage",
+      "years_value": "900+",
+      "years_label": "Years of History"
+    },
+    "history_section": {
+      "title": "Temple History & Heritage",
+      "subtitle": "A Journey Through Time",
+      "cards": [
+        {
+          "image": "/assets/images/about/history-ancient.jpg",
+          "title": "Ancient Origins",
+          "period": "11th Century CE",
+          "description": "The Saat Bees Deori Temple was established in the 11th century CE as a magnificent complex of twenty-seven Jain temples. Built during the reign of the Rajput rulers, this sacred site represents the pinnacle of medieval Jain architecture and devotion."
+        },
+        {
+          "image": "/assets/images/about/history-architecture.jpg",
+          "title": "Architectural Marvel",
+          "period": "Maru-Gurjara Style",
+          "description": "The temple showcases an exquisite blend of Jain and Maru-Gurjara architectural styles. Every surface is adorned with intricate carvings featuring geometric patterns, floral motifs, and divine imagery, demonstrating the exceptional craftsmanship of ancient artisans."
+        },
+        {
+          "image": "/assets/images/about/history-sculptures.jpg",
+          "title": "Sacred Sculptures",
+          "period": "Tirthankara Idols",
+          "description": "The temple houses magnificent sculptures of the twenty-four Tirthankaras, each carved with meticulous detail. The central sanctum features Lord Adinath in serene meditation, inspiring devotees with the profound principles of Ahimsa, Saatya, and Vairagya."
+        },
+        {
+          "image": "/assets/images/about/history-pillars.jpg",
+          "title": "Ornate Pillars",
+          "period": "Detailed Craftsmanship",
+          "description": "The temple corridors are lined with impressive pillars, each a masterpiece of stone carving. These pillars depict Jain deities, celestial beings, and intricate narratives from Jain scriptures, creating an atmosphere of divine reverence."
+        },
+        {
+          "image": "/assets/images/about/history-ceiling.jpg",
+          "title": "Celestial Ceilings",
+          "period": "Geometric Perfection",
+          "description": "The temple ceilings feature breathtaking mandala designs and geometric patterns that represent the cosmic order. These intricate dome carvings showcase mathematical precision and spiritual symbolism, inviting visitors to contemplate the infinite."
+        },
+        {
+          "image": "/assets/images/about/history-sanctum.jpg",
+          "title": "Divine Sanctum",
+          "period": "Spiritual Center",
+          "description": "The main sanctum serves as the spiritual heart of the temple complex. Here, devotees offer prayers and flowers to the Tirthankaras, experiencing a profound connection with Jain philosophy and the path to spiritual liberation."
+        }
+      ]
+    },
+    "video_section": {
+      "eyebrow": "Our Heritage",
+      "title": "A Sacred Journey Through",
+      "subtitle": "Eleven Centuries",
+      "live_badge": "LIVE TEMPLE ATMOSPHERE"
+    },
+    "philosophy_section": {
+      "eyebrow": "Jain Philosophy",
+      "title": "Principles That",
+      "subtitle": "Guide the Faithful",
+      "principles": {
+        "ahimsa": "Ahimsa",
+        "saatya": "Saatya",
+        "vairagya": "Vairagya"
+      }
+    },
+    "contact_labels": {
+      "official_portal": "Official Portal",
+      "book_now": "Book Now"
+    },
+    "stay_section": {
+      "eyebrow": "Temple Stay",
+      "title": "Experience Spiritual Tranquility",
+      "subtitle": "Our peaceful Dharamshala within the temple complex offers a serene environment with modern amenities and divine atmosphere.",
+      "btn": "Book Room Online",
+      "features": {
+        "peace": "Peaceful Environment",
+        "amenities": "Modern Amenities",
+        "dining": "Traditional Dining Hall"
+      }
+    }
+  },
+  "instagram_promoters": {
+    "eyebrow": "Social Media Partner",
+    "title": "Promoted on Instagram",
+    "subtitle": "Special thanks to CharanSparsh Parivar Csp for showcasing the divine beauty, rich heritage, and spiritual sanctity of Saat Bees Deori Jain Mandir.",
+    "visit_page": "Visit Instagram Page",
+    "watch_reel": "View Profile & Posts",
+    "followers_label": "Followers",
+    "tag_us_title": "Did you feature our Mandir on Instagram?",
+    "tag_us_desc": "Tag our official page or share your reels & posts with us to get featured right here on our website!",
+    "tag_us_btn": "Tag Us on Instagram",
+    "items": [
+      {
+        "title": "CharanSparsh Parivar - Jain Tirth & Mandir Highlights",
+        "desc": "Regularly features peaceful glimpses, divine darshan, and architectural beauty of Jain Tirthankara temples including Saat Bees Deori Temple to thousands of devotees."
+      }
+    ]
+  }
 }

@@ -2,8 +2,9 @@ import { Lang } from './types';
 
 // Helper to resolve nested keys like "hero.title"
 export function getTrans(dict: any, key: string): string {
-    if (!dict) return key;
-    return key.split('.').reduce((acc, part) => acc && acc[part], dict) || key;
+    if (!dict || !key) return '';
+    const val = key.split('.').reduce((acc, part) => (acc !== undefined && acc !== null ? acc[part] : undefined), dict);
+    return val !== undefined && val !== null ? String(val) : key;
 }
 
 export function getBilingualAuth(obj: any, lang: Lang): string {

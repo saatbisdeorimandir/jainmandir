@@ -93,12 +93,14 @@ export default async function Layout({
     const siteConfig = await getSiteConfig();
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <>
             <StructuredData dict={dict} siteConfig={siteConfig} lang={lang} />
-            <AnnouncementPopup dict={dict} />
-            <Navbar lang={lang} dict={dict} pagesConfig={pagesConfig} siteConfig={siteConfig} />
-            <main className="flex-grow">{children}</main>
-            <Footer dict={dict} siteConfig={siteConfig} />
-        </div>
+            <div className="flex flex-col min-h-screen" suppressHydrationWarning>
+                <AnnouncementPopup dict={dict} />
+                <Navbar lang={lang} dict={dict} pagesConfig={pagesConfig} siteConfig={siteConfig} />
+                <main className="flex-grow">{children}</main>
+                <Footer dict={dict} siteConfig={siteConfig} />
+            </div>
+        </>
     );
 }

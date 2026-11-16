@@ -60,9 +60,11 @@ export default function EventGalleryGrid({ event, dict, images: initialImages, d
                             </span>
                         )}
                     </div>
-                    <p className="text-stone-600 mt-2">
-                        {getTrans(dict, event.descriptionKey)}
-                    </p>
+                    {event.descriptionKey && getTrans(dict, event.descriptionKey).trim() !== '' && (
+                        <p className="text-stone-600 mt-2">
+                            {getTrans(dict, event.descriptionKey)}
+                        </p>
+                    )}
                 </div>
                 <button
                     className="ml-4 text-jain-orange transition-transform duration-300"

@@ -71,6 +71,26 @@ collections:
                   - { label: "Title Key", name: "titleKey", widget: "string" }
                   - { label: "Text Key", name: "textKey", widget: "string" }
               - { label: "Google Map Embed URL", name: "mapUrl", widget: "string", required: false }
+              - label: Notice / Information Notes
+                name: information
+                widget: object
+                fields:
+                  - { label: "Title Translation Key", name: "titleKey", widget: "string" }
+                  - label: Information Items
+                    name: items
+                    widget: list
+                    fields:
+                      - { label: "Is Active", name: "isActive", widget: "boolean", default: true }
+                      - { label: "Text Translation Key", name: "textKey", widget: "string" }
+              - label: Location Maps & Addresses
+                name: locations
+                widget: list
+                summary: "{{fields.nameKey}}"
+                fields:
+                  - { label: "Name Translation Key", name: "nameKey", widget: "string" }
+                  - { label: "Address Translation Key", name: "addressKey", widget: "string" }
+                  - { label: "Directions Map URL", name: "directionsUrl", widget: "string" }
+                  - { label: "Google Map Embed URL", name: "embedUrl", widget: "string" }
 
           - label: Social Media Links
             name: social
@@ -98,8 +118,60 @@ collections:
               - { label: "Description Key", name: "descKey", widget: "string" }
               - { label: "Featured Post URL", name: "postUrl", widget: "string" }
 
+          - label: Homepage Events List
+            name: events
+            widget: list
+            summary: "{{fields.titleKey}} ({{fields.date}})"
+            fields:
+              - { label: "Event ID", name: "id", widget: "number", value_type: "int" }
+              - { label: "Title Translation Key", name: "titleKey", widget: "string" }
+              - { label: "Description Translation Key", name: "descKey", widget: "string" }
+              - { label: "Date (YYYY-MM-DD)", name: "date", widget: "string" }
+              - { label: "Event Image", name: "image", widget: "image" }
+
+          - label: Homepage Gallery Grid
+            name: gallery
+            widget: list
+            summary: "{{fields.altKey}}"
+            fields:
+              - { label: "Image Path", name: "src", widget: "image" }
+              - { label: "Alt Text Translation Key", name: "altKey", widget: "string" }
+
+          - label: Trust Committee Overview
+            name: trust
+            widget: object
+            fields:
+              - label: Executive Members
+                name: committee
+                widget: list
+                summary: "{{fields.nameKey}}"
+                fields:
+                  - { label: "Name Translation Key", name: "nameKey", widget: "string" }
+                  - { label: "Role Translation Key", name: "roleKey", widget: "string" }
+                  - { label: "Profile Image", name: "image", widget: "image" }
+
   # -------------------------------------------------------------
-  # 2. Trust Committee Members
+  # 2. Site Pages & Navigation
+  # -------------------------------------------------------------
+  - name: site_pages
+    label: Pages & Navigation
+    files:
+      - name: pages_config
+        label: Navigation Menu Configuration
+        file: src/content/pages.json
+        format: json
+        fields:
+          - label: Navigation Links
+            name: navigation
+            widget: list
+            summary: "{{fields.id}} -> /{{fields.path}} ({{fields.key}})"
+            fields:
+              - { label: "Page Identifier", name: "id", widget: "string" }
+              - { label: "URL Path (leave empty for home)", name: "path", widget: "string" }
+              - { label: "Label Translation Key", name: "key", widget: "string" }
+
+  # -------------------------------------------------------------
+  # 3. Trust Committee Members
   # -------------------------------------------------------------
   - name: trust_committee
     label: Trust Committee Members
@@ -130,7 +202,7 @@ collections:
                   - { label: "Place in Hindi", name: "hi", widget: "string" }
 
   # -------------------------------------------------------------
-  # 3. Gallery & Event Management
+  # 4. Gallery & Event Management
   # -------------------------------------------------------------
   - name: gallery_events
     label: Gallery & Events
@@ -153,16 +225,43 @@ collections:
               - { label: "Is Permanent Section", name: "isPermanent", widget: "boolean", default: false, required: false }
 
   # -------------------------------------------------------------
-  # 4. Bilingual Page Content & Text
+  # 5. Bilingual Page Content & Text (All Translation Keys)
   # -------------------------------------------------------------
   - name: content_translations
     label: Content & Translations
     files:
       - name: en_content
-        label: English Content
+        label: English Content (en.json)
         file: src/content/en.json
         format: json
-        fields:
+        fields: &translation_fields
+          - { label: "Site Name", name: "site_name", widget: "string" }
+          - label: SEO Keywords
+            name: keywords
+            widget: list
+            field: { label: "Keyword", name: "keyword", widget: "string" }
+
+          - label: Navigation Bar
+            name: nav
+            widget: object
+            fields:
+              - { label: "Home", name: "home", widget: "string" }
+              - { label: "About", name: "about", widget: "string" }
+              - { label: "History", name: "history", widget: "string" }
+              - { label: "Events", name: "events", widget: "string" }
+              - { label: "Gallery", name: "gallery", widget: "string" }
+              - { label: "Trust", name: "trust", widget: "string" }
+              - { label: "Contact", name: "contact", widget: "string" }
+              - { label: "Announcements", name: "announcements", widget: "string" }
+
+          - label: Buttons & CTAs
+            name: buttons
+            widget: object
+            fields:
+              - { label: "Language Toggle Label", name: "lang", widget: "string" }
+              - { label: "Read More Label", name: "read_more", widget: "string" }
+              - { label: "Got It Label", name: "got_it", widget: "string" }
+
           - label: Hero Banner
             name: hero
             widget: object
@@ -172,6 +271,31 @@ collections:
               - { label: "Subheading 2", name: "subtitle", widget: "string" }
               - { label: "Explore Button Label", name: "btn", widget: "string" }
               - { label: "Booking Button Label", name: "booking_btn", widget: "string" }
+
+          - label: Homepage Section Headings
+            name: sections
+            widget: object
+            fields:
+              - label: About Section
+                name: about
+                widget: object
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - label: Paragraphs / Descriptions
+                    name: desc
+                    widget: list
+                    field: { label: "Paragraph", name: "paragraph", widget: "text" }
+              - label: Events Section
+                name: events
+                widget: object
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+              - label: Gallery Section
+                name: gallery
+                widget: object
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+
           - label: Homepage Cards
             name: cards
             widget: object
@@ -181,65 +305,291 @@ collections:
                 widget: object
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description / Timings", name: "desc", widget: "string" }
+                  - { label: "Description / Timings", name: "desc", widget: "text" }
               - label: Events Card
                 name: events
                 widget: object
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
               - label: Donation Card
                 name: donation
                 widget: object
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "string" }
-          - label: Emergency Disclaimer Text
+                  - { label: "Description", name: "desc", widget: "text" }
+
+          - label: Events Page Content
+            name: events
+            widget: object
+            fields:
+              - { label: "Date Label", name: "date_label", widget: "string" }
+              - label: Event Items
+                name: items
+                widget: list
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+
+          - label: Gallery Page Content
+            name: gallery
+            widget: object
+            fields:
+              - label: Image Alt Texts
+                name: items
+                widget: list
+                field: { label: "Alt Text", name: "alt", widget: "string" }
+              - label: Gallery Event Overrides
+                name: events
+                widget: object
+                fields:
+                  - label: Glimpses Event
+                    name: glimpses
+                    widget: object
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text", required: false }
+                  - label: Flag Hosting Event
+                    name: Flag_hosting
+                    widget: object
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text", required: false }
+              - { label: "No Images Text", name: "no_images", widget: "string" }
+              - { label: "View All Button Text", name: "view_all", widget: "string" }
+              - { label: "Loading Text", name: "loading", widget: "string" }
+              - { label: "Permanent Collections Label", name: "permanent_collections", widget: "string" }
+              - { label: "Latest Updates Label", name: "latest_updates", widget: "string" }
+
+          - label: Trust Page Content
+            name: trust
+            widget: object
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string" }
+              - label: Gallery Sub-Section
+                name: gallery
+                widget: object
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+                  - { label: "Image 1 Description", name: "img1_desc", widget: "string" }
+                  - { label: "Image 2 Description", name: "img2_desc", widget: "string" }
+              - label: Members Table Headers
+                name: table
+                widget: object
+                fields:
+                  - { label: "Table Title", name: "title", widget: "string" }
+                  - { label: "Serial Number Header", name: "no", widget: "string" }
+                  - { label: "Name Header", name: "name", widget: "string" }
+                  - { label: "Place Header", name: "place", widget: "string" }
+              - label: Executive Members
+                name: members
+                widget: list
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role", name: "role", widget: "string" }
+
+          - label: Footer Content
+            name: footer
+            widget: object
+            fields:
+              - { label: "Copyright / Footer Text", name: "text", widget: "string" }
+              - { label: "Social Heading", name: "social", widget: "string" }
+              - { label: "Contact Heading", name: "contact", widget: "string" }
+              - { label: "Booking Link Text", name: "booking", widget: "string" }
+
+          - label: Contact Page Content
+            name: contact
+            widget: object
+            fields:
+              - { label: "Introductory Text", name: "intro", widget: "text" }
+              - label: Field Labels
+                name: labels
+                widget: object
+                fields:
+                  - { label: "Address Label", name: "address", widget: "string" }
+                  - { label: "Email Label", name: "email", widget: "string" }
+                  - { label: "Name Label", name: "name", widget: "string" }
+                  - { label: "Phone Label", name: "phone", widget: "string" }
+                  - { label: "Directions Label", name: "directions", widget: "string" }
+                  - { label: "Switch Location Label", name: "switch_location", widget: "string" }
+              - label: Locations
+                name: locations
+                widget: object
+                fields:
+                  - label: Temple Location
+                    name: temple
+                    widget: object
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Address", name: "address", widget: "text" }
+                  - label: Vishranti Griha Location
+                    name: vishranti
+                    widget: object
+                    fields:
+                      - { label: "Name", name: "name", widget: "string" }
+                      - { label: "Address", name: "address", widget: "text" }
+              - label: Section Headings
+                name: sections
+                widget: object
+                fields:
+                  - { label: "Main Contacts Heading", name: "main", widget: "string" }
+                  - { label: "Other Contacts Heading", name: "other", widget: "string" }
+              - label: Main Entity
+                name: main
+                widget: object
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Address", name: "address", widget: "text" }
+              - label: Contact Person 1
+                name: maincontact1
+                widget: object
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role / Address", name: "address", widget: "string" }
+              - label: Contact Person 2
+                name: maincontact2
+                widget: object
+                fields:
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Role / Address", name: "address", widget: "string" }
+
+          - label: General Information Section
+            name: info
+            widget: object
+            fields:
+              - { label: "Section Title", name: "title", widget: "string" }
+              - label: Information Notes
+                name: items
+                widget: list
+                field: { label: "Note Text", name: "note", widget: "text" }
+
+          - label: External Services Content
+            name: external_links
+            widget: object
+            fields:
+              - { label: "Section Title", name: "section_title", widget: "string" }
+              - label: Dharamshala Booking
+                name: dharamshala_booking
+                widget: object
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+
+          - label: Emergency Disclaimer Notice
             name: disclaimer
             widget: object
             fields:
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Warning Message", name: "text", widget: "text" }
+              - { label: "Warning Text", name: "text", widget: "text" }
+
+          - label: About Us Page Content
+            name: about_page
+            widget: object
+            fields:
+              - { label: "Established Label", name: "established_label", widget: "string" }
+              - { label: "Century Label", name: "century_label", widget: "string" }
+              - { label: "Heritage Label", name: "heritage_label", widget: "string" }
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Location Label", name: "location_label", widget: "string" }
+              - { label: "Location Value", name: "location_value", widget: "string" }
+              - { label: "Heritage Tag", name: "heritage_tag", widget: "string" }
+              - { label: "Heritage Value", name: "heritage_value", widget: "string" }
+              - { label: "UNESCO Badge Text", name: "unesco_badge", widget: "string" }
+              - { label: "Scroll Indicator Label", name: "scroll_label", widget: "string" }
+              - label: Key Statistics
+                name: stats
+                widget: object
+                fields:
+                  - { label: "Century Value", name: "century_value", widget: "string" }
+                  - { label: "Century Label", name: "century_label", widget: "string" }
+                  - { label: "Temples Value", name: "temples_value", widget: "string" }
+                  - { label: "Temples Label", name: "temples_label", widget: "string" }
+                  - { label: "UNESCO Value", name: "unesco_value", widget: "string" }
+                  - { label: "UNESCO Label", name: "unesco_label", widget: "string" }
+                  - { label: "Years Value", name: "years_value", widget: "string" }
+                  - { label: "Years Label", name: "years_label", widget: "string" }
+              - label: History Timeline Cards
+                name: history_section
+                widget: object
+                fields:
+                  - { label: "Section Title", name: "title", widget: "string" }
+                  - { label: "Section Subtitle", name: "subtitle", widget: "text" }
+                  - label: Timeline Cards
+                    name: cards
+                    widget: list
+                    fields:
+                      - { label: "Card Image", name: "image", widget: "image" }
+                      - { label: "Title", name: "title", widget: "string" }
+                      - { label: "Period / Era", name: "period", widget: "string" }
+                      - { label: "Description", name: "description", widget: "text" }
+              - label: Heritage Video Section
+                name: video_section
+                widget: object
+                fields:
+                  - { label: "Eyebrow Tag", name: "eyebrow", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "text" }
+                  - { label: "Live Badge Text", name: "live_badge", widget: "string" }
+              - label: Jain Philosophy Section
+                name: philosophy_section
+                widget: object
+                fields:
+                  - { label: "Eyebrow Tag", name: "eyebrow", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "text" }
+                  - label: Core Principles
+                    name: principles
+                    widget: object
+                    fields:
+                      - { label: "Ahimsa (Non-violence)", name: "ahimsa", widget: "string" }
+                      - { label: "Satya (Truth)", name: "saatya", widget: "string" }
+                      - { label: "Vairagya (Detachment)", name: "vairagya", widget: "string" }
+              - label: Action Buttons
+                name: contact_labels
+                widget: object
+                fields:
+                  - { label: "Official Portal Button", name: "official_portal", widget: "string" }
+                  - { label: "Book Now Button", name: "book_now", widget: "string" }
+              - label: Temple Stay / Dharamshala Section
+                name: stay_section
+                widget: object
+                fields:
+                  - { label: "Eyebrow Tag", name: "eyebrow", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "text" }
+                  - { label: "Button Label", name: "btn", widget: "string" }
+                  - label: Features
+                    name: features
+                    widget: object
+                    fields:
+                      - { label: "Peace Feature", name: "peace", widget: "string" }
+                      - { label: "Amenities Feature", name: "amenities", widget: "string" }
+                      - { label: "Dining Feature", name: "dining", widget: "string" }
+
+          - label: Instagram Promoters Content
+            name: instagram_promoters
+            widget: object
+            fields:
+              - { label: "Eyebrow Tag", name: "eyebrow", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Visit Page Button Label", name: "visit_page", widget: "string" }
+              - { label: "Watch Reel Button Label", name: "watch_reel", widget: "string" }
+              - { label: "Followers Label", name: "followers_label", widget: "string" }
+              - { label: "Tag Us Box Title", name: "tag_us_title", widget: "string" }
+              - { label: "Tag Us Box Description", name: "tag_us_desc", widget: "text" }
+              - { label: "Tag Us Button Label", name: "tag_us_btn", widget: "string" }
+              - label: Promoter Quotes / Testimonials
+                name: items
+                widget: list
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description / Quote", name: "desc", widget: "text" }
 
       - name: hi_content
-        label: Hindi Content (हिन्दी)
+        label: Hindi Content (hi.json)
         file: src/content/hi.json
         format: json
-        fields:
-          - label: Hero Banner (हिन्दी)
-            name: hero
-            widget: object
-            fields:
-              - { label: "Main Title", name: "title", widget: "string" }
-              - { label: "Subheading 1", name: "subtitle0", widget: "string" }
-              - { label: "Subheading 2", name: "subtitle", widget: "string" }
-              - { label: "Explore Button Label", name: "btn", widget: "string" }
-              - { label: "Booking Button Label", name: "booking_btn", widget: "string" }
-          - label: Homepage Cards (हिन्दी)
-            name: cards
-            widget: object
-            fields:
-              - label: Darshan Timings Card
-                name: darshan
-                widget: object
-                fields:
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description / Timings", name: "desc", widget: "string" }
-              - label: Events Card
-                name: events
-                widget: object
-                fields:
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "string" }
-              - label: Donation Card
-                name: donation
-                widget: object
-                fields:
-                  - { label: "Title", name: "title", widget: "string" }
-                  - { label: "Description", name: "desc", widget: "string" }
-          - label: Emergency Disclaimer Text (हिन्दी)
-            name: disclaimer
-            widget: object
-            fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Warning Message", name: "text", widget: "text" }
+        fields: *translation_fields
