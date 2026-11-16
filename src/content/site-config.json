@@ -1,145 +1,145 @@
 {
-    "general": {
-        "siteName": "Shri Shwetamber Jain Temple",
-        "logoText": "Jain Mandir",
-        "logo": "/assets/images/about/Jain_logo.jpg",
-        "themeColor": "#FF9933"
-    },
-    "contact": {
-        "mainContacts": [
-            {
-                "nameKey": "contact.main.name",
-                "email": "-",
-                "phone": "01472-291971, +91-9664309708",
-                "addressKey": "contact.main.address"
-            }
-        ],
-        "otherContacts": [
-            {
-                "nameKey": "contact.maincontact2.name",
-                "phone": "+91 9664309708",
-                "email": "-",
-                "addressKey": "contact.maincontact2.address"
-            }
-        ],
-        "information": {
-            "titleKey": "info.title",
-            "items": [
-                {
-                    "textKey": "info.items.0",
-                    "isActive": true
-                }
-            ]
-        },
-        "disclaimer": {
-            "titleKey": "disclaimer.title",
-            "textKey": "disclaimer.text"
-        },
-        "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
-        "locations": [
-            {
-                "nameKey": "contact.locations.temple.name",
-                "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
-                "directionsUrl": "https://maps.app.goo.gl/T3jrprMhsZUeocXE8?g_st=aw",
-                "addressKey": "contact.locations.temple.address"
-            },
-            {
-                "nameKey": "contact.locations.vishranti.name",
-                "embedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14499.45680483428!2d74.623823!3d24.872838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39682f6e9c916297%3A0x6e760c6d9d150257!2sShwetamber%20Jain%20Dharamsala!5e0!3m2!1sen!2sin!4v1717782348507!5m2!1sen!2sin",
-                "directionsUrl": "https://maps.app.goo.gl/NymRam5MKRi8BdiR8?g_st=aw",
-                "addressKey": "contact.locations.vishranti.address"
-            }
-        ]
-    },
-    "trust": {
-        "committee": [
-            {
-                "nameKey": "trust.members.0.name",
-                "roleKey": "trust.members.0.role",
-                "image": "https://placehold.co/400x400"
-            },
-            {
-                "nameKey": "trust.members.1.name",
-                "roleKey": "trust.members.1.role",
-                "image": "https://placehold.co/400x400"
-            },
-            {
-                "nameKey": "trust.members.2.name",
-                "roleKey": "trust.members.2.role",
-                "image": "https://placehold.co/400x400"
-            }
-        ]
-    },
-    "externalLinks": [
-        {
-            "id": "dharamshala_booking",
-            "url": "https://jain-dharamsala-front.vercel.app/",
-            "labelKey": "external_links.dharamshala_booking.label",
-            "descKey": "external_links.dharamshala_booking.desc",
-            "icon": "booking",
-            "isActive": false
-        }
+  "general": {
+    "siteName": "Shri Shwetamber Jain Temple",
+    "logoText": "Jain Mandir",
+    "logo": "/assets/images/about/Jain_logo.jpg",
+    "themeColor": "#FF9933"
+  },
+  "externalLinks": [
+    {
+      "id": "dharamshala_booking",
+      "isActive": false,
+      "url": "https://jain-dharamsala-front.vercel.app/",
+      "labelKey": "external_links.dharamshala_booking.label",
+      "descKey": "external_links.dharamshala_booking.desc",
+      "icon": "booking"
+    }
+  ],
+  "contact": {
+    "mainContacts": [
+      {
+        "nameKey": "contact.main.name",
+        "phone": "+91-9414735053",
+        "email": "-",
+        "addressKey": "contact.main.address"
+      }
     ],
-    "social": {
-        "facebook": "https://facebook.com",
-        "instagram": "https://instagram.com",
-        "youtube": "https://youtube.com",
-        "twitter": "https://twitter.com"
+    "otherContacts": [
+      {
+        "nameKey": "contact.maincontact2.name",
+        "phone": "+91 9414735053",
+        "email": "-",
+        "addressKey": "contact.maincontact2.address"
+      }
+    ],
+    "disclaimer": {
+      "titleKey": "disclaimer.title",
+      "textKey": "disclaimer.text"
     },
-    "events": [
+    "mapUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
+    "information": {
+      "items": [
         {
-            "id": 1,
-            "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=2071",
-            "titleKey": "events.items.0.title",
-            "descKey": "events.items.0.desc",
-            "date": "2024-04-21"
-        },
-        {
-            "id": 2,
-            "image": "https://images.unsplash.com/photo-1606293926075-69a00dbfde81?q=80&w=2070",
-            "titleKey": "events.items.1.title",
-            "descKey": "events.items.1.desc",
-            "date": "2024-09-11"
+          "isActive": true,
+          "textKey": "info.items.0"
         }
-    ],
-    "gallery": [
-        {
-            "src": "/assets/images/gallery/1.jpg",
-            "altKey": "gallery.items.0"
-        },
-        {
-            "src": "/assets/images/gallery/2.jpg",
-            "altKey": "gallery.items.1"
-        },
-        {
-            "src": "/assets/images/gallery/3.jpg",
-            "altKey": "gallery.items.2"
-        },
-        {
-            "src": "/assets/images/gallery/4.jpg",
-            "altKey": "gallery.items.3"
-        },
-        {
-            "src": "/assets/images/gallery/5.jpg",
-            "altKey": "gallery.items.4"
-        },
-        {
-            "src": "/assets/images/gallery/6.jpg",
-            "altKey": "gallery.items.5"
-        }
-    ],
-    "instagramPromoters": [
-        {
-            "id": "1",
-            "pageName": "CharanSparsh Parivar Csp",
-            "handle": "@charan_sparsh_parivar",
-            "url": "https://www.instagram.com/charan_sparsh_parivar/",
-            "followers": "1.6K+ Followers",
-            "badge": "Jain Bhakti & Tirth",
-            "titleKey": "instagram_promoters.items.0.title",
-            "descKey": "instagram_promoters.items.0.desc",
-            "postUrl": "https://www.instagram.com/charan_sparsh_parivar/",
-            "isActive": true
-        }
+      ],
+      "titleKey": "info.title"
+    },
+    "locations": [
+      {
+        "addressKey": "contact.locations.temple.address",
+        "directionsUrl": "https://maps.app.goo.gl/T3jrprMhsZUeocXE8?g_st=aw",
+        "embedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26201.515474110674!2d74.60811067431642!3d24.891085800000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3968a0f0d78cc45b%3A0xc0c411cbcdf8d8ba!2sJain%20Shwetambar%20Temple%20%26%20Dharamshala!5e1!3m2!1sen!2sin!4v1767707645019!5m2!1sen!2sin",
+        "nameKey": "contact.locations.temple.name"
+      },
+      {
+        "addressKey": "contact.locations.vishranti.address",
+        "directionsUrl": "https://maps.app.goo.gl/NymRam5MKRi8BdiR8?g_st=aw",
+        "embedUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14499.45680483428!2d74.623823!3d24.872838!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39682f6e9c916297%3A0x6e760c6d9d150257!2sShwetamber%20Jain%20Dharamsala!5e0!3m2!1sen!2sin!4v1717782348507!5m2!1sen!2sin",
+        "nameKey": "contact.locations.vishranti.name"
+      }
     ]
+  },
+  "social": {
+    "facebook": "https://facebook.com",
+    "instagram": "https://instagram.com",
+    "youtube": "https://youtube.com",
+    "twitter": "https://twitter.com"
+  },
+  "instagramPromoters": [
+    {
+      "id": "1",
+      "isActive": true,
+      "pageName": "CharanSparsh Parivar Csp",
+      "handle": "@charan_sparsh_parivar",
+      "url": "https://www.instagram.com/charan_sparsh_parivar/",
+      "followers": "1.6K+ Followers",
+      "badge": "Jain Bhakti & Tirth",
+      "titleKey": "instagram_promoters.items.0.title",
+      "descKey": "instagram_promoters.items.0.desc",
+      "postUrl": "https://www.instagram.com/charan_sparsh_parivar/"
+    }
+  ],
+  "events": [
+    {
+      "date": "2024-04-21",
+      "descKey": "events.items.0.desc",
+      "id": 1,
+      "image": "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=2071",
+      "titleKey": "events.items.0.title"
+    },
+    {
+      "date": "2024-09-11",
+      "descKey": "events.items.1.desc",
+      "id": 2,
+      "image": "https://images.unsplash.com/photo-1606293926075-69a00dbfde81?q=80&w=2070",
+      "titleKey": "events.items.1.title"
+    }
+  ],
+  "gallery": [
+    {
+      "altKey": "gallery.items.0",
+      "src": "/assets/images/gallery/1.jpg"
+    },
+    {
+      "altKey": "gallery.items.1",
+      "src": "/assets/images/gallery/2.jpg"
+    },
+    {
+      "altKey": "gallery.items.2",
+      "src": "/assets/images/gallery/3.jpg"
+    },
+    {
+      "altKey": "gallery.items.3",
+      "src": "/assets/images/gallery/4.jpg"
+    },
+    {
+      "altKey": "gallery.items.4",
+      "src": "/assets/images/gallery/5.jpg"
+    },
+    {
+      "altKey": "gallery.items.5",
+      "src": "/assets/images/gallery/6.jpg"
+    }
+  ],
+  "trust": {
+    "committee": [
+      {
+        "image": "https://placehold.co/400x400",
+        "nameKey": "trust.members.0.name",
+        "roleKey": "trust.members.0.role"
+      },
+      {
+        "image": "https://placehold.co/400x400",
+        "nameKey": "trust.members.1.name",
+        "roleKey": "trust.members.1.role"
+      },
+      {
+        "image": "https://placehold.co/400x400",
+        "nameKey": "trust.members.2.name",
+        "roleKey": "trust.members.2.role"
+      }
+    ]
+  }
 }
